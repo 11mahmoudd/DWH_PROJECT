@@ -1,24 +1,24 @@
 ﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
-  DTS:CreationDate="5/17/2024 3:16:50 AM"
+  DTS:CreationDate="5/17/2024 5:50:26 AM"
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="WIN-G21BVJ4FL1C"
   DTS:CreatorName="WIN-G21BVJ4FL1C\Administrator"
-  DTS:DTSID="{7365184A-381D-4A05-8F3E-3D5A8AA8B3DA}"
+  DTS:DTSID="{87E129F2-1AFA-455C-9E17-343D341304FD}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="16.0.5397.1"
   DTS:LocaleID="1033"
-  DTS:ObjectName="From Source to D_Customer"
+  DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="19"
-  DTS:VersionGUID="{481FB07C-C1F5-4707-8463-E46129624449}">
+  DTS:VersionBuild="10"
+  DTS:VersionGUID="{6D6F6F63-BC58-460E-91DC-921820692868}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{2998BEA3-646F-4E20-8AE6-4FA2876276D0}"
+      DTS:DTSID="{C4CB9B4D-A1BB-4BE4-AD39-25419C914A7F}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
       DTS:ObjectName="Last_Extract_Date">
@@ -27,29 +27,29 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{894F4DFD-08AF-463E-88A0-8DC64FCE4A29}"
+      DTS:DTSID="{AB53ECCD-8082-4F95-B486-8C910CC95175}"
       DTS:EvaluateAsExpression="True"
-      DTS:Expression="&quot;SELECT  * &#xA;FROM customer &#xA;WHERE LastUpdate &gt; '&quot; + (DT_WSTR, 50) @[User::Last_Extract_Date]  + &quot;';&quot;"
+      DTS:Expression="&quot;SELECT  * &#xA;FROM Staff &#xA;WHERE LastUpdate &gt; '&quot; + (DT_WSTR, 50) @[User::Last_Extract_Date]  + &quot;';&quot;"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="SQL_Select_Statement">
       <DTS:VariableValue
         DTS:DataType="8">SELECT  * 
-FROM customer 
+FROM Staff 
 WHERE LastUpdate &gt; '1/1/2023';</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{7491755A-4005-4236-9825-0193B73E7FB1}"
+      DTS:DTSID="{B4EB3FD7-D99B-4A0C-B34A-BB39403F404C}"
       DTS:EvaluateAsExpression="True"
-      DTS:Expression="&quot;UPDATE STG.Conf_Table&#xA;SET last_extract_date = (SELECT ISNULL(MAX(src_update_date), last_extract_date) FROM STG.Customer)&#xA;WHERE table_name = 'Customer';&quot;"
+      DTS:Expression="&quot;UPDATE STG.Conf_Table&#xA;SET last_extract_date = (SELECT ISNULL(MAX(src_update_date), last_extract_date) FROM STG.Staff)&#xA;WHERE table_name = 'Staff';&quot;"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="SQL_Update_Conf_Table">
       <DTS:VariableValue
         DTS:DataType="8">UPDATE STG.Conf_Table
-SET last_extract_date = (SELECT ISNULL(MAX(src_update_date), last_extract_date) FROM STG.Customer)
-WHERE table_name = 'Customer';</DTS:VariableValue>
+SET last_extract_date = (SELECT ISNULL(MAX(src_update_date), last_extract_date) FROM STG.Staff)
+WHERE table_name = 'Staff';</DTS:VariableValue>
     </DTS:Variable>
   </DTS:Variables>
   <DTS:Executables>
@@ -57,7 +57,7 @@ WHERE table_name = 'Customer';</DTS:VariableValue>
       DTS:refId="Package\Get Last Extract Date"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:DTSID="{b806e06f-8b98-4b1c-86be-a9a55086981a}"
+      DTS:DTSID="{33a4a363-ead8-4d56-a4f5-94a6917487a8}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Get Last Extract Date"
@@ -76,13 +76,13 @@ WHERE table_name = 'Customer';</DTS:VariableValue>
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\Load_STG_Customer"
+      DTS:refId="Package\Load_STG_Staff"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:DTSID="{AB1FB460-C32A-4F29-BD67-B06BF7FE376E}"
+      DTS:DTSID="{df6abbbf-542f-492b-a774-1e3b4730719c}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Load_STG_Customer"
+      DTS:ObjectName="Load_STG_Staff"
       DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:Variables />
       <DTS:ObjectData>
@@ -90,7 +90,7 @@ WHERE table_name = 'Customer';</DTS:VariableValue>
           version="1">
           <components>
             <component
-              refId="Package\Load_STG_Customer\Add create_timestamp"
+              refId="Package\Load_STG_Staff\Add create_timestamp"
               componentClassID="Microsoft.DerivedColumn"
               contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
               description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
@@ -98,7 +98,7 @@ WHERE table_name = 'Customer';</DTS:VariableValue>
               usesDispositions="true">
               <inputs>
                 <input
-                  refId="Package\Load_STG_Customer\Add create_timestamp.Inputs[Derived Column Input]"
+                  refId="Package\Load_STG_Staff\Add create_timestamp.Inputs[Derived Column Input]"
                   description="Input to the Derived Column Transformation"
                   name="Derived Column Input">
                   <externalMetadataColumns />
@@ -106,18 +106,18 @@ WHERE table_name = 'Customer';</DTS:VariableValue>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Load_STG_Customer\Add create_timestamp.Outputs[Derived Column Output]"
+                  refId="Package\Load_STG_Staff\Add create_timestamp.Outputs[Derived Column Output]"
                   description="Default Output of the Derived Column Transformation"
                   exclusionGroup="1"
                   name="Derived Column Output"
-                  synchronousInputId="Package\Load_STG_Customer\Add create_timestamp.Inputs[Derived Column Input]">
+                  synchronousInputId="Package\Load_STG_Staff\Add create_timestamp.Inputs[Derived Column Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Load_STG_Customer\Add create_timestamp.Outputs[Derived Column Output].Columns[create_timestamp]"
+                      refId="Package\Load_STG_Staff\Add create_timestamp.Outputs[Derived Column Output].Columns[create_timestamp]"
                       dataType="dbTimeStamp"
                       errorOrTruncationOperation="Computation"
                       errorRowDisposition="FailComponent"
-                      lineageId="Package\Load_STG_Customer\Add create_timestamp.Outputs[Derived Column Output].Columns[create_timestamp]"
+                      lineageId="Package\Load_STG_Staff\Add create_timestamp.Outputs[Derived Column Output].Columns[create_timestamp]"
                       name="create_timestamp"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -138,23 +138,23 @@ WHERE table_name = 'Customer';</DTS:VariableValue>
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Load_STG_Customer\Add create_timestamp.Outputs[Derived Column Error Output]"
+                  refId="Package\Load_STG_Staff\Add create_timestamp.Outputs[Derived Column Error Output]"
                   description="Error Output of the Derived Column Transformation"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Derived Column Error Output"
-                  synchronousInputId="Package\Load_STG_Customer\Add create_timestamp.Inputs[Derived Column Input]">
+                  synchronousInputId="Package\Load_STG_Staff\Add create_timestamp.Inputs[Derived Column Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Load_STG_Customer\Add create_timestamp.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      refId="Package\Load_STG_Staff\Add create_timestamp.Outputs[Derived Column Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Load_STG_Customer\Add create_timestamp.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Load_STG_Staff\Add create_timestamp.Outputs[Derived Column Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Load_STG_Customer\Add create_timestamp.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      refId="Package\Load_STG_Staff\Add create_timestamp.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Load_STG_Customer\Add create_timestamp.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Load_STG_Staff\Add create_timestamp.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -163,7 +163,7 @@ WHERE table_name = 'Customer';</DTS:VariableValue>
               </outputs>
             </component>
             <component
-              refId="Package\Load_STG_Customer\DEST_DB_STG_Customer"
+              refId="Package\Load_STG_Staff\DEST_DB_STG_Customer"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
               description="OLE DB Destination"
@@ -178,7 +178,7 @@ WHERE table_name = 'Customer';</DTS:VariableValue>
                 <property
                   dataType="System.String"
                   description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[STG].[Customer]</property>
+                  name="OpenRowset">[STG].[Staff]</property>
                 <property
                   dataType="System.String"
                   description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -220,7 +220,7 @@ WHERE table_name = 'Customer';</DTS:VariableValue>
               </properties>
               <connections>
                 <connection
-                  refId="Package\Load_STG_Customer\DEST_DB_STG_Customer.Connections[OleDbConnection]"
+                  refId="Package\Load_STG_Staff\DEST_DB_STG_Customer.Connections[OleDbConnection]"
                   connectionManagerID="{1F587408-40AB-468D-A0A1-1FBAB67F1E7B}:external"
                   connectionManagerRefId="Project.ConnectionManagers[WIN-G21BVJ4FL1C.DWH_PROJECT]"
                   description="The OLE DB runtime connection used to access the database."
@@ -228,150 +228,170 @@ WHERE table_name = 'Customer';</DTS:VariableValue>
               </connections>
               <inputs>
                 <input
-                  refId="Package\Load_STG_Customer\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input]"
+                  refId="Package\Load_STG_Staff\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input]"
                   errorOrTruncationOperation="Insert"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="OLE DB Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Load_STG_Customer\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].Columns[Email]"
+                      refId="Package\Load_STG_Staff\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].Columns[Email]"
                       cachedCodepage="1256"
                       cachedDataType="str"
                       cachedLength="30"
                       cachedName="Email"
-                      externalMetadataColumnId="Package\Load_STG_Customer\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].ExternalColumns[email]"
-                      lineageId="Package\Load_STG_Customer\SRC_DB_Customer.Outputs[OLE DB Source Output].Columns[Email]" />
+                      externalMetadataColumnId="Package\Load_STG_Staff\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].ExternalColumns[email]"
+                      lineageId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Output].Columns[Email]" />
                     <inputColumn
-                      refId="Package\Load_STG_Customer\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].Columns[Address]"
+                      refId="Package\Load_STG_Staff\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].Columns[Address]"
                       cachedCodepage="1256"
                       cachedDataType="str"
                       cachedLength="100"
                       cachedName="Address"
-                      externalMetadataColumnId="Package\Load_STG_Customer\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].ExternalColumns[address]"
-                      lineageId="Package\Load_STG_Customer\Get Addres Information.Outputs[Lookup Match Output].Columns[Address]" />
+                      externalMetadataColumnId="Package\Load_STG_Staff\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].ExternalColumns[address]"
+                      lineageId="Package\Load_STG_Staff\Get Addres Information.Outputs[Lookup Match Output].Columns[Address]" />
                     <inputColumn
-                      refId="Package\Load_STG_Customer\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].Columns[Phone]"
+                      refId="Package\Load_STG_Staff\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].Columns[Phone]"
                       cachedCodepage="1256"
                       cachedDataType="str"
                       cachedLength="15"
                       cachedName="Phone"
-                      externalMetadataColumnId="Package\Load_STG_Customer\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].ExternalColumns[phone]"
-                      lineageId="Package\Load_STG_Customer\Get Addres Information.Outputs[Lookup Match Output].Columns[Phone]" />
+                      externalMetadataColumnId="Package\Load_STG_Staff\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].ExternalColumns[phone]"
+                      lineageId="Package\Load_STG_Staff\Get Addres Information.Outputs[Lookup Match Output].Columns[Phone]" />
                     <inputColumn
-                      refId="Package\Load_STG_Customer\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].Columns[City]"
+                      refId="Package\Load_STG_Staff\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].Columns[City]"
                       cachedCodepage="1256"
                       cachedDataType="str"
                       cachedLength="30"
                       cachedName="City"
-                      externalMetadataColumnId="Package\Load_STG_Customer\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].ExternalColumns[city]"
-                      lineageId="Package\Load_STG_Customer\Get City Information.Outputs[Lookup Match Output].Columns[City]" />
+                      externalMetadataColumnId="Package\Load_STG_Staff\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].ExternalColumns[city]"
+                      lineageId="Package\Load_STG_Staff\Get City Information.Outputs[Lookup Match Output].Columns[City]" />
                     <inputColumn
-                      refId="Package\Load_STG_Customer\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].Columns[create_timestamp]"
+                      refId="Package\Load_STG_Staff\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].Columns[create_timestamp]"
                       cachedDataType="dbTimeStamp"
                       cachedName="create_timestamp"
-                      externalMetadataColumnId="Package\Load_STG_Customer\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].ExternalColumns[create_timestamp]"
-                      lineageId="Package\Load_STG_Customer\Add create_timestamp.Outputs[Derived Column Output].Columns[create_timestamp]" />
+                      externalMetadataColumnId="Package\Load_STG_Staff\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].ExternalColumns[create_timestamp]"
+                      lineageId="Package\Load_STG_Staff\Add create_timestamp.Outputs[Derived Column Output].Columns[create_timestamp]" />
                     <inputColumn
-                      refId="Package\Load_STG_Customer\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].Columns[CustomerID]"
-                      cachedDataType="i4"
-                      cachedName="CustomerID"
-                      externalMetadataColumnId="Package\Load_STG_Customer\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].ExternalColumns[customer_id]"
-                      lineageId="Package\Load_STG_Customer\SRC_DB_Customer.Outputs[OLE DB Source Output].Columns[CustomerID]" />
-                    <inputColumn
-                      refId="Package\Load_STG_Customer\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].Columns[FirstName]"
+                      refId="Package\Load_STG_Staff\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].Columns[FirstName]"
                       cachedCodepage="1256"
                       cachedDataType="str"
                       cachedLength="20"
                       cachedName="FirstName"
-                      externalMetadataColumnId="Package\Load_STG_Customer\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].ExternalColumns[first_name]"
-                      lineageId="Package\Load_STG_Customer\SRC_DB_Customer.Outputs[OLE DB Source Output].Columns[FirstName]" />
+                      externalMetadataColumnId="Package\Load_STG_Staff\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].ExternalColumns[first_name]"
+                      lineageId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Output].Columns[FirstName]" />
                     <inputColumn
-                      refId="Package\Load_STG_Customer\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].Columns[LastName]"
+                      refId="Package\Load_STG_Staff\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].Columns[LastName]"
                       cachedCodepage="1256"
                       cachedDataType="str"
                       cachedLength="20"
                       cachedName="LastName"
-                      externalMetadataColumnId="Package\Load_STG_Customer\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].ExternalColumns[last_name]"
-                      lineageId="Package\Load_STG_Customer\SRC_DB_Customer.Outputs[OLE DB Source Output].Columns[LastName]" />
+                      externalMetadataColumnId="Package\Load_STG_Staff\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].ExternalColumns[last_name]"
+                      lineageId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Output].Columns[LastName]" />
                     <inputColumn
-                      refId="Package\Load_STG_Customer\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].Columns[LastUpdate]"
+                      refId="Package\Load_STG_Staff\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].Columns[LastUpdate]"
                       cachedDataType="dbTimeStamp"
                       cachedName="LastUpdate"
-                      externalMetadataColumnId="Package\Load_STG_Customer\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].ExternalColumns[src_update_date]"
-                      lineageId="Package\Load_STG_Customer\SRC_DB_Customer.Outputs[OLE DB Source Output].Columns[LastUpdate]" />
+                      externalMetadataColumnId="Package\Load_STG_Staff\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].ExternalColumns[src_update_date]"
+                      lineageId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Output].Columns[LastUpdate]" />
+                    <inputColumn
+                      refId="Package\Load_STG_Staff\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].Columns[StaffID]"
+                      cachedDataType="i4"
+                      cachedName="StaffID"
+                      externalMetadataColumnId="Package\Load_STG_Staff\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].ExternalColumns[staff_id]"
+                      lineageId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Output].Columns[StaffID]" />
+                    <inputColumn
+                      refId="Package\Load_STG_Staff\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].Columns[StoreID]"
+                      cachedDataType="i4"
+                      cachedName="StoreID"
+                      externalMetadataColumnId="Package\Load_STG_Staff\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].ExternalColumns[store_id]"
+                      lineageId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Output].Columns[StoreID]" />
+                    <inputColumn
+                      refId="Package\Load_STG_Staff\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].Columns[Active]"
+                      cachedDataType="bool"
+                      cachedName="Active"
+                      externalMetadataColumnId="Package\Load_STG_Staff\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].ExternalColumns[active]"
+                      lineageId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Output].Columns[Active]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Load_STG_Customer\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].ExternalColumns[customer_id]"
-                      dataType="i4"
-                      name="customer_id" />
-                    <externalMetadataColumn
-                      refId="Package\Load_STG_Customer\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].ExternalColumns[first_name]"
+                      refId="Package\Load_STG_Staff\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].ExternalColumns[first_name]"
                       codePage="1256"
                       dataType="str"
                       length="20"
                       name="first_name" />
                     <externalMetadataColumn
-                      refId="Package\Load_STG_Customer\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].ExternalColumns[last_name]"
+                      refId="Package\Load_STG_Staff\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].ExternalColumns[last_name]"
                       codePage="1256"
                       dataType="str"
                       length="20"
                       name="last_name" />
                     <externalMetadataColumn
-                      refId="Package\Load_STG_Customer\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].ExternalColumns[email]"
+                      refId="Package\Load_STG_Staff\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].ExternalColumns[email]"
                       codePage="1256"
                       dataType="str"
                       length="50"
                       name="email" />
                     <externalMetadataColumn
-                      refId="Package\Load_STG_Customer\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].ExternalColumns[address]"
+                      refId="Package\Load_STG_Staff\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].ExternalColumns[address]"
                       codePage="1256"
                       dataType="str"
                       length="100"
                       name="address" />
                     <externalMetadataColumn
-                      refId="Package\Load_STG_Customer\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].ExternalColumns[city]"
+                      refId="Package\Load_STG_Staff\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].ExternalColumns[city]"
                       codePage="1256"
                       dataType="str"
                       length="30"
                       name="city" />
                     <externalMetadataColumn
-                      refId="Package\Load_STG_Customer\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].ExternalColumns[phone]"
+                      refId="Package\Load_STG_Staff\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].ExternalColumns[phone]"
                       codePage="1256"
                       dataType="str"
                       length="15"
                       name="phone" />
                     <externalMetadataColumn
-                      refId="Package\Load_STG_Customer\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].ExternalColumns[src_update_date]"
+                      refId="Package\Load_STG_Staff\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].ExternalColumns[src_update_date]"
                       dataType="dbTimeStamp"
                       name="src_update_date" />
                     <externalMetadataColumn
-                      refId="Package\Load_STG_Customer\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].ExternalColumns[create_timestamp]"
+                      refId="Package\Load_STG_Staff\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].ExternalColumns[create_timestamp]"
                       dataType="dbTimeStamp"
                       name="create_timestamp" />
+                    <externalMetadataColumn
+                      refId="Package\Load_STG_Staff\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].ExternalColumns[staff_id]"
+                      dataType="i4"
+                      name="staff_id" />
+                    <externalMetadataColumn
+                      refId="Package\Load_STG_Staff\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].ExternalColumns[store_id]"
+                      dataType="i4"
+                      name="store_id" />
+                    <externalMetadataColumn
+                      refId="Package\Load_STG_Staff\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input].ExternalColumns[active]"
+                      dataType="bool"
+                      name="active" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Load_STG_Customer\DEST_DB_STG_Customer.Outputs[OLE DB Destination Error Output]"
+                  refId="Package\Load_STG_Staff\DEST_DB_STG_Customer.Outputs[OLE DB Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\Load_STG_Customer\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input]">
+                  synchronousInputId="Package\Load_STG_Staff\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Load_STG_Customer\DEST_DB_STG_Customer.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\Load_STG_Staff\DEST_DB_STG_Customer.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Load_STG_Customer\DEST_DB_STG_Customer.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Load_STG_Staff\DEST_DB_STG_Customer.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Load_STG_Customer\DEST_DB_STG_Customer.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\Load_STG_Staff\DEST_DB_STG_Customer.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Load_STG_Customer\DEST_DB_STG_Customer.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Load_STG_Staff\DEST_DB_STG_Customer.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -380,7 +400,7 @@ WHERE table_name = 'Customer';</DTS:VariableValue>
               </outputs>
             </component>
             <component
-              refId="Package\Load_STG_Customer\Get Addres Information"
+              refId="Package\Load_STG_Staff\Get Addres Information"
               componentClassID="Microsoft.Lookup"
               contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
               description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
@@ -436,7 +456,7 @@ where [refTable].[AddressID] = ?</property>
                   containsID="true"
                   dataType="System.String"
                   description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\Load_STG_Customer\SRC_DB_Customer.Outputs[OLE DB Source Output].Columns[AddressID]};</property>
+                  name="ParameterMap">#{Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Output].Columns[AddressID]};</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -448,7 +468,7 @@ where [refTable].[AddressID] = ?</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\Load_STG_Customer\Get Addres Information.Connections[OleDbConnection]"
+                  refId="Package\Load_STG_Staff\Get Addres Information.Connections[OleDbConnection]"
                   connectionManagerID="{1F587408-40AB-468D-A0A1-1FBAB67F1E7B}:external"
                   connectionManagerRefId="Project.ConnectionManagers[WIN-G21BVJ4FL1C.DWH_PROJECT]"
                   description="Connection manager used to access lookup data."
@@ -456,14 +476,14 @@ where [refTable].[AddressID] = ?</property>
               </connections>
               <inputs>
                 <input
-                  refId="Package\Load_STG_Customer\Get Addres Information.Inputs[Lookup Input]"
+                  refId="Package\Load_STG_Staff\Get Addres Information.Inputs[Lookup Input]"
                   name="Lookup Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Load_STG_Customer\Get Addres Information.Inputs[Lookup Input].Columns[AddressID]"
+                      refId="Package\Load_STG_Staff\Get Addres Information.Inputs[Lookup Input].Columns[AddressID]"
                       cachedDataType="i4"
                       cachedName="AddressID"
-                      lineageId="Package\Load_STG_Customer\SRC_DB_Customer.Outputs[OLE DB Source Output].Columns[AddressID]">
+                      lineageId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Output].Columns[AddressID]">
                       <properties>
                         <property
                           dataType="System.String"
@@ -481,20 +501,20 @@ where [refTable].[AddressID] = ?</property>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Load_STG_Customer\Get Addres Information.Outputs[Lookup Match Output]"
+                  refId="Package\Load_STG_Staff\Get Addres Information.Outputs[Lookup Match Output]"
                   errorOrTruncationOperation="Lookup"
                   errorRowDisposition="FailComponent"
                   exclusionGroup="1"
                   name="Lookup Match Output"
-                  synchronousInputId="Package\Load_STG_Customer\Get Addres Information.Inputs[Lookup Input]">
+                  synchronousInputId="Package\Load_STG_Staff\Get Addres Information.Inputs[Lookup Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Load_STG_Customer\Get Addres Information.Outputs[Lookup Match Output].Columns[Address]"
+                      refId="Package\Load_STG_Staff\Get Addres Information.Outputs[Lookup Match Output].Columns[Address]"
                       codePage="1256"
                       dataType="str"
                       errorOrTruncationOperation="Copy Column"
                       length="100"
-                      lineageId="Package\Load_STG_Customer\Get Addres Information.Outputs[Lookup Match Output].Columns[Address]"
+                      lineageId="Package\Load_STG_Staff\Get Addres Information.Outputs[Lookup Match Output].Columns[Address]"
                       name="Address"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -505,10 +525,10 @@ where [refTable].[AddressID] = ?</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Load_STG_Customer\Get Addres Information.Outputs[Lookup Match Output].Columns[CityID]"
+                      refId="Package\Load_STG_Staff\Get Addres Information.Outputs[Lookup Match Output].Columns[CityID]"
                       dataType="i4"
                       errorOrTruncationOperation="Copy Column"
-                      lineageId="Package\Load_STG_Customer\Get Addres Information.Outputs[Lookup Match Output].Columns[CityID]"
+                      lineageId="Package\Load_STG_Staff\Get Addres Information.Outputs[Lookup Match Output].Columns[CityID]"
                       name="CityID"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -519,12 +539,12 @@ where [refTable].[AddressID] = ?</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Load_STG_Customer\Get Addres Information.Outputs[Lookup Match Output].Columns[Phone]"
+                      refId="Package\Load_STG_Staff\Get Addres Information.Outputs[Lookup Match Output].Columns[Phone]"
                       codePage="1256"
                       dataType="str"
                       errorOrTruncationOperation="Copy Column"
                       length="15"
-                      lineageId="Package\Load_STG_Customer\Get Addres Information.Outputs[Lookup Match Output].Columns[Phone]"
+                      lineageId="Package\Load_STG_Staff\Get Addres Information.Outputs[Lookup Match Output].Columns[Phone]"
                       name="Phone"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -538,30 +558,30 @@ where [refTable].[AddressID] = ?</property>
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Load_STG_Customer\Get Addres Information.Outputs[Lookup No Match Output]"
+                  refId="Package\Load_STG_Staff\Get Addres Information.Outputs[Lookup No Match Output]"
                   description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
                   exclusionGroup="1"
                   name="Lookup No Match Output"
-                  synchronousInputId="Package\Load_STG_Customer\Get Addres Information.Inputs[Lookup Input]">
+                  synchronousInputId="Package\Load_STG_Staff\Get Addres Information.Inputs[Lookup Input]">
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Load_STG_Customer\Get Addres Information.Outputs[Lookup Error Output]"
+                  refId="Package\Load_STG_Staff\Get Addres Information.Outputs[Lookup Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Lookup Error Output"
-                  synchronousInputId="Package\Load_STG_Customer\Get Addres Information.Inputs[Lookup Input]">
+                  synchronousInputId="Package\Load_STG_Staff\Get Addres Information.Inputs[Lookup Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Load_STG_Customer\Get Addres Information.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      refId="Package\Load_STG_Staff\Get Addres Information.Outputs[Lookup Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Load_STG_Customer\Get Addres Information.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Load_STG_Staff\Get Addres Information.Outputs[Lookup Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Load_STG_Customer\Get Addres Information.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      refId="Package\Load_STG_Staff\Get Addres Information.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Load_STG_Customer\Get Addres Information.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Load_STG_Staff\Get Addres Information.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -570,7 +590,7 @@ where [refTable].[AddressID] = ?</property>
               </outputs>
             </component>
             <component
-              refId="Package\Load_STG_Customer\Get City Information"
+              refId="Package\Load_STG_Staff\Get City Information"
               componentClassID="Microsoft.Lookup"
               contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
               description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
@@ -626,7 +646,7 @@ where [refTable].[CityID] = ?</property>
                   containsID="true"
                   dataType="System.String"
                   description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\Load_STG_Customer\Get Addres Information.Outputs[Lookup Match Output].Columns[CityID]};</property>
+                  name="ParameterMap">#{Package\Load_STG_Staff\Get Addres Information.Outputs[Lookup Match Output].Columns[CityID]};</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -638,7 +658,7 @@ where [refTable].[CityID] = ?</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\Load_STG_Customer\Get City Information.Connections[OleDbConnection]"
+                  refId="Package\Load_STG_Staff\Get City Information.Connections[OleDbConnection]"
                   connectionManagerID="{1F587408-40AB-468D-A0A1-1FBAB67F1E7B}:external"
                   connectionManagerRefId="Project.ConnectionManagers[WIN-G21BVJ4FL1C.DWH_PROJECT]"
                   description="Connection manager used to access lookup data."
@@ -646,14 +666,14 @@ where [refTable].[CityID] = ?</property>
               </connections>
               <inputs>
                 <input
-                  refId="Package\Load_STG_Customer\Get City Information.Inputs[Lookup Input]"
+                  refId="Package\Load_STG_Staff\Get City Information.Inputs[Lookup Input]"
                   name="Lookup Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Load_STG_Customer\Get City Information.Inputs[Lookup Input].Columns[CityID]"
+                      refId="Package\Load_STG_Staff\Get City Information.Inputs[Lookup Input].Columns[CityID]"
                       cachedDataType="i4"
                       cachedName="CityID"
-                      lineageId="Package\Load_STG_Customer\Get Addres Information.Outputs[Lookup Match Output].Columns[CityID]">
+                      lineageId="Package\Load_STG_Staff\Get Addres Information.Outputs[Lookup Match Output].Columns[CityID]">
                       <properties>
                         <property
                           dataType="System.String"
@@ -671,20 +691,20 @@ where [refTable].[CityID] = ?</property>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Load_STG_Customer\Get City Information.Outputs[Lookup Match Output]"
+                  refId="Package\Load_STG_Staff\Get City Information.Outputs[Lookup Match Output]"
                   errorOrTruncationOperation="Lookup"
                   errorRowDisposition="FailComponent"
                   exclusionGroup="1"
                   name="Lookup Match Output"
-                  synchronousInputId="Package\Load_STG_Customer\Get City Information.Inputs[Lookup Input]">
+                  synchronousInputId="Package\Load_STG_Staff\Get City Information.Inputs[Lookup Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Load_STG_Customer\Get City Information.Outputs[Lookup Match Output].Columns[City]"
+                      refId="Package\Load_STG_Staff\Get City Information.Outputs[Lookup Match Output].Columns[City]"
                       codePage="1256"
                       dataType="str"
                       errorOrTruncationOperation="Copy Column"
                       length="30"
-                      lineageId="Package\Load_STG_Customer\Get City Information.Outputs[Lookup Match Output].Columns[City]"
+                      lineageId="Package\Load_STG_Staff\Get City Information.Outputs[Lookup Match Output].Columns[City]"
                       name="City"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -698,30 +718,30 @@ where [refTable].[CityID] = ?</property>
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Load_STG_Customer\Get City Information.Outputs[Lookup No Match Output]"
+                  refId="Package\Load_STG_Staff\Get City Information.Outputs[Lookup No Match Output]"
                   description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
                   exclusionGroup="1"
                   name="Lookup No Match Output"
-                  synchronousInputId="Package\Load_STG_Customer\Get City Information.Inputs[Lookup Input]">
+                  synchronousInputId="Package\Load_STG_Staff\Get City Information.Inputs[Lookup Input]">
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Load_STG_Customer\Get City Information.Outputs[Lookup Error Output]"
+                  refId="Package\Load_STG_Staff\Get City Information.Outputs[Lookup Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Lookup Error Output"
-                  synchronousInputId="Package\Load_STG_Customer\Get City Information.Inputs[Lookup Input]">
+                  synchronousInputId="Package\Load_STG_Staff\Get City Information.Inputs[Lookup Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Load_STG_Customer\Get City Information.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      refId="Package\Load_STG_Staff\Get City Information.Outputs[Lookup Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Load_STG_Customer\Get City Information.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Load_STG_Staff\Get City Information.Outputs[Lookup Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Load_STG_Customer\Get City Information.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      refId="Package\Load_STG_Staff\Get City Information.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Load_STG_Customer\Get City Information.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Load_STG_Staff\Get City Information.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -730,7 +750,7 @@ where [refTable].[CityID] = ?</property>
               </outputs>
             </component>
             <component
-              refId="Package\Load_STG_Customer\SRC_DB_Customer"
+              refId="Package\Load_STG_Staff\SRC_DB_Customer"
               componentClassID="Microsoft.OLEDBSource"
               contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
               description="OLE DB Source"
@@ -779,7 +799,7 @@ where [refTable].[CityID] = ?</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\Load_STG_Customer\SRC_DB_Customer.Connections[OleDbConnection]"
+                  refId="Package\Load_STG_Staff\SRC_DB_Customer.Connections[OleDbConnection]"
                   connectionManagerID="{1F587408-40AB-468D-A0A1-1FBAB67F1E7B}:external"
                   connectionManagerRefId="Project.ConnectionManagers[WIN-G21BVJ4FL1C.DWH_PROJECT]"
                   description="The OLE DB runtime connection used to access the database."
@@ -787,155 +807,191 @@ where [refTable].[CityID] = ?</property>
               </connections>
               <outputs>
                 <output
-                  refId="Package\Load_STG_Customer\SRC_DB_Customer.Outputs[OLE DB Source Output]"
+                  refId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Output]"
                   name="OLE DB Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Load_STG_Customer\SRC_DB_Customer.Outputs[OLE DB Source Output].Columns[CustomerID]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load_STG_Customer\SRC_DB_Customer.Outputs[OLE DB Source Output].ExternalColumns[CustomerID]"
-                      lineageId="Package\Load_STG_Customer\SRC_DB_Customer.Outputs[OLE DB Source Output].Columns[CustomerID]"
-                      name="CustomerID"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Load_STG_Customer\SRC_DB_Customer.Outputs[OLE DB Source Output].Columns[FirstName]"
+                      refId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Output].Columns[FirstName]"
                       codePage="1256"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load_STG_Customer\SRC_DB_Customer.Outputs[OLE DB Source Output].ExternalColumns[FirstName]"
+                      externalMetadataColumnId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Output].ExternalColumns[FirstName]"
                       length="20"
-                      lineageId="Package\Load_STG_Customer\SRC_DB_Customer.Outputs[OLE DB Source Output].Columns[FirstName]"
+                      lineageId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Output].Columns[FirstName]"
                       name="FirstName"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Load_STG_Customer\SRC_DB_Customer.Outputs[OLE DB Source Output].Columns[LastName]"
+                      refId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Output].Columns[LastName]"
                       codePage="1256"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load_STG_Customer\SRC_DB_Customer.Outputs[OLE DB Source Output].ExternalColumns[LastName]"
+                      externalMetadataColumnId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Output].ExternalColumns[LastName]"
                       length="20"
-                      lineageId="Package\Load_STG_Customer\SRC_DB_Customer.Outputs[OLE DB Source Output].Columns[LastName]"
+                      lineageId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Output].Columns[LastName]"
                       name="LastName"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Load_STG_Customer\SRC_DB_Customer.Outputs[OLE DB Source Output].Columns[Email]"
+                      refId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Output].Columns[Email]"
                       codePage="1256"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load_STG_Customer\SRC_DB_Customer.Outputs[OLE DB Source Output].ExternalColumns[Email]"
+                      externalMetadataColumnId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Output].ExternalColumns[Email]"
                       length="30"
-                      lineageId="Package\Load_STG_Customer\SRC_DB_Customer.Outputs[OLE DB Source Output].Columns[Email]"
+                      lineageId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Output].Columns[Email]"
                       name="Email"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Load_STG_Customer\SRC_DB_Customer.Outputs[OLE DB Source Output].Columns[AddressID]"
+                      refId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Output].Columns[AddressID]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load_STG_Customer\SRC_DB_Customer.Outputs[OLE DB Source Output].ExternalColumns[AddressID]"
-                      lineageId="Package\Load_STG_Customer\SRC_DB_Customer.Outputs[OLE DB Source Output].Columns[AddressID]"
+                      externalMetadataColumnId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Output].ExternalColumns[AddressID]"
+                      lineageId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Output].Columns[AddressID]"
                       name="AddressID"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Load_STG_Customer\SRC_DB_Customer.Outputs[OLE DB Source Output].Columns[LastUpdate]"
+                      refId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Output].Columns[LastUpdate]"
                       dataType="dbTimeStamp"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load_STG_Customer\SRC_DB_Customer.Outputs[OLE DB Source Output].ExternalColumns[LastUpdate]"
-                      lineageId="Package\Load_STG_Customer\SRC_DB_Customer.Outputs[OLE DB Source Output].Columns[LastUpdate]"
+                      externalMetadataColumnId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Output].ExternalColumns[LastUpdate]"
+                      lineageId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Output].Columns[LastUpdate]"
                       name="LastUpdate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Output].Columns[StaffID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Output].ExternalColumns[StaffID]"
+                      lineageId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Output].Columns[StaffID]"
+                      name="StaffID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Output].Columns[StoreID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Output].ExternalColumns[StoreID]"
+                      lineageId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Output].Columns[StoreID]"
+                      name="StoreID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Output].Columns[Active]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Output].ExternalColumns[Active]"
+                      lineageId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Output].Columns[Active]"
+                      name="Active"
                       truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Load_STG_Customer\SRC_DB_Customer.Outputs[OLE DB Source Output].ExternalColumns[CustomerID]"
-                      dataType="i4"
-                      name="CustomerID" />
-                    <externalMetadataColumn
-                      refId="Package\Load_STG_Customer\SRC_DB_Customer.Outputs[OLE DB Source Output].ExternalColumns[FirstName]"
+                      refId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Output].ExternalColumns[FirstName]"
                       codePage="1256"
                       dataType="str"
                       length="20"
                       name="FirstName" />
                     <externalMetadataColumn
-                      refId="Package\Load_STG_Customer\SRC_DB_Customer.Outputs[OLE DB Source Output].ExternalColumns[LastName]"
+                      refId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Output].ExternalColumns[LastName]"
                       codePage="1256"
                       dataType="str"
                       length="20"
                       name="LastName" />
                     <externalMetadataColumn
-                      refId="Package\Load_STG_Customer\SRC_DB_Customer.Outputs[OLE DB Source Output].ExternalColumns[Email]"
+                      refId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Output].ExternalColumns[Email]"
                       codePage="1256"
                       dataType="str"
                       length="30"
                       name="Email" />
                     <externalMetadataColumn
-                      refId="Package\Load_STG_Customer\SRC_DB_Customer.Outputs[OLE DB Source Output].ExternalColumns[AddressID]"
+                      refId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Output].ExternalColumns[AddressID]"
                       dataType="i4"
                       name="AddressID" />
                     <externalMetadataColumn
-                      refId="Package\Load_STG_Customer\SRC_DB_Customer.Outputs[OLE DB Source Output].ExternalColumns[LastUpdate]"
+                      refId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Output].ExternalColumns[LastUpdate]"
                       dataType="dbTimeStamp"
                       name="LastUpdate" />
+                    <externalMetadataColumn
+                      refId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Output].ExternalColumns[StaffID]"
+                      dataType="i4"
+                      name="StaffID" />
+                    <externalMetadataColumn
+                      refId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Output].ExternalColumns[StoreID]"
+                      dataType="i4"
+                      name="StoreID" />
+                    <externalMetadataColumn
+                      refId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Output].ExternalColumns[Active]"
+                      dataType="bool"
+                      name="Active" />
                   </externalMetadataColumns>
                 </output>
                 <output
-                  refId="Package\Load_STG_Customer\SRC_DB_Customer.Outputs[OLE DB Source Error Output]"
+                  refId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Error Output]"
                   isErrorOut="true"
                   name="OLE DB Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Load_STG_Customer\SRC_DB_Customer.Outputs[OLE DB Source Error Output].Columns[CustomerID]"
+                      refId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Error Output].Columns[StaffID]"
                       dataType="i4"
-                      lineageId="Package\Load_STG_Customer\SRC_DB_Customer.Outputs[OLE DB Source Error Output].Columns[CustomerID]"
-                      name="CustomerID" />
+                      lineageId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Error Output].Columns[StaffID]"
+                      name="StaffID" />
                     <outputColumn
-                      refId="Package\Load_STG_Customer\SRC_DB_Customer.Outputs[OLE DB Source Error Output].Columns[FirstName]"
+                      refId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Error Output].Columns[FirstName]"
                       codePage="1256"
                       dataType="str"
                       length="20"
-                      lineageId="Package\Load_STG_Customer\SRC_DB_Customer.Outputs[OLE DB Source Error Output].Columns[FirstName]"
+                      lineageId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Error Output].Columns[FirstName]"
                       name="FirstName" />
                     <outputColumn
-                      refId="Package\Load_STG_Customer\SRC_DB_Customer.Outputs[OLE DB Source Error Output].Columns[LastName]"
+                      refId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Error Output].Columns[LastName]"
                       codePage="1256"
                       dataType="str"
                       length="20"
-                      lineageId="Package\Load_STG_Customer\SRC_DB_Customer.Outputs[OLE DB Source Error Output].Columns[LastName]"
+                      lineageId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Error Output].Columns[LastName]"
                       name="LastName" />
                     <outputColumn
-                      refId="Package\Load_STG_Customer\SRC_DB_Customer.Outputs[OLE DB Source Error Output].Columns[Email]"
+                      refId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Error Output].Columns[Email]"
                       codePage="1256"
                       dataType="str"
                       length="30"
-                      lineageId="Package\Load_STG_Customer\SRC_DB_Customer.Outputs[OLE DB Source Error Output].Columns[Email]"
+                      lineageId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Error Output].Columns[Email]"
                       name="Email" />
                     <outputColumn
-                      refId="Package\Load_STG_Customer\SRC_DB_Customer.Outputs[OLE DB Source Error Output].Columns[AddressID]"
+                      refId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Error Output].Columns[AddressID]"
                       dataType="i4"
-                      lineageId="Package\Load_STG_Customer\SRC_DB_Customer.Outputs[OLE DB Source Error Output].Columns[AddressID]"
+                      lineageId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Error Output].Columns[AddressID]"
                       name="AddressID" />
                     <outputColumn
-                      refId="Package\Load_STG_Customer\SRC_DB_Customer.Outputs[OLE DB Source Error Output].Columns[LastUpdate]"
+                      refId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Error Output].Columns[StoreID]"
+                      dataType="i4"
+                      lineageId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Error Output].Columns[StoreID]"
+                      name="StoreID" />
+                    <outputColumn
+                      refId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Error Output].Columns[Active]"
+                      dataType="bool"
+                      lineageId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Error Output].Columns[Active]"
+                      name="Active" />
+                    <outputColumn
+                      refId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Error Output].Columns[LastUpdate]"
                       dataType="dbTimeStamp"
-                      lineageId="Package\Load_STG_Customer\SRC_DB_Customer.Outputs[OLE DB Source Error Output].Columns[LastUpdate]"
+                      lineageId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Error Output].Columns[LastUpdate]"
                       name="LastUpdate" />
                     <outputColumn
-                      refId="Package\Load_STG_Customer\SRC_DB_Customer.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      refId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Load_STG_Customer\SRC_DB_Customer.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Load_STG_Customer\SRC_DB_Customer.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      refId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Load_STG_Customer\SRC_DB_Customer.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -946,37 +1002,37 @@ where [refTable].[CityID] = ?</property>
           </components>
           <paths>
             <path
-              refId="Package\Load_STG_Customer.Paths[Derived Column Output]"
-              endId="Package\Load_STG_Customer\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input]"
+              refId="Package\Load_STG_Staff.Paths[Derived Column Output]"
+              endId="Package\Load_STG_Staff\DEST_DB_STG_Customer.Inputs[OLE DB Destination Input]"
               name="Derived Column Output"
-              startId="Package\Load_STG_Customer\Add create_timestamp.Outputs[Derived Column Output]" />
+              startId="Package\Load_STG_Staff\Add create_timestamp.Outputs[Derived Column Output]" />
             <path
-              refId="Package\Load_STG_Customer.Paths[Lookup Match Output]"
-              endId="Package\Load_STG_Customer\Get City Information.Inputs[Lookup Input]"
+              refId="Package\Load_STG_Staff.Paths[Lookup Match Output]"
+              endId="Package\Load_STG_Staff\Get City Information.Inputs[Lookup Input]"
               name="Lookup Match Output"
-              startId="Package\Load_STG_Customer\Get Addres Information.Outputs[Lookup Match Output]" />
+              startId="Package\Load_STG_Staff\Get Addres Information.Outputs[Lookup Match Output]" />
             <path
-              refId="Package\Load_STG_Customer.Paths[Lookup Match Output1]"
-              endId="Package\Load_STG_Customer\Add create_timestamp.Inputs[Derived Column Input]"
+              refId="Package\Load_STG_Staff.Paths[Lookup Match Output1]"
+              endId="Package\Load_STG_Staff\Add create_timestamp.Inputs[Derived Column Input]"
               name="Lookup Match Output"
-              startId="Package\Load_STG_Customer\Get City Information.Outputs[Lookup Match Output]" />
+              startId="Package\Load_STG_Staff\Get City Information.Outputs[Lookup Match Output]" />
             <path
-              refId="Package\Load_STG_Customer.Paths[OLE DB Source Output]"
-              endId="Package\Load_STG_Customer\Get Addres Information.Inputs[Lookup Input]"
+              refId="Package\Load_STG_Staff.Paths[OLE DB Source Output]"
+              endId="Package\Load_STG_Staff\Get Addres Information.Inputs[Lookup Input]"
               name="OLE DB Source Output"
-              startId="Package\Load_STG_Customer\SRC_DB_Customer.Outputs[OLE DB Source Output]" />
+              startId="Package\Load_STG_Staff\SRC_DB_Customer.Outputs[OLE DB Source Output]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\Truncate_STG_Customer"
+      DTS:refId="Package\Truncate_STG_Staff"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:DTSID="{81755829-CA4F-420D-AC52-4348B373F2EE}"
+      DTS:DTSID="{df6b1066-be9e-45ba-bb91-c870d5da896b}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Truncate_STG_Customer"
+      DTS:ObjectName="Truncate_STG_Staff"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
       DTS:ThreadHint="0">
       <DTS:Variables />
@@ -986,42 +1042,24 @@ where [refTable].[CityID] = ?</property>
           SQLTask:SqlStatementSource="  truncate table STG.Customer" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
-    <DTS:Executable
-      DTS:refId="Package\Update Conf Table"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
-      DTS:Description="Execute SQL Task"
-      DTS:DTSID="{74B0DC9F-F924-4715-A5D2-69AD1A0B132E}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="Update Conf Table"
-      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <SQLTask:SqlTaskData
-          SQLTask:Connection="{1F587408-40AB-468D-A0A1-1FBAB67F1E7B}"
-          SQLTask:SqlStmtSourceType="Variable"
-          SQLTask:SqlStatementSource="User::SQL_Update_Conf_Table" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-      </DTS:ObjectData>
-    </DTS:Executable>
   </DTS:Executables>
   <DTS:PrecedenceConstraints>
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
-      DTS:DTSID="{E7504495-7538-495C-9A7B-801E9F8EF222}"
-      DTS:From="Package\Truncate_STG_Customer"
+      DTS:DTSID="{e49c78dd-f448-494c-9d44-015109ab99f6}"
+      DTS:From="Package\Truncate_STG_Staff"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
       DTS:To="Package\Get Last Extract Date" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
       DTS:CreationName=""
-      DTS:DTSID="{11264710-FD54-400B-AD37-CB5192543E56}"
+      DTS:DTSID="{9769235e-6920-4af7-a414-a0870edc4db3}"
       DTS:From="Package\Get Last Extract Date"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 1"
-      DTS:To="Package\Load_STG_Customer" />
+      DTS:To="Package\Load_STG_Staff" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -1036,35 +1074,31 @@ where [refTable].[CityID] = ?</property>
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="176.8,41.6"
-          Id="Package\Load_STG_Customer"
-          TopLeft="369.285715071827,207.99999981768" />
+          Size="153.6,41.6"
+          Id="Package\Load_STG_Staff"
+          TopLeft="433.571429366664,250.411764538979" />
         <NodeLayout
           Size="178.4,41.6"
           Id="Package\Get Last Extract Date"
-          TopLeft="368.57142935602,115.47058813408" />
+          TopLeft="422.85714362957,157.882352855379" />
         <NodeLayout
-          Size="196,41.6"
-          Id="Package\Truncate_STG_Customer"
-          TopLeft="360.714286482152,24.4705882138447" />
-        <NodeLayout
-          Size="165.6,41.6"
-          Id="Package\Update Conf Table"
-          TopLeft="377.857143661502,331.882352650269" />
+          Size="172.8,41.6"
+          Id="Package\Truncate_STG_Staff"
+          TopLeft="425.000000776989,66.8823529351438" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="458.242857919086,66.0705882138447">
+          TopLeft="511.728572203279,108.482352935144">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,49.399999920235"
+              EndConnector="0,49.3999999202353"
               Start="0,0"
-              End="0,41.899999920235">
+              End="0,41.8999999202353">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,41.899999920235" />
+                    End="0,41.8999999202353" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1075,18 +1109,18 @@ where [refTable].[CityID] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="457.728572213923,157.07058813408">
+          TopLeft="511.214286498117,199.482352855379">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,50.9294116836"
+              EndConnector="0,50.9294116835997"
               Start="0,0"
-              End="0,43.4294116836">
+              End="0,43.4294116835997">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,43.4294116836" />
+                    End="0,43.4294116835997" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1099,32 +1133,32 @@ where [refTable].[CityID] = ?</property>
     </LayoutInfo>
   </Package>
   <TaskHost
-    design-time-name="Package\Load_STG_Customer">
+    design-time-name="Package\Load_STG_Staff">
     <LayoutInfo>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
+          Size="174.4,41.6"
+          Id="Package\Load_STG_Staff\Get City Information"
+          TopLeft="482.142858169213,266.117646825561" />
+        <NodeLayout
+          Size="199.2,41.6"
+          Id="Package\Load_STG_Staff\DEST_DB_STG_Customer"
+          TopLeft="469.2857152847,483.235293708097" />
+        <NodeLayout
+          Size="184,41.6"
+          Id="Package\Load_STG_Staff\Add create_timestamp"
+          TopLeft="479.642858163891,380.058823196275" />
+        <NodeLayout
           Size="167.2,41.6"
-          Id="Package\Load_STG_Customer\SRC_DB_Customer"
+          Id="Package\Load_STG_Staff\SRC_DB_Customer"
           TopLeft="491.250001045742,42.8235293742282" />
         <NodeLayout
           Size="188.8,41.6"
-          Id="Package\Load_STG_Customer\Get Addres Information"
+          Id="Package\Load_STG_Staff\Get Addres Information"
           TopLeft="474.285715295344,153.705882218212" />
-        <NodeLayout
-          Size="199.2,41.6"
-          Id="Package\Load_STG_Customer\DEST_DB_STG_Customer"
-          TopLeft="469.2857152847,483.235293708097" />
-        <NodeLayout
-          Size="174.4,41.6"
-          Id="Package\Load_STG_Customer\Get City Information"
-          TopLeft="482.142858169213,266.117646825561" />
-        <NodeLayout
-          Size="184,41.6"
-          Id="Package\Load_STG_Customer\Add create_timestamp"
-          TopLeft="479.642858163891,380.058823196275" />
         <EdgeLayout
-          Id="Package\Load_STG_Customer.Paths[OLE DB Source Output]"
+          Id="Package\Load_STG_Staff.Paths[OLE DB Source Output]"
           TopLeft="571.767858170543,84.4235293742282">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -1146,7 +1180,7 @@ where [refTable].[CityID] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load_STG_Customer.Paths[Lookup Match Output1]"
+          Id="Package\Load_STG_Staff.Paths[Lookup Match Output1]"
           TopLeft="570.492858166552,307.717646825561">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -1170,7 +1204,7 @@ where [refTable].[CityID] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load_STG_Customer.Paths[Lookup Match Output]"
+          Id="Package\Load_STG_Staff.Paths[Lookup Match Output]"
           TopLeft="569.014286732278,195.305882218212">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -1194,7 +1228,7 @@ where [refTable].[CityID] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load_STG_Customer.Paths[Derived Column Output]"
+          Id="Package\Load_STG_Staff.Paths[Derived Column Output]"
           TopLeft="570.264286724296,421.658823196275">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -1219,30 +1253,7 @@ where [refTable].[CityID] = ?</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Load_STG_Customer\Get City Information">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:string">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[City]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:string">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load_STG_Customer\DEST_DB_STG_Customer">
+    design-time-name="Package\Load_STG_Staff\DEST_DB_STG_Customer">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1255,31 +1266,8 @@ where [refTable].[CityID] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Load_STG_Customer\SRC_DB_Customer">
+    design-time-name="Package\Load_STG_Staff\SRC_DB_Customer">
     <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load_STG_Customer\Get Addres Information">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:string">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[Address]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:string">0</Value>
-      </Property>
       <Property>
         <Name>DataSourceViewID</Name>
       </Property>
