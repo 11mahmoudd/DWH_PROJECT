@@ -1,0 +1,1470 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/18/2024 5:32:30 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="WIN-G21BVJ4FL1C"
+  DTS:CreatorName="WIN-G21BVJ4FL1C\Administrator"
+  DTS:DTSID="{0A1F2485-9511-4CA5-B30A-673DD5686A98}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5397.1"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="From Dimension to F_Staff"
+  DTS:PackageType="5"
+  DTS:VersionBuild="12"
+  DTS:VersionGUID="{C4894B18-F439-481F-A45B-B652AE9ECB65}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Load_DWH_F_Staff"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{8E68CC0F-3CC1-43C8-8DBC-B4B9BBFF94AC}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load_DWH_F_Staff">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load_DWH_F_Staff\Check Existing Records"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Check Existing Records"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [DWH].[F_Staff]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [DWH].[F_Staff]) [refTable]
+where [refTable].[staff_key] = ? and [refTable].[store_key] = ? and [refTable].[date_key] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="staff_fact_key" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="date_key" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="staff_key" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="store_key" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="first_name" dataType="DT_STR" length="20" precision="0" scale="0" codePage="1256"/&gt;&lt;referenceColumn name="last_name" dataType="DT_STR" length="20" precision="0" scale="0" codePage="1256"/&gt;&lt;referenceColumn name="store_address" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1256"/&gt;&lt;referenceColumn name="active" dataType="DT_BOOL" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="create_timestamp" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].Columns[staff_key]};#{Package\Load_DWH_F_Staff\Lookup_D_Store.Outputs[Lookup Match Output].Columns[store_key]};#{Package\Load_DWH_F_Staff\Date_key.Outputs[Derived Column Output].Columns[date_key]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load_DWH_F_Staff\Check Existing Records.Connections[OleDbConnection]"
+                  connectionManagerID="{1F587408-40AB-468D-A0A1-1FBAB67F1E7B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[WIN-G21BVJ4FL1C.DWH_PROJECT]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load_DWH_F_Staff\Check Existing Records.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load_DWH_F_Staff\Check Existing Records.Inputs[Lookup Input].Columns[staff_key]"
+                      cachedDataType="i4"
+                      cachedName="staff_key"
+                      lineageId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].Columns[staff_key]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">staff_key</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_F_Staff\Check Existing Records.Inputs[Lookup Input].Columns[date_key]"
+                      cachedDataType="i4"
+                      cachedName="date_key"
+                      lineageId="Package\Load_DWH_F_Staff\Date_key.Outputs[Derived Column Output].Columns[date_key]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">date_key</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_F_Staff\Check Existing Records.Inputs[Lookup Input].Columns[store_key]"
+                      cachedDataType="i4"
+                      cachedName="store_key"
+                      lineageId="Package\Load_DWH_F_Staff\Lookup_D_Store.Outputs[Lookup Match Output].Columns[store_key]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">store_key</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load_DWH_F_Staff\Check Existing Records.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Load_DWH_F_Staff\Check Existing Records.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Staff\Check Existing Records.Outputs[Lookup Match Output].Columns[ExistsInFact_staff_fact_key]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Load_DWH_F_Staff\Check Existing Records.Outputs[Lookup Match Output].Columns[ExistsInFact_staff_fact_key]"
+                      name="ExistsInFact_staff_fact_key"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">staff_fact_key</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Staff\Check Existing Records.Outputs[Lookup Match Output].Columns[ExistsInFact_date_key]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Load_DWH_F_Staff\Check Existing Records.Outputs[Lookup Match Output].Columns[ExistsInFact_date_key]"
+                      name="ExistsInFact_date_key"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">date_key</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Staff\Check Existing Records.Outputs[Lookup Match Output].Columns[ExistsInFact_staff_key]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Load_DWH_F_Staff\Check Existing Records.Outputs[Lookup Match Output].Columns[ExistsInFact_staff_key]"
+                      name="ExistsInFact_staff_key"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">staff_key</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Staff\Check Existing Records.Outputs[Lookup Match Output].Columns[ExistsInFact_store_key]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Load_DWH_F_Staff\Check Existing Records.Outputs[Lookup Match Output].Columns[ExistsInFact_store_key]"
+                      name="ExistsInFact_store_key"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">store_key</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load_DWH_F_Staff\Check Existing Records.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Load_DWH_F_Staff\Check Existing Records.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load_DWH_F_Staff\Check Existing Records.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Load_DWH_F_Staff\Check Existing Records.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Staff\Check Existing Records.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_F_Staff\Check Existing Records.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Staff\Check Existing Records.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_F_Staff\Check Existing Records.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load_DWH_F_Staff\Check_NULL"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Check_NULL"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load_DWH_F_Staff\Check_NULL.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load_DWH_F_Staff\Check_NULL.Inputs[Conditional Split Input].Columns[first_name]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="first_name"
+                      lineageId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].Columns[first_name]" />
+                    <inputColumn
+                      refId="Package\Load_DWH_F_Staff\Check_NULL.Inputs[Conditional Split Input].Columns[last_name]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="last_name"
+                      lineageId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].Columns[last_name]" />
+                    <inputColumn
+                      refId="Package\Load_DWH_F_Staff\Check_NULL.Inputs[Conditional Split Input].Columns[active]"
+                      cachedDataType="bool"
+                      cachedName="active"
+                      lineageId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].Columns[active]" />
+                    <inputColumn
+                      refId="Package\Load_DWH_F_Staff\Check_NULL.Inputs[Conditional Split Input].Columns[address]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="address"
+                      lineageId="Package\Load_DWH_F_Staff\Lookup_D_Store.Outputs[Lookup Match Output].Columns[address]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load_DWH_F_Staff\Check_NULL.Outputs[Check_Null]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Check_Null"
+                  synchronousInputId="Package\Load_DWH_F_Staff\Check_NULL.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[ISNULL](#{Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].Columns[active]}) || [ISNULL](#{Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].Columns[last_name]}) || [ISNULL](#{Package\Load_DWH_F_Staff\Lookup_D_Store.Outputs[Lookup Match Output].Columns[address]}) || [ISNULL](#{Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].Columns[first_name]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL(active) || ISNULL(last_name) || ISNULL(Lookup.address) || ISNULL(first_name)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load_DWH_F_Staff\Check_NULL.Outputs[NOT_NULL]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="NOT_NULL"
+                  synchronousInputId="Package\Load_DWH_F_Staff\Check_NULL.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load_DWH_F_Staff\Check_NULL.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\Load_DWH_F_Staff\Check_NULL.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Staff\Check_NULL.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_F_Staff\Check_NULL.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Staff\Check_NULL.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_F_Staff\Check_NULL.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load_DWH_F_Staff\Date_key"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Date_key"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load_DWH_F_Staff\Date_key.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load_DWH_F_Staff\Date_key.Inputs[Derived Column Input].Columns[create_timestamp]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="create_timestamp"
+                      lineageId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].Columns[create_timestamp]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load_DWH_F_Staff\Date_key.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Load_DWH_F_Staff\Date_key.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Staff\Date_key.Outputs[Derived Column Output].Columns[date_key]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load_DWH_F_Staff\Date_key.Outputs[Derived Column Output].Columns[date_key]"
+                      name="date_key"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_I4)([REPLACE]([LEFT]((DT_WSTR,50)(DT_DBTIMESTAMP)#{Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].Columns[create_timestamp]},10),"-",""))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_I4)(REPLACE(LEFT((DT_WSTR,50)(DT_DBTIMESTAMP)create_timestamp,10),"-",""))</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load_DWH_F_Staff\Date_key.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Load_DWH_F_Staff\Date_key.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Staff\Date_key.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_F_Staff\Date_key.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Staff\Date_key.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_F_Staff\Date_key.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load_DWH_F_Staff\DEST_DWH_F_Staff"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DEST_DWH_F_Staff"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[DWH].[F_Staff]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load_DWH_F_Staff\DEST_DWH_F_Staff.Connections[OleDbConnection]"
+                  connectionManagerID="{1F587408-40AB-468D-A0A1-1FBAB67F1E7B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[WIN-G21BVJ4FL1C.DWH_PROJECT]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load_DWH_F_Staff\DEST_DWH_F_Staff.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load_DWH_F_Staff\DEST_DWH_F_Staff.Inputs[OLE DB Destination Input].Columns[staff_key]"
+                      cachedDataType="i4"
+                      cachedName="staff_key"
+                      externalMetadataColumnId="Package\Load_DWH_F_Staff\DEST_DWH_F_Staff.Inputs[OLE DB Destination Input].ExternalColumns[staff_key]"
+                      lineageId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].Columns[staff_key]" />
+                    <inputColumn
+                      refId="Package\Load_DWH_F_Staff\DEST_DWH_F_Staff.Inputs[OLE DB Destination Input].Columns[first_name]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="first_name"
+                      externalMetadataColumnId="Package\Load_DWH_F_Staff\DEST_DWH_F_Staff.Inputs[OLE DB Destination Input].ExternalColumns[first_name]"
+                      lineageId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].Columns[first_name]" />
+                    <inputColumn
+                      refId="Package\Load_DWH_F_Staff\DEST_DWH_F_Staff.Inputs[OLE DB Destination Input].Columns[last_name]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="last_name"
+                      externalMetadataColumnId="Package\Load_DWH_F_Staff\DEST_DWH_F_Staff.Inputs[OLE DB Destination Input].ExternalColumns[last_name]"
+                      lineageId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].Columns[last_name]" />
+                    <inputColumn
+                      refId="Package\Load_DWH_F_Staff\DEST_DWH_F_Staff.Inputs[OLE DB Destination Input].Columns[active]"
+                      cachedDataType="bool"
+                      cachedName="active"
+                      externalMetadataColumnId="Package\Load_DWH_F_Staff\DEST_DWH_F_Staff.Inputs[OLE DB Destination Input].ExternalColumns[active]"
+                      lineageId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].Columns[active]" />
+                    <inputColumn
+                      refId="Package\Load_DWH_F_Staff\DEST_DWH_F_Staff.Inputs[OLE DB Destination Input].Columns[create_timestamp]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="create_timestamp"
+                      externalMetadataColumnId="Package\Load_DWH_F_Staff\DEST_DWH_F_Staff.Inputs[OLE DB Destination Input].ExternalColumns[create_timestamp]"
+                      lineageId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].Columns[create_timestamp]" />
+                    <inputColumn
+                      refId="Package\Load_DWH_F_Staff\DEST_DWH_F_Staff.Inputs[OLE DB Destination Input].Columns[store_key]"
+                      cachedDataType="i4"
+                      cachedName="store_key"
+                      externalMetadataColumnId="Package\Load_DWH_F_Staff\DEST_DWH_F_Staff.Inputs[OLE DB Destination Input].ExternalColumns[store_key]"
+                      lineageId="Package\Load_DWH_F_Staff\Lookup_D_Store.Outputs[Lookup Match Output].Columns[store_key]" />
+                    <inputColumn
+                      refId="Package\Load_DWH_F_Staff\DEST_DWH_F_Staff.Inputs[OLE DB Destination Input].Columns[date_key]"
+                      cachedDataType="i4"
+                      cachedName="date_key"
+                      externalMetadataColumnId="Package\Load_DWH_F_Staff\DEST_DWH_F_Staff.Inputs[OLE DB Destination Input].ExternalColumns[date_key]"
+                      lineageId="Package\Load_DWH_F_Staff\Date_key.Outputs[Derived Column Output].Columns[date_key]" />
+                    <inputColumn
+                      refId="Package\Load_DWH_F_Staff\DEST_DWH_F_Staff.Inputs[OLE DB Destination Input].Columns[address]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="address"
+                      externalMetadataColumnId="Package\Load_DWH_F_Staff\DEST_DWH_F_Staff.Inputs[OLE DB Destination Input].ExternalColumns[store_address]"
+                      lineageId="Package\Load_DWH_F_Staff\Lookup_D_Store.Outputs[Lookup Match Output].Columns[address]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_F_Staff\DEST_DWH_F_Staff.Inputs[OLE DB Destination Input].ExternalColumns[staff_fact_key]"
+                      dataType="i4"
+                      name="staff_fact_key" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_F_Staff\DEST_DWH_F_Staff.Inputs[OLE DB Destination Input].ExternalColumns[date_key]"
+                      dataType="i4"
+                      name="date_key" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_F_Staff\DEST_DWH_F_Staff.Inputs[OLE DB Destination Input].ExternalColumns[staff_key]"
+                      dataType="i4"
+                      name="staff_key" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_F_Staff\DEST_DWH_F_Staff.Inputs[OLE DB Destination Input].ExternalColumns[store_key]"
+                      dataType="i4"
+                      name="store_key" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_F_Staff\DEST_DWH_F_Staff.Inputs[OLE DB Destination Input].ExternalColumns[first_name]"
+                      codePage="1256"
+                      dataType="str"
+                      length="20"
+                      name="first_name" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_F_Staff\DEST_DWH_F_Staff.Inputs[OLE DB Destination Input].ExternalColumns[last_name]"
+                      codePage="1256"
+                      dataType="str"
+                      length="20"
+                      name="last_name" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_F_Staff\DEST_DWH_F_Staff.Inputs[OLE DB Destination Input].ExternalColumns[store_address]"
+                      codePage="1256"
+                      dataType="str"
+                      length="100"
+                      name="store_address" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_F_Staff\DEST_DWH_F_Staff.Inputs[OLE DB Destination Input].ExternalColumns[active]"
+                      dataType="bool"
+                      name="active" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_F_Staff\DEST_DWH_F_Staff.Inputs[OLE DB Destination Input].ExternalColumns[create_timestamp]"
+                      dataType="dbTimeStamp"
+                      name="create_timestamp" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load_DWH_F_Staff\DEST_DWH_F_Staff.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load_DWH_F_Staff\DEST_DWH_F_Staff.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Staff\DEST_DWH_F_Staff.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_F_Staff\DEST_DWH_F_Staff.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Staff\DEST_DWH_F_Staff.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_F_Staff\DEST_DWH_F_Staff.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load_DWH_F_Staff\Lookup_D_Store"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup_D_Store"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select *
+from DWH.D_Store
+where is_last=1;</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select *
+from DWH.D_Store
+where is_last=1;) [refTable]
+where [refTable].[src_id] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="store_key" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="src_id" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="address" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1256"/&gt;&lt;referenceColumn name="city" dataType="DT_STR" length="30" precision="0" scale="0" codePage="1256"/&gt;&lt;referenceColumn name="phone" dataType="DT_STR" length="15" precision="0" scale="0" codePage="1256"/&gt;&lt;referenceColumn name="manager_first_name" dataType="DT_STR" length="20" precision="0" scale="0" codePage="1256"/&gt;&lt;referenceColumn name="manager_last_name" dataType="DT_STR" length="20" precision="0" scale="0" codePage="1256"/&gt;&lt;referenceColumn name="is_last" dataType="DT_BOOL" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="update_timestamp" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="create_timestamp" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].Columns[store_id]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load_DWH_F_Staff\Lookup_D_Store.Connections[OleDbConnection]"
+                  connectionManagerID="{1F587408-40AB-468D-A0A1-1FBAB67F1E7B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[WIN-G21BVJ4FL1C.DWH_PROJECT]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load_DWH_F_Staff\Lookup_D_Store.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load_DWH_F_Staff\Lookup_D_Store.Inputs[Lookup Input].Columns[store_id]"
+                      cachedDataType="i4"
+                      cachedName="store_id"
+                      lineageId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].Columns[store_id]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">src_id</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load_DWH_F_Staff\Lookup_D_Store.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Load_DWH_F_Staff\Lookup_D_Store.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Staff\Lookup_D_Store.Outputs[Lookup Match Output].Columns[store_key]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Load_DWH_F_Staff\Lookup_D_Store.Outputs[Lookup Match Output].Columns[store_key]"
+                      name="store_key"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">store_key</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Staff\Lookup_D_Store.Outputs[Lookup Match Output].Columns[address]"
+                      codePage="1256"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="100"
+                      lineageId="Package\Load_DWH_F_Staff\Lookup_D_Store.Outputs[Lookup Match Output].Columns[address]"
+                      name="address"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">address</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load_DWH_F_Staff\Lookup_D_Store.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Load_DWH_F_Staff\Lookup_D_Store.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load_DWH_F_Staff\Lookup_D_Store.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Load_DWH_F_Staff\Lookup_D_Store.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Staff\Lookup_D_Store.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_F_Staff\Lookup_D_Store.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Staff\Lookup_D_Store.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_F_Staff\Lookup_D_Store.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="SRC_DWH_D_Staff"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select *
+from DWH.D_Staff
+where is_last=1;</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Connections[OleDbConnection]"
+                  connectionManagerID="{1F587408-40AB-468D-A0A1-1FBAB67F1E7B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[WIN-G21BVJ4FL1C.DWH_PROJECT]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].Columns[staff_key]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].ExternalColumns[staff_key]"
+                      lineageId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].Columns[staff_key]"
+                      name="staff_key"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].Columns[src_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].ExternalColumns[src_id]"
+                      lineageId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].Columns[src_id]"
+                      name="src_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].Columns[first_name]"
+                      codePage="1256"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].ExternalColumns[first_name]"
+                      length="20"
+                      lineageId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].Columns[first_name]"
+                      name="first_name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].Columns[last_name]"
+                      codePage="1256"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].ExternalColumns[last_name]"
+                      length="20"
+                      lineageId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].Columns[last_name]"
+                      name="last_name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].Columns[phone]"
+                      codePage="1256"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].ExternalColumns[phone]"
+                      length="15"
+                      lineageId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].Columns[phone]"
+                      name="phone"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].Columns[email]"
+                      codePage="1256"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].ExternalColumns[email]"
+                      length="50"
+                      lineageId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].Columns[email]"
+                      name="email"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].Columns[address]"
+                      codePage="1256"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].ExternalColumns[address]"
+                      length="100"
+                      lineageId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].Columns[address]"
+                      name="address"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].Columns[city]"
+                      codePage="1256"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].ExternalColumns[city]"
+                      length="30"
+                      lineageId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].Columns[city]"
+                      name="city"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].Columns[store_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].ExternalColumns[store_id]"
+                      lineageId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].Columns[store_id]"
+                      name="store_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].Columns[active]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].ExternalColumns[active]"
+                      lineageId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].Columns[active]"
+                      name="active"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].Columns[is_last]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].ExternalColumns[is_last]"
+                      lineageId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].Columns[is_last]"
+                      name="is_last"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].Columns[update_timestamp]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].ExternalColumns[update_timestamp]"
+                      lineageId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].Columns[update_timestamp]"
+                      name="update_timestamp"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].Columns[create_timestamp]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].ExternalColumns[create_timestamp]"
+                      lineageId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].Columns[create_timestamp]"
+                      name="create_timestamp"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].ExternalColumns[staff_key]"
+                      dataType="i4"
+                      name="staff_key" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].ExternalColumns[src_id]"
+                      dataType="i4"
+                      name="src_id" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].ExternalColumns[first_name]"
+                      codePage="1256"
+                      dataType="str"
+                      length="20"
+                      name="first_name" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].ExternalColumns[last_name]"
+                      codePage="1256"
+                      dataType="str"
+                      length="20"
+                      name="last_name" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].ExternalColumns[phone]"
+                      codePage="1256"
+                      dataType="str"
+                      length="15"
+                      name="phone" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].ExternalColumns[email]"
+                      codePage="1256"
+                      dataType="str"
+                      length="50"
+                      name="email" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].ExternalColumns[address]"
+                      codePage="1256"
+                      dataType="str"
+                      length="100"
+                      name="address" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].ExternalColumns[city]"
+                      codePage="1256"
+                      dataType="str"
+                      length="30"
+                      name="city" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].ExternalColumns[store_id]"
+                      dataType="i4"
+                      name="store_id" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].ExternalColumns[active]"
+                      dataType="bool"
+                      name="active" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].ExternalColumns[is_last]"
+                      dataType="bool"
+                      name="is_last" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].ExternalColumns[update_timestamp]"
+                      dataType="dbTimeStamp"
+                      name="update_timestamp" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].ExternalColumns[create_timestamp]"
+                      dataType="dbTimeStamp"
+                      name="create_timestamp" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Error Output].Columns[staff_key]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Error Output].Columns[staff_key]"
+                      name="staff_key" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Error Output].Columns[src_id]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Error Output].Columns[src_id]"
+                      name="src_id" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Error Output].Columns[first_name]"
+                      codePage="1256"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Error Output].Columns[first_name]"
+                      name="first_name" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Error Output].Columns[last_name]"
+                      codePage="1256"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Error Output].Columns[last_name]"
+                      name="last_name" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Error Output].Columns[phone]"
+                      codePage="1256"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Error Output].Columns[phone]"
+                      name="phone" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Error Output].Columns[email]"
+                      codePage="1256"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Error Output].Columns[email]"
+                      name="email" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Error Output].Columns[address]"
+                      codePage="1256"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Error Output].Columns[address]"
+                      name="address" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Error Output].Columns[city]"
+                      codePage="1256"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Error Output].Columns[city]"
+                      name="city" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Error Output].Columns[store_id]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Error Output].Columns[store_id]"
+                      name="store_id" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Error Output].Columns[active]"
+                      dataType="bool"
+                      lineageId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Error Output].Columns[active]"
+                      name="active" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Error Output].Columns[is_last]"
+                      dataType="bool"
+                      lineageId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Error Output].Columns[is_last]"
+                      name="is_last" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Error Output].Columns[update_timestamp]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Error Output].Columns[update_timestamp]"
+                      name="update_timestamp" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Error Output].Columns[create_timestamp]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Error Output].Columns[create_timestamp]"
+                      name="create_timestamp" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load_DWH_F_Staff.Paths[Derived Column Output]"
+              endId="Package\Load_DWH_F_Staff\Check Existing Records.Inputs[Lookup Input]"
+              name="Derived Column Output"
+              startId="Package\Load_DWH_F_Staff\Date_key.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Load_DWH_F_Staff.Paths[Lookup Match Output]"
+              endId="Package\Load_DWH_F_Staff\Date_key.Inputs[Derived Column Input]"
+              name="Lookup Match Output"
+              startId="Package\Load_DWH_F_Staff\Lookup_D_Store.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Load_DWH_F_Staff.Paths[Lookup No Match Output]"
+              endId="Package\Load_DWH_F_Staff\Check_NULL.Inputs[Conditional Split Input]"
+              name="Lookup No Match Output"
+              startId="Package\Load_DWH_F_Staff\Check Existing Records.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\Load_DWH_F_Staff.Paths[NOT_NULL]"
+              endId="Package\Load_DWH_F_Staff\DEST_DWH_F_Staff.Inputs[OLE DB Destination Input]"
+              name="NOT_NULL"
+              startId="Package\Load_DWH_F_Staff\Check_NULL.Outputs[NOT_NULL]" />
+            <path
+              refId="Package\Load_DWH_F_Staff.Paths[OLE DB Source Output]"
+              endId="Package\Load_DWH_F_Staff\Lookup_D_Store.Inputs[Lookup Input]"
+              name="OLE DB Source Output"
+              startId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="169.6,41.6"
+          Id="Package\Load_DWH_F_Staff"
+          TopLeft="439.071429494388,154.617646928116" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load_DWH_F_Staff">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="156,41.6"
+          Id="Package\Load_DWH_F_Staff\Lookup_D_Store"
+          TopLeft="414.736257556212,195.230765963976" />
+        <NodeLayout
+          Size="168,41.6"
+          Id="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff"
+          TopLeft="412.307686163829,72.230767796819" />
+        <NodeLayout
+          Size="172.8,41.6"
+          Id="Package\Load_DWH_F_Staff\DEST_DWH_F_Staff"
+          TopLeft="385.52846578365,601.243746977988" />
+        <NodeLayout
+          Size="136.8,41.6"
+          Id="Package\Load_DWH_F_Staff\Check_NULL"
+          TopLeft="402.857136854104,495.857136524149" />
+        <NodeLayout
+          Size="122.4,41.6"
+          Id="Package\Load_DWH_F_Staff\Date_key"
+          TopLeft="409.307686208532,309.230764265243" />
+        <NodeLayout
+          Size="187.2,41.6"
+          Id="Package\Load_DWH_F_Staff\Check Existing Records"
+          TopLeft="378.021972389012,398.555438649017" />
+        <EdgeLayout
+          Id="Package\Load_DWH_F_Staff.Paths[OLE DB Source Output]"
+          TopLeft="494.52197186002,113.830767796819">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,81.399998167157"
+              Start="0,0"
+              End="0,73.899998167157">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,73.899998167157" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_DWH_F_Staff.Paths[NOT_NULL]"
+          TopLeft="471.592801318877,537.457136524149">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,63.7866104538391"
+              Start="0,0"
+              End="0,56.2866104538391">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,56.2866104538391" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-24.73693359375,22.6999458519196,49.4738671875,10.88671875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_DWH_F_Staff.Paths[Lookup No Match Output]"
+          TopLeft="471.439554621558,440.155438649017">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,55.7016978751328"
+              Start="0,0"
+              End="0,48.2016978751328">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48.2016978751328" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-55.80638671875,18.2961614375664,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_DWH_F_Staff.Paths[Lookup Match Output]"
+          TopLeft="492.736257556212,236.830765963976">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-22.2285713476796,72.3999983012672"
+              Start="0,0"
+              End="-22.2285713476796,64.8999983012672">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.1999991506336" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,32.1999991506336"
+                    Point2="0,36.1999991506336"
+                    Point3="-4,36.1999991506336" />
+                  <mssgle:LineSegment
+                    End="-18.2285713476796,36.1999991506336" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-18.2285713476796,36.1999991506336"
+                    Point2="-22.2285713476796,36.1999991506336"
+                    Point3="-22.2285713476796,40.1999991506336" />
+                  <mssgle:LineSegment
+                    End="-22.2285713476796,64.8999983012672" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-59.3056723925898,41.1999991506336,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_DWH_F_Staff.Paths[Derived Column Output]"
+          TopLeft="471.064829298772,350.830764265243">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,47.7246743837732"
+              Start="0,0"
+              End="0,40.2246743837732">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.2246743837732" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load_DWH_F_Staff\Lookup_D_Store">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load_DWH_F_Staff\DEST_DWH_F_Staff">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load_DWH_F_Staff\Check Existing Records">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[DWH].[F_Staff]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
