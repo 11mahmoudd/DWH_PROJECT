@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="2"
-  DTS:VersionGUID="{BEBE18F9-A771-4CA2-9912-20F92B64B448}">
+  DTS:VersionBuild="3"
+  DTS:VersionGUID="{C82C26C4-6643-4D77-B8E7-62118E2FCF5C}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -30,7 +30,7 @@
       <DTS:ObjectData>
         <ExecutePackageTask>
           <UseProjectReference>True</UseProjectReference>
-          <PackageName>From Source to F_Inventory.dtsx</PackageName>
+          <PackageName>Fact_Inventory.dtsx</PackageName>
         </ExecutePackageTask>
       </DTS:ObjectData>
     </DTS:Executable>

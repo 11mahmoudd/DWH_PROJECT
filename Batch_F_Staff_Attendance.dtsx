@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Batch_F_Staff"
   DTS:PackageType="5"
-  DTS:VersionBuild="6"
-  DTS:VersionGUID="{1EBEFB0D-43E0-4432-9101-45E0659EE68F}">
+  DTS:VersionBuild="8"
+  DTS:VersionGUID="{9BF29A87-71D1-4B10-8C96-96A7767ACA23}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -30,7 +30,7 @@
       <DTS:ObjectData>
         <ExecutePackageTask>
           <UseProjectReference>True</UseProjectReference>
-          <PackageName>From Dimension to F_Staff.dtsx</PackageName>
+          <PackageName>Batch_F_Staff_Attendance.dtsx</PackageName>
         </ExecutePackageTask>
       </DTS:ObjectData>
     </DTS:Executable>

@@ -11,15 +11,15 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="From Source to D_City"
   DTS:PackageType="5"
-  DTS:VersionBuild="43"
-  DTS:VersionGUID="{686745C6-7803-48FD-8AC5-B6AE490CFFC0}">
+  DTS:VersionBuild="56"
+  DTS:VersionGUID="{716E4FC7-91A4-4C47-BFC0-F46F2197019B}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
     <DTS:Variable
       DTS:CreationName=""
       DTS:DTSID="{A0653B62-8D8E-40DC-8F25-C1D54E99AB3A}"
-      DTS:IncludeInDebugDump="6789"
+      DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="Last_Extract_Date">
       <DTS:VariableValue
@@ -110,10 +110,12 @@ WHERE table_name = 'City';</DTS:VariableValue>
                       cachedScale="2"
                       lineageId="Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[city_taxes]" />
                     <inputColumn
-                      refId="Package\Load_DWH_D_City\Conditional Split.Inputs[Conditional Split Input].Columns[dim_city_key]"
-                      cachedDataType="i4"
-                      cachedName="dim_city_key"
-                      lineageId="Package\Load_DWH_D_City\Lookup on Dim.Outputs[Lookup Match Output].Columns[dim_city_key]" />
+                      refId="Package\Load_DWH_D_City\Conditional Split.Inputs[Conditional Split Input].Columns[dim_city_taxes]"
+                      cachedDataType="numeric"
+                      cachedName="dim_city_taxes"
+                      cachedPrecision="5"
+                      cachedScale="2"
+                      lineageId="Package\Load_DWH_D_City\Lookup on Dim.Outputs[Lookup Match Output].Columns[dim_city_taxes]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -133,13 +135,13 @@ WHERE table_name = 'City';</DTS:VariableValue>
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
-                      name="Expression">#{Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[city_taxes]} != #{Package\Load_DWH_D_City\Lookup on Dim.Outputs[Lookup Match Output].Columns[dim_city_key]}</property>
+                      name="Expression">#{Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[city_taxes]} != #{Package\Load_DWH_D_City\Lookup on Dim.Outputs[Lookup Match Output].Columns[dim_city_taxes]}</property>
                     <property
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the friendly version of the expression. This expression version uses column names."
                       expressionType="Notify"
-                      name="FriendlyExpression">city_taxes != dim_city_key</property>
+                      name="FriendlyExpression">city_taxes != dim_city_taxes</property>
                     <property
                       dataType="System.Int32"
                       description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
@@ -186,153 +188,124 @@ WHERE table_name = 'City';</DTS:VariableValue>
               </outputs>
             </component>
             <component
-              refId="Package\Load_DWH_D_City\DEST_DWH_D_City_Change"
-              componentClassID="Microsoft.OLEDBDestination"
-              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
-              description="OLE DB Destination"
-              name="DEST_DWH_D_City_Change"
-              usesDispositions="true"
-              version="4">
-              <properties>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">0</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[DWH].[D_City]</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the variable that contains the name of the database object used to open a rowset."
-                  name="OpenRowsetVariable"></property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Forces the use of the DefaultCodePage property value when describing character data."
-                  name="AlwaysUseDefaultCodePage">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the mode used to access the database."
-                  name="AccessMode"
-                  typeConverter="AccessMode">3</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepIdentity">false</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepNulls">false</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
-                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
-                  name="FastLoadMaxInsertCommitSize">2147483647</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\Load_DWH_D_City\DEST_DWH_D_City_Change.Connections[OleDbConnection]"
-                  connectionManagerID="{1F587408-40AB-468D-A0A1-1FBAB67F1E7B}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[WIN-G21BVJ4FL1C.DWH_PROJECT]"
-                  description="The OLE DB runtime connection used to access the database."
-                  name="OleDbConnection" />
-              </connections>
+              refId="Package\Load_DWH_D_City\Conditional Split 1"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Conditional Split 1"
+              usesDispositions="true">
               <inputs>
                 <input
-                  refId="Package\Load_DWH_D_City\DEST_DWH_D_City_Change.Inputs[OLE DB Destination Input]"
-                  errorOrTruncationOperation="Insert"
-                  errorRowDisposition="FailComponent"
-                  hasSideEffects="true"
-                  name="OLE DB Destination Input">
+                  refId="Package\Load_DWH_D_City\Conditional Split 1.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Load_DWH_D_City\DEST_DWH_D_City_Change.Inputs[OLE DB Destination Input].Columns[city_name]"
+                      refId="Package\Load_DWH_D_City\Conditional Split 1.Inputs[Conditional Split Input].Columns[city_name]"
                       cachedCodepage="1256"
                       cachedDataType="str"
                       cachedLength="30"
                       cachedName="city_name"
-                      externalMetadataColumnId="Package\Load_DWH_D_City\DEST_DWH_D_City_Change.Inputs[OLE DB Destination Input].ExternalColumns[city_name]"
                       lineageId="Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[city_name]" />
                     <inputColumn
-                      refId="Package\Load_DWH_D_City\DEST_DWH_D_City_Change.Inputs[OLE DB Destination Input].Columns[city_taxes]"
+                      refId="Package\Load_DWH_D_City\Conditional Split 1.Inputs[Conditional Split Input].Columns[city_taxes]"
                       cachedDataType="numeric"
                       cachedName="city_taxes"
                       cachedPrecision="5"
                       cachedScale="2"
-                      externalMetadataColumnId="Package\Load_DWH_D_City\DEST_DWH_D_City_Change.Inputs[OLE DB Destination Input].ExternalColumns[city_taxes]"
                       lineageId="Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[city_taxes]" />
-                    <inputColumn
-                      refId="Package\Load_DWH_D_City\DEST_DWH_D_City_Change.Inputs[OLE DB Destination Input].Columns[create_timestamp]"
-                      cachedDataType="dbTimeStamp"
-                      cachedName="create_timestamp"
-                      externalMetadataColumnId="Package\Load_DWH_D_City\DEST_DWH_D_City_Change.Inputs[OLE DB Destination Input].ExternalColumns[create_timestamp]"
-                      lineageId="Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[create_timestamp]" />
-                    <inputColumn
-                      refId="Package\Load_DWH_D_City\DEST_DWH_D_City_Change.Inputs[OLE DB Destination Input].Columns[city_id]"
-                      cachedDataType="i4"
-                      cachedName="city_id"
-                      externalMetadataColumnId="Package\Load_DWH_D_City\DEST_DWH_D_City_Change.Inputs[OLE DB Destination Input].ExternalColumns[src_id]"
-                      lineageId="Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[city_id]" />
                   </inputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Load_DWH_D_City\DEST_DWH_D_City_Change.Inputs[OLE DB Destination Input].ExternalColumns[city_key]"
-                      dataType="i4"
-                      name="city_key" />
-                    <externalMetadataColumn
-                      refId="Package\Load_DWH_D_City\DEST_DWH_D_City_Change.Inputs[OLE DB Destination Input].ExternalColumns[src_id]"
-                      dataType="i4"
-                      name="src_id" />
-                    <externalMetadataColumn
-                      refId="Package\Load_DWH_D_City\DEST_DWH_D_City_Change.Inputs[OLE DB Destination Input].ExternalColumns[city_name]"
-                      codePage="1256"
-                      dataType="str"
-                      length="30"
-                      name="city_name" />
-                    <externalMetadataColumn
-                      refId="Package\Load_DWH_D_City\DEST_DWH_D_City_Change.Inputs[OLE DB Destination Input].ExternalColumns[city_taxes]"
-                      dataType="numeric"
-                      name="city_taxes"
-                      precision="5"
-                      scale="2" />
-                    <externalMetadataColumn
-                      refId="Package\Load_DWH_D_City\DEST_DWH_D_City_Change.Inputs[OLE DB Destination Input].ExternalColumns[create_timestamp]"
-                      dataType="dbTimeStamp"
-                      name="create_timestamp" />
-                  </externalMetadataColumns>
+                  <externalMetadataColumns />
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Load_DWH_D_City\DEST_DWH_D_City_Change.Outputs[OLE DB Destination Error Output]"
+                  refId="Package\Load_DWH_D_City\Conditional Split 1.Outputs[null_city_name]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="null_city_name"
+                  synchronousInputId="Package\Load_DWH_D_City\Conditional Split 1.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[ISNULL](#{Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[city_name]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL(city_name)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load_DWH_D_City\Conditional Split 1.Outputs[null_taxes]"
+                  description="Output 2 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="null_taxes"
+                  synchronousInputId="Package\Load_DWH_D_City\Conditional Split 1.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[ISNULL](#{Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[city_taxes]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL(city_taxes)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">1</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load_DWH_D_City\Conditional Split 1.Outputs[not_null]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="not_null"
+                  synchronousInputId="Package\Load_DWH_D_City\Conditional Split 1.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load_DWH_D_City\Conditional Split 1.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
                   exclusionGroup="1"
                   isErrorOut="true"
-                  name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\Load_DWH_D_City\DEST_DWH_D_City_Change.Inputs[OLE DB Destination Input]">
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\Load_DWH_D_City\Conditional Split 1.Inputs[Conditional Split Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Load_DWH_D_City\DEST_DWH_D_City_Change.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\Load_DWH_D_City\Conditional Split 1.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Load_DWH_D_City\DEST_DWH_D_City_Change.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Load_DWH_D_City\Conditional Split 1.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Load_DWH_D_City\DEST_DWH_D_City_Change.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\Load_DWH_D_City\Conditional Split 1.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Load_DWH_D_City\DEST_DWH_D_City_Change.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Load_DWH_D_City\Conditional Split 1.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -341,11 +314,137 @@ WHERE table_name = 'City';</DTS:VariableValue>
               </outputs>
             </component>
             <component
-              refId="Package\Load_DWH_D_City\DEST_DWH_D_City_NoChange"
+              refId="Package\Load_DWH_D_City\Conditional Split 1 1"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Conditional Split 1 1"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load_DWH_D_City\Conditional Split 1 1.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_City\Conditional Split 1 1.Inputs[Conditional Split Input].Columns[city_name]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="city_name"
+                      lineageId="Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[city_name]" />
+                    <inputColumn
+                      refId="Package\Load_DWH_D_City\Conditional Split 1 1.Inputs[Conditional Split Input].Columns[city_taxes]"
+                      cachedDataType="numeric"
+                      cachedName="city_taxes"
+                      cachedPrecision="5"
+                      cachedScale="2"
+                      lineageId="Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[city_taxes]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load_DWH_D_City\Conditional Split 1 1.Outputs[null_city_name]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="null_city_name"
+                  synchronousInputId="Package\Load_DWH_D_City\Conditional Split 1 1.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[ISNULL](#{Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[city_name]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL(city_name)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load_DWH_D_City\Conditional Split 1 1.Outputs[null_taxes]"
+                  description="Output 2 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="null_taxes"
+                  synchronousInputId="Package\Load_DWH_D_City\Conditional Split 1 1.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[ISNULL](#{Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[city_taxes]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL(city_taxes)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">1</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load_DWH_D_City\Conditional Split 1 1.Outputs[not_null]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="not_null"
+                  synchronousInputId="Package\Load_DWH_D_City\Conditional Split 1 1.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load_DWH_D_City\Conditional Split 1 1.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\Load_DWH_D_City\Conditional Split 1 1.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_DWH_D_City\Conditional Split 1 1.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_D_City\Conditional Split 1 1.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load_DWH_D_City\Conditional Split 1 1.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_D_City\Conditional Split 1 1.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load_DWH_D_City\DEST_DWH_D_City"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
               description="OLE DB Destination"
-              name="DEST_DWH_D_City_NoChange"
+              name="DEST_DWH_D_City"
               usesDispositions="true"
               version="4">
               <properties>
@@ -398,7 +497,7 @@ WHERE table_name = 'City';</DTS:VariableValue>
               </properties>
               <connections>
                 <connection
-                  refId="Package\Load_DWH_D_City\DEST_DWH_D_City_NoChange.Connections[OleDbConnection]"
+                  refId="Package\Load_DWH_D_City\DEST_DWH_D_City.Connections[OleDbConnection]"
                   connectionManagerID="{1F587408-40AB-468D-A0A1-1FBAB67F1E7B}:external"
                   connectionManagerRefId="Project.ConnectionManagers[WIN-G21BVJ4FL1C.DWH_PROJECT]"
                   description="The OLE DB runtime connection used to access the database."
@@ -406,65 +505,65 @@ WHERE table_name = 'City';</DTS:VariableValue>
               </connections>
               <inputs>
                 <input
-                  refId="Package\Load_DWH_D_City\DEST_DWH_D_City_NoChange.Inputs[OLE DB Destination Input]"
+                  refId="Package\Load_DWH_D_City\DEST_DWH_D_City.Inputs[OLE DB Destination Input]"
                   errorOrTruncationOperation="Insert"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="OLE DB Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Load_DWH_D_City\DEST_DWH_D_City_NoChange.Inputs[OLE DB Destination Input].Columns[city_name]"
+                      refId="Package\Load_DWH_D_City\DEST_DWH_D_City.Inputs[OLE DB Destination Input].Columns[city_name]"
                       cachedCodepage="1256"
                       cachedDataType="str"
                       cachedLength="30"
                       cachedName="city_name"
-                      externalMetadataColumnId="Package\Load_DWH_D_City\DEST_DWH_D_City_NoChange.Inputs[OLE DB Destination Input].ExternalColumns[city_name]"
-                      lineageId="Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[city_name]" />
+                      externalMetadataColumnId="Package\Load_DWH_D_City\DEST_DWH_D_City.Inputs[OLE DB Destination Input].ExternalColumns[city_name]"
+                      lineageId="Package\Load_DWH_D_City\Union All 1.Outputs[Union All Output 1].Columns[city_name]" />
                     <inputColumn
-                      refId="Package\Load_DWH_D_City\DEST_DWH_D_City_NoChange.Inputs[OLE DB Destination Input].Columns[city_taxes]"
+                      refId="Package\Load_DWH_D_City\DEST_DWH_D_City.Inputs[OLE DB Destination Input].Columns[city_taxes]"
                       cachedDataType="numeric"
                       cachedName="city_taxes"
                       cachedPrecision="5"
                       cachedScale="2"
-                      externalMetadataColumnId="Package\Load_DWH_D_City\DEST_DWH_D_City_NoChange.Inputs[OLE DB Destination Input].ExternalColumns[city_taxes]"
-                      lineageId="Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[city_taxes]" />
+                      externalMetadataColumnId="Package\Load_DWH_D_City\DEST_DWH_D_City.Inputs[OLE DB Destination Input].ExternalColumns[city_taxes]"
+                      lineageId="Package\Load_DWH_D_City\Union All 1.Outputs[Union All Output 1].Columns[city_taxes]" />
                     <inputColumn
-                      refId="Package\Load_DWH_D_City\DEST_DWH_D_City_NoChange.Inputs[OLE DB Destination Input].Columns[create_timestamp]"
+                      refId="Package\Load_DWH_D_City\DEST_DWH_D_City.Inputs[OLE DB Destination Input].Columns[create_timestamp]"
                       cachedDataType="dbTimeStamp"
                       cachedName="create_timestamp"
-                      externalMetadataColumnId="Package\Load_DWH_D_City\DEST_DWH_D_City_NoChange.Inputs[OLE DB Destination Input].ExternalColumns[create_timestamp]"
-                      lineageId="Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[create_timestamp]" />
+                      externalMetadataColumnId="Package\Load_DWH_D_City\DEST_DWH_D_City.Inputs[OLE DB Destination Input].ExternalColumns[create_timestamp]"
+                      lineageId="Package\Load_DWH_D_City\Union All 1.Outputs[Union All Output 1].Columns[create_timestamp]" />
                     <inputColumn
-                      refId="Package\Load_DWH_D_City\DEST_DWH_D_City_NoChange.Inputs[OLE DB Destination Input].Columns[city_id]"
+                      refId="Package\Load_DWH_D_City\DEST_DWH_D_City.Inputs[OLE DB Destination Input].Columns[city_id]"
                       cachedDataType="i4"
                       cachedName="city_id"
-                      externalMetadataColumnId="Package\Load_DWH_D_City\DEST_DWH_D_City_NoChange.Inputs[OLE DB Destination Input].ExternalColumns[src_id]"
-                      lineageId="Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[city_id]" />
+                      externalMetadataColumnId="Package\Load_DWH_D_City\DEST_DWH_D_City.Inputs[OLE DB Destination Input].ExternalColumns[src_id]"
+                      lineageId="Package\Load_DWH_D_City\Union All 1.Outputs[Union All Output 1].Columns[city_id]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Load_DWH_D_City\DEST_DWH_D_City_NoChange.Inputs[OLE DB Destination Input].ExternalColumns[city_key]"
+                      refId="Package\Load_DWH_D_City\DEST_DWH_D_City.Inputs[OLE DB Destination Input].ExternalColumns[city_key]"
                       dataType="i4"
                       name="city_key" />
                     <externalMetadataColumn
-                      refId="Package\Load_DWH_D_City\DEST_DWH_D_City_NoChange.Inputs[OLE DB Destination Input].ExternalColumns[src_id]"
+                      refId="Package\Load_DWH_D_City\DEST_DWH_D_City.Inputs[OLE DB Destination Input].ExternalColumns[src_id]"
                       dataType="i4"
                       name="src_id" />
                     <externalMetadataColumn
-                      refId="Package\Load_DWH_D_City\DEST_DWH_D_City_NoChange.Inputs[OLE DB Destination Input].ExternalColumns[city_name]"
+                      refId="Package\Load_DWH_D_City\DEST_DWH_D_City.Inputs[OLE DB Destination Input].ExternalColumns[city_name]"
                       codePage="1256"
                       dataType="str"
                       length="30"
                       name="city_name" />
                     <externalMetadataColumn
-                      refId="Package\Load_DWH_D_City\DEST_DWH_D_City_NoChange.Inputs[OLE DB Destination Input].ExternalColumns[city_taxes]"
+                      refId="Package\Load_DWH_D_City\DEST_DWH_D_City.Inputs[OLE DB Destination Input].ExternalColumns[city_taxes]"
                       dataType="numeric"
                       name="city_taxes"
                       precision="5"
                       scale="2" />
                     <externalMetadataColumn
-                      refId="Package\Load_DWH_D_City\DEST_DWH_D_City_NoChange.Inputs[OLE DB Destination Input].ExternalColumns[create_timestamp]"
+                      refId="Package\Load_DWH_D_City\DEST_DWH_D_City.Inputs[OLE DB Destination Input].ExternalColumns[create_timestamp]"
                       dataType="dbTimeStamp"
                       name="create_timestamp" />
                   </externalMetadataColumns>
@@ -472,22 +571,22 @@ WHERE table_name = 'City';</DTS:VariableValue>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Load_DWH_D_City\DEST_DWH_D_City_NoChange.Outputs[OLE DB Destination Error Output]"
+                  refId="Package\Load_DWH_D_City\DEST_DWH_D_City.Outputs[OLE DB Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\Load_DWH_D_City\DEST_DWH_D_City_NoChange.Inputs[OLE DB Destination Input]">
+                  synchronousInputId="Package\Load_DWH_D_City\DEST_DWH_D_City.Inputs[OLE DB Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Load_DWH_D_City\DEST_DWH_D_City_NoChange.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\Load_DWH_D_City\DEST_DWH_D_City.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Load_DWH_D_City\DEST_DWH_D_City_NoChange.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Load_DWH_D_City\DEST_DWH_D_City.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Load_DWH_D_City\DEST_DWH_D_City_NoChange.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\Load_DWH_D_City\DEST_DWH_D_City.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Load_DWH_D_City\DEST_DWH_D_City_NoChange.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Load_DWH_D_City\DEST_DWH_D_City.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -633,6 +732,20 @@ where [refTable].[src_id] = ?</property>
                           name="CopyFromReferenceColumn">city_taxes</property>
                       </properties>
                     </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_DWH_D_City\Lookup on Dim.Outputs[Lookup Match Output].Columns[src_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Load_DWH_D_City\Lookup on Dim.Outputs[Lookup Match Output].Columns[src_id]"
+                      name="src_id"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">src_id</property>
+                      </properties>
+                    </outputColumn>
                   </outputColumns>
                   <externalMetadataColumns />
                 </output>
@@ -661,6 +774,256 @@ where [refTable].[src_id] = ?</property>
                       refId="Package\Load_DWH_D_City\Lookup on Dim.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                       dataType="i4"
                       lineageId="Package\Load_DWH_D_City\Lookup on Dim.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load_DWH_D_City\null_city_name"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="null_city_name"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load_DWH_D_City\null_city_name.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_City\null_city_name.Inputs[Derived Column Input].Columns[city_name]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="city_name"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[city_name]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">"Unknown"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"Unknown"</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load_DWH_D_City\null_city_name.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Load_DWH_D_City\null_city_name.Inputs[Derived Column Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load_DWH_D_City\null_city_name.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Load_DWH_D_City\null_city_name.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_DWH_D_City\null_city_name.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_D_City\null_city_name.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load_DWH_D_City\null_city_name.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_D_City\null_city_name.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load_DWH_D_City\null_city_namee"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="null_city_namee"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load_DWH_D_City\null_city_namee.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load_DWH_D_City\null_city_namee.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Load_DWH_D_City\null_city_namee.Inputs[Derived Column Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load_DWH_D_City\null_city_namee.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Load_DWH_D_City\null_city_namee.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_DWH_D_City\null_city_namee.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_D_City\null_city_namee.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load_DWH_D_City\null_city_namee.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_D_City\null_city_namee.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load_DWH_D_City\null_taxes"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="null_taxes"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load_DWH_D_City\null_taxes.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_City\null_taxes.Inputs[Derived Column Input].Columns[city_taxes]"
+                      cachedDataType="numeric"
+                      cachedName="city_taxes"
+                      cachedPrecision="5"
+                      cachedScale="2"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[city_taxes]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">0</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load_DWH_D_City\null_taxes.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Load_DWH_D_City\null_taxes.Inputs[Derived Column Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load_DWH_D_City\null_taxes.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Load_DWH_D_City\null_taxes.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_DWH_D_City\null_taxes.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_D_City\null_taxes.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load_DWH_D_City\null_taxes.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_D_City\null_taxes.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load_DWH_D_City\null_taxess"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="null_taxess"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load_DWH_D_City\null_taxess.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load_DWH_D_City\null_taxess.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Load_DWH_D_City\null_taxess.Inputs[Derived Column Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load_DWH_D_City\null_taxess.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Load_DWH_D_City\null_taxess.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_DWH_D_City\null_taxess.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_D_City\null_taxess.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load_DWH_D_City\null_taxess.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_D_City\null_taxess.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -779,6 +1142,161 @@ where city_key=?</property>
                       refId="Package\Load_DWH_D_City\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
                       dataType="i4"
                       lineageId="Package\Load_DWH_D_City\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load_DWH_D_City\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[DWH].[D_City]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load_DWH_D_City\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{1F587408-40AB-468D-A0A1-1FBAB67F1E7B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[WIN-G21BVJ4FL1C.DWH_PROJECT]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load_DWH_D_City\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_City\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[city_name]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="city_name"
+                      externalMetadataColumnId="Package\Load_DWH_D_City\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[city_name]"
+                      lineageId="Package\Load_DWH_D_City\Union All.Outputs[Union All Output 1].Columns[city_name]" />
+                    <inputColumn
+                      refId="Package\Load_DWH_D_City\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[city_taxes]"
+                      cachedDataType="numeric"
+                      cachedName="city_taxes"
+                      cachedPrecision="5"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Load_DWH_D_City\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[city_taxes]"
+                      lineageId="Package\Load_DWH_D_City\Union All.Outputs[Union All Output 1].Columns[city_taxes]" />
+                    <inputColumn
+                      refId="Package\Load_DWH_D_City\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[create_timestamp]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="create_timestamp"
+                      externalMetadataColumnId="Package\Load_DWH_D_City\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[create_timestamp]"
+                      lineageId="Package\Load_DWH_D_City\Union All.Outputs[Union All Output 1].Columns[create_timestamp]" />
+                    <inputColumn
+                      refId="Package\Load_DWH_D_City\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[city_id]"
+                      cachedDataType="i4"
+                      cachedName="city_id"
+                      externalMetadataColumnId="Package\Load_DWH_D_City\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[src_id]"
+                      lineageId="Package\Load_DWH_D_City\Union All.Outputs[Union All Output 1].Columns[city_id]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_D_City\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[city_key]"
+                      dataType="i4"
+                      name="city_key" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_D_City\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[src_id]"
+                      dataType="i4"
+                      name="src_id" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_D_City\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[city_name]"
+                      codePage="1256"
+                      dataType="str"
+                      length="30"
+                      name="city_name" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_D_City\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[city_taxes]"
+                      dataType="numeric"
+                      name="city_taxes"
+                      precision="5"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_D_City\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[create_timestamp]"
+                      dataType="dbTimeStamp"
+                      name="create_timestamp" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load_DWH_D_City\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load_DWH_D_City\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_DWH_D_City\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_D_City\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load_DWH_D_City\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_D_City\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -976,6 +1494,576 @@ where city_key=?</property>
                 </output>
               </outputs>
             </component>
+            <component
+              refId="Package\Load_DWH_D_City\Union All"
+              componentClassID="Microsoft.UnionAll"
+              contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
+              name="Union All"
+              version="1">
+              <inputs>
+                <input
+                  refId="Package\Load_DWH_D_City\Union All.Inputs[Union All Input 1]"
+                  name="Union All Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_City\Union All.Inputs[Union All Input 1].Columns[city_id]"
+                      cachedDataType="i4"
+                      cachedName="city_id"
+                      lineageId="Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[city_id]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_City\Union All.Outputs[Union All Output 1].Columns[city_id]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_City\Union All.Inputs[Union All Input 1].Columns[city_name]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="city_name"
+                      lineageId="Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[city_name]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_City\Union All.Outputs[Union All Output 1].Columns[city_name]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_City\Union All.Inputs[Union All Input 1].Columns[city_taxes]"
+                      cachedDataType="numeric"
+                      cachedName="city_taxes"
+                      cachedPrecision="5"
+                      cachedScale="2"
+                      lineageId="Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[city_taxes]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_City\Union All.Outputs[Union All Output 1].Columns[city_taxes]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_City\Union All.Inputs[Union All Input 1].Columns[src_update_date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="src_update_date"
+                      lineageId="Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[src_update_date]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_City\Union All.Outputs[Union All Output 1].Columns[src_update_date]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_City\Union All.Inputs[Union All Input 1].Columns[create_timestamp]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="create_timestamp"
+                      lineageId="Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[create_timestamp]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_City\Union All.Outputs[Union All Output 1].Columns[create_timestamp]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Load_DWH_D_City\Union All.Inputs[Union All Input 2]"
+                  hasSideEffects="true"
+                  name="Union All Input 2">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_City\Union All.Inputs[Union All Input 2].Columns[city_id]"
+                      cachedDataType="i4"
+                      cachedName="city_id"
+                      lineageId="Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[city_id]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_City\Union All.Outputs[Union All Output 1].Columns[city_id]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_City\Union All.Inputs[Union All Input 2].Columns[city_name]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="city_name"
+                      lineageId="Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[city_name]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_City\Union All.Outputs[Union All Output 1].Columns[city_name]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_City\Union All.Inputs[Union All Input 2].Columns[city_taxes]"
+                      cachedDataType="numeric"
+                      cachedName="city_taxes"
+                      cachedPrecision="5"
+                      cachedScale="2"
+                      lineageId="Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[city_taxes]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_City\Union All.Outputs[Union All Output 1].Columns[city_taxes]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_City\Union All.Inputs[Union All Input 2].Columns[src_update_date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="src_update_date"
+                      lineageId="Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[src_update_date]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_City\Union All.Outputs[Union All Output 1].Columns[src_update_date]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_City\Union All.Inputs[Union All Input 2].Columns[create_timestamp]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="create_timestamp"
+                      lineageId="Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[create_timestamp]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_City\Union All.Outputs[Union All Output 1].Columns[create_timestamp]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Load_DWH_D_City\Union All.Inputs[Union All Input 3]"
+                  hasSideEffects="true"
+                  name="Union All Input 3">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_City\Union All.Inputs[Union All Input 3].Columns[city_id]"
+                      cachedDataType="i4"
+                      cachedName="city_id"
+                      lineageId="Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[city_id]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_City\Union All.Outputs[Union All Output 1].Columns[city_id]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_City\Union All.Inputs[Union All Input 3].Columns[city_name]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="city_name"
+                      lineageId="Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[city_name]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_City\Union All.Outputs[Union All Output 1].Columns[city_name]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_City\Union All.Inputs[Union All Input 3].Columns[city_taxes]"
+                      cachedDataType="numeric"
+                      cachedName="city_taxes"
+                      cachedPrecision="5"
+                      cachedScale="2"
+                      lineageId="Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[city_taxes]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_City\Union All.Outputs[Union All Output 1].Columns[city_taxes]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_City\Union All.Inputs[Union All Input 3].Columns[src_update_date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="src_update_date"
+                      lineageId="Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[src_update_date]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_City\Union All.Outputs[Union All Output 1].Columns[src_update_date]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_City\Union All.Inputs[Union All Input 3].Columns[create_timestamp]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="create_timestamp"
+                      lineageId="Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[create_timestamp]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_City\Union All.Outputs[Union All Output 1].Columns[create_timestamp]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Load_DWH_D_City\Union All.Inputs[Union All Input 4]"
+                  dangling="true"
+                  hasSideEffects="true"
+                  name="Union All Input 4">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load_DWH_D_City\Union All.Outputs[Union All Output 1]"
+                  name="Union All Output 1">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_DWH_D_City\Union All.Outputs[Union All Output 1].Columns[city_id]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_D_City\Union All.Outputs[Union All Output 1].Columns[city_id]"
+                      name="city_id" />
+                    <outputColumn
+                      refId="Package\Load_DWH_D_City\Union All.Outputs[Union All Output 1].Columns[city_name]"
+                      codePage="1256"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Load_DWH_D_City\Union All.Outputs[Union All Output 1].Columns[city_name]"
+                      name="city_name" />
+                    <outputColumn
+                      refId="Package\Load_DWH_D_City\Union All.Outputs[Union All Output 1].Columns[city_taxes]"
+                      dataType="numeric"
+                      lineageId="Package\Load_DWH_D_City\Union All.Outputs[Union All Output 1].Columns[city_taxes]"
+                      name="city_taxes"
+                      precision="5"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Load_DWH_D_City\Union All.Outputs[Union All Output 1].Columns[src_update_date]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load_DWH_D_City\Union All.Outputs[Union All Output 1].Columns[src_update_date]"
+                      name="src_update_date" />
+                    <outputColumn
+                      refId="Package\Load_DWH_D_City\Union All.Outputs[Union All Output 1].Columns[create_timestamp]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load_DWH_D_City\Union All.Outputs[Union All Output 1].Columns[create_timestamp]"
+                      name="create_timestamp" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load_DWH_D_City\Union All 1"
+              componentClassID="Microsoft.UnionAll"
+              contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
+              name="Union All 1"
+              version="1">
+              <inputs>
+                <input
+                  refId="Package\Load_DWH_D_City\Union All 1.Inputs[Union All Input 1]"
+                  name="Union All Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_City\Union All 1.Inputs[Union All Input 1].Columns[city_id]"
+                      cachedDataType="i4"
+                      cachedName="city_id"
+                      lineageId="Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[city_id]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_City\Union All 1.Outputs[Union All Output 1].Columns[city_id]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_City\Union All 1.Inputs[Union All Input 1].Columns[city_name]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="city_name"
+                      lineageId="Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[city_name]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_City\Union All 1.Outputs[Union All Output 1].Columns[city_name]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_City\Union All 1.Inputs[Union All Input 1].Columns[city_taxes]"
+                      cachedDataType="numeric"
+                      cachedName="city_taxes"
+                      cachedPrecision="5"
+                      cachedScale="2"
+                      lineageId="Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[city_taxes]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_City\Union All 1.Outputs[Union All Output 1].Columns[city_taxes]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_City\Union All 1.Inputs[Union All Input 1].Columns[src_update_date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="src_update_date"
+                      lineageId="Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[src_update_date]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_City\Union All 1.Outputs[Union All Output 1].Columns[src_update_date]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_City\Union All 1.Inputs[Union All Input 1].Columns[create_timestamp]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="create_timestamp"
+                      lineageId="Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[create_timestamp]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_City\Union All 1.Outputs[Union All Output 1].Columns[create_timestamp]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Load_DWH_D_City\Union All 1.Inputs[Union All Input 2]"
+                  hasSideEffects="true"
+                  name="Union All Input 2">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_City\Union All 1.Inputs[Union All Input 2].Columns[city_id]"
+                      cachedDataType="i4"
+                      cachedName="city_id"
+                      lineageId="Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[city_id]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_City\Union All 1.Outputs[Union All Output 1].Columns[city_id]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_City\Union All 1.Inputs[Union All Input 2].Columns[city_name]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="city_name"
+                      lineageId="Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[city_name]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_City\Union All 1.Outputs[Union All Output 1].Columns[city_name]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_City\Union All 1.Inputs[Union All Input 2].Columns[city_taxes]"
+                      cachedDataType="numeric"
+                      cachedName="city_taxes"
+                      cachedPrecision="5"
+                      cachedScale="2"
+                      lineageId="Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[city_taxes]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_City\Union All 1.Outputs[Union All Output 1].Columns[city_taxes]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_City\Union All 1.Inputs[Union All Input 2].Columns[src_update_date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="src_update_date"
+                      lineageId="Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[src_update_date]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_City\Union All 1.Outputs[Union All Output 1].Columns[src_update_date]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_City\Union All 1.Inputs[Union All Input 2].Columns[create_timestamp]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="create_timestamp"
+                      lineageId="Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[create_timestamp]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_City\Union All 1.Outputs[Union All Output 1].Columns[create_timestamp]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Load_DWH_D_City\Union All 1.Inputs[Union All Input 3]"
+                  hasSideEffects="true"
+                  name="Union All Input 3">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_City\Union All 1.Inputs[Union All Input 3].Columns[city_id]"
+                      cachedDataType="i4"
+                      cachedName="city_id"
+                      lineageId="Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[city_id]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_City\Union All 1.Outputs[Union All Output 1].Columns[city_id]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_City\Union All 1.Inputs[Union All Input 3].Columns[city_name]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="city_name"
+                      lineageId="Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[city_name]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_City\Union All 1.Outputs[Union All Output 1].Columns[city_name]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_City\Union All 1.Inputs[Union All Input 3].Columns[city_taxes]"
+                      cachedDataType="numeric"
+                      cachedName="city_taxes"
+                      cachedPrecision="5"
+                      cachedScale="2"
+                      lineageId="Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[city_taxes]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_City\Union All 1.Outputs[Union All Output 1].Columns[city_taxes]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_City\Union All 1.Inputs[Union All Input 3].Columns[src_update_date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="src_update_date"
+                      lineageId="Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[src_update_date]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_City\Union All 1.Outputs[Union All Output 1].Columns[src_update_date]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_City\Union All 1.Inputs[Union All Input 3].Columns[create_timestamp]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="create_timestamp"
+                      lineageId="Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[create_timestamp]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_City\Union All 1.Outputs[Union All Output 1].Columns[create_timestamp]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Load_DWH_D_City\Union All 1.Inputs[Union All Input 4]"
+                  dangling="true"
+                  hasSideEffects="true"
+                  name="Union All Input 4">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load_DWH_D_City\Union All 1.Outputs[Union All Output 1]"
+                  name="Union All Output 1">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_DWH_D_City\Union All 1.Outputs[Union All Output 1].Columns[city_id]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_D_City\Union All 1.Outputs[Union All Output 1].Columns[city_id]"
+                      name="city_id" />
+                    <outputColumn
+                      refId="Package\Load_DWH_D_City\Union All 1.Outputs[Union All Output 1].Columns[city_name]"
+                      codePage="1256"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Load_DWH_D_City\Union All 1.Outputs[Union All Output 1].Columns[city_name]"
+                      name="city_name" />
+                    <outputColumn
+                      refId="Package\Load_DWH_D_City\Union All 1.Outputs[Union All Output 1].Columns[city_taxes]"
+                      dataType="numeric"
+                      lineageId="Package\Load_DWH_D_City\Union All 1.Outputs[Union All Output 1].Columns[city_taxes]"
+                      name="city_taxes"
+                      precision="5"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Load_DWH_D_City\Union All 1.Outputs[Union All Output 1].Columns[src_update_date]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load_DWH_D_City\Union All 1.Outputs[Union All Output 1].Columns[src_update_date]"
+                      name="src_update_date" />
+                    <outputColumn
+                      refId="Package\Load_DWH_D_City\Union All 1.Outputs[Union All Output 1].Columns[create_timestamp]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load_DWH_D_City\Union All 1.Outputs[Union All Output 1].Columns[create_timestamp]"
+                      name="create_timestamp" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
           </components>
           <paths>
             <path
@@ -984,18 +2072,68 @@ where city_key=?</property>
               name="Changed"
               startId="Package\Load_DWH_D_City\Conditional Split.Outputs[Changed]" />
             <path
+              refId="Package\Load_DWH_D_City.Paths[Derived Column Output3]"
+              endId="Package\Load_DWH_D_City\Union All 1.Inputs[Union All Input 2]"
+              name="Derived Column Output"
+              startId="Package\Load_DWH_D_City\null_city_namee.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Load_DWH_D_City.Paths[Derived Column Output2]"
+              endId="Package\Load_DWH_D_City\Union All 1.Inputs[Union All Input 1]"
+              name="Derived Column Output"
+              startId="Package\Load_DWH_D_City\null_taxess.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Load_DWH_D_City.Paths[Derived Column Output]"
+              endId="Package\Load_DWH_D_City\Union All.Inputs[Union All Input 1]"
+              name="Derived Column Output"
+              startId="Package\Load_DWH_D_City\null_city_name.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Load_DWH_D_City.Paths[Derived Column Output1]"
+              endId="Package\Load_DWH_D_City\Union All.Inputs[Union All Input 2]"
+              name="Derived Column Output"
+              startId="Package\Load_DWH_D_City\null_taxes.Outputs[Derived Column Output]" />
+            <path
               refId="Package\Load_DWH_D_City.Paths[Lookup Match Output]"
               endId="Package\Load_DWH_D_City\Conditional Split.Inputs[Conditional Split Input]"
               name="Lookup Match Output"
               startId="Package\Load_DWH_D_City\Lookup on Dim.Outputs[Lookup Match Output]" />
             <path
               refId="Package\Load_DWH_D_City.Paths[Lookup No Match Output]"
-              endId="Package\Load_DWH_D_City\DEST_DWH_D_City_NoChange.Inputs[OLE DB Destination Input]"
+              endId="Package\Load_DWH_D_City\Conditional Split 1 1.Inputs[Conditional Split Input]"
               name="Lookup No Match Output"
               startId="Package\Load_DWH_D_City\Lookup on Dim.Outputs[Lookup No Match Output]" />
             <path
+              refId="Package\Load_DWH_D_City.Paths[not_null1]"
+              endId="Package\Load_DWH_D_City\Union All 1.Inputs[Union All Input 3]"
+              name="not_null"
+              startId="Package\Load_DWH_D_City\Conditional Split 1.Outputs[not_null]" />
+            <path
+              refId="Package\Load_DWH_D_City.Paths[not_null]"
+              endId="Package\Load_DWH_D_City\Union All.Inputs[Union All Input 3]"
+              name="not_null"
+              startId="Package\Load_DWH_D_City\Conditional Split 1 1.Outputs[not_null]" />
+            <path
+              refId="Package\Load_DWH_D_City.Paths[null_city_name]"
+              endId="Package\Load_DWH_D_City\null_city_name.Inputs[Derived Column Input]"
+              name="null_city_name"
+              startId="Package\Load_DWH_D_City\Conditional Split 1 1.Outputs[null_city_name]" />
+            <path
+              refId="Package\Load_DWH_D_City.Paths[null_city_name1]"
+              endId="Package\Load_DWH_D_City\null_city_namee.Inputs[Derived Column Input]"
+              name="null_city_name"
+              startId="Package\Load_DWH_D_City\Conditional Split 1.Outputs[null_city_name]" />
+            <path
+              refId="Package\Load_DWH_D_City.Paths[null_taxes]"
+              endId="Package\Load_DWH_D_City\null_taxes.Inputs[Derived Column Input]"
+              name="null_taxes"
+              startId="Package\Load_DWH_D_City\Conditional Split 1 1.Outputs[null_taxes]" />
+            <path
+              refId="Package\Load_DWH_D_City.Paths[null_taxes1]"
+              endId="Package\Load_DWH_D_City\null_taxess.Inputs[Derived Column Input]"
+              name="null_taxes"
+              startId="Package\Load_DWH_D_City\Conditional Split 1.Outputs[null_taxes]" />
+            <path
               refId="Package\Load_DWH_D_City.Paths[OLE DB Command Output]"
-              endId="Package\Load_DWH_D_City\DEST_DWH_D_City_Change.Inputs[OLE DB Destination Input]"
+              endId="Package\Load_DWH_D_City\Conditional Split 1.Inputs[Conditional Split Input]"
               name="OLE DB Command Output"
               startId="Package\Load_DWH_D_City\OLE DB Command.Outputs[OLE DB Command Output]" />
             <path
@@ -1003,6 +2141,16 @@ where city_key=?</property>
               endId="Package\Load_DWH_D_City\Lookup on Dim.Inputs[Lookup Input]"
               name="OLE DB Source Output"
               startId="Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Load_DWH_D_City.Paths[Union All Output 1]"
+              endId="Package\Load_DWH_D_City\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Union All Output 1"
+              startId="Package\Load_DWH_D_City\Union All.Outputs[Union All Output 1]" />
+            <path
+              refId="Package\Load_DWH_D_City.Paths[Union All Output 11]"
+              endId="Package\Load_DWH_D_City\DEST_DWH_D_City.Inputs[OLE DB Destination Input]"
+              name="Union All Output 1"
+              startId="Package\Load_DWH_D_City\Union All 1.Outputs[Union All Output 1]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -1541,10 +2689,6 @@ where city_key=?</property>
           Size="168.8,41.6"
           Id="Package\Truncate_STG_City"
           TopLeft="463.571429558251,90.999999920235" />
-        <NodeLayout
-          Size="165.6,41.6"
-          Id="Package\Update Conf Table"
-          TopLeft="475.000001011151,415.129411489885" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="551.44285813196,132.599999920235">
@@ -1611,6 +2755,10 @@ where city_key=?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="165.6,41.6"
+          Id="Package\Update Conf Table"
+          TopLeft="475.000001011151,415.129411489885" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
           TopLeft="556.057143863732,374.247058531951">
@@ -1640,31 +2788,23 @@ where city_key=?</property>
     design-time-name="Package\Load_DWH_D_City">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="149.6,41.6"
-          Id="Package\Load_DWH_D_City\Lookup on Dim"
-          TopLeft="721.818171062253,171.818179257891" />
-        <NodeLayout
-          Size="211.2,41.6"
-          Id="Package\Load_DWH_D_City\DEST_DWH_D_City_Change"
-          TopLeft="790.769218985851,458.615379010256" />
-        <NodeLayout
-          Size="164.8,41.6"
-          Id="Package\Load_DWH_D_City\OLE DB Command"
-          TopLeft="807.272715243426,353.636358366771" />
+          Size="154.4,41.6"
+          Id="Package\Load_DWH_D_City\Conditional Split"
+          TopLeft="799.090897183527,267.272723290053" />
         <NodeLayout
           Size="146.4,41.6"
           Id="Package\Load_DWH_D_City\SRC_STG_City"
           TopLeft="704.999989494682,82.9999987632036" />
         <NodeLayout
-          Size="224.8,41.6"
-          Id="Package\Load_DWH_D_City\DEST_DWH_D_City_NoChange"
-          TopLeft="558.076914760929,284.830767729191" />
+          Size="149.6,41.6"
+          Id="Package\Load_DWH_D_City\Lookup on Dim"
+          TopLeft="721.818171062253,171.818179257891" />
         <NodeLayout
-          Size="154.4,41.6"
-          Id="Package\Load_DWH_D_City\Conditional Split"
-          TopLeft="799.090897183527,267.272723290053" />
+          Size="164.8,41.6"
+          Id="Package\Load_DWH_D_City\OLE DB Command"
+          TopLeft="807.272715243426,353.636358366771" />
         <EdgeLayout
           Id="Package\Load_DWH_D_City.Paths[OLE DB Source Output]"
           TopLeft="778.199989494682,124.599998763204">
@@ -1697,64 +2837,6 @@ where city_key=?</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load_DWH_D_City.Paths[OLE DB Command Output]"
-          TopLeft="893.020967114639,395.236358366771">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,63.379020643485"
-              Start="0,0"
-              End="0,55.879020643485">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,55.879020643485" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load_DWH_D_City.Paths[Lookup No Match Output]"
-          TopLeft="773.018171062253,213.418179257891">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-102.541256301324,71.4125884713"
-              Start="0,0"
-              End="-102.541256301324,63.9125884713">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,25.0184486486553" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,25.0184486486553"
-                    Point2="0,29.0184486486553"
-                    Point3="-4,29.0184486486553" />
-                  <mssgle:LineSegment
-                    End="-98.5412563013241,29.0184486486553" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-98.5412563013241,29.0184486486553"
-                    Point2="-102.541256301324,29.0184486486553"
-                    Point3="-102.541256301324,33.0184486486553" />
-                  <mssgle:LineSegment
-                    End="-102.541256301324,63.9125884713" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-107.077014869412,34.0184486486553,111.6127734375,11.609375"
-              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -1829,9 +2911,528 @@ where city_key=?</property>
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\Load_DWH_D_City\DEST_DWH_D_City"
+          TopLeft="860.329662545743,692.859887581469" />
+        <NodeLayout
+          Size="163.2,41.6"
+          Id="Package\Load_DWH_D_City\Conditional Split 1"
+          TopLeft="823.571430324596,449.411764413634" />
+        <EdgeLayout
+          Id="Package\Load_DWH_D_City.Paths[OLE DB Command Output]"
+          TopLeft="889.672715243426,395.236358366771">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="15.49871508117,54.1754060468631"
+              Start="0,0"
+              End="15.49871508117,46.6754060468631">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.0877030234315" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23.0877030234315"
+                    Point2="0,27.0877030234315"
+                    Point3="4,27.0877030234315" />
+                  <mssgle:LineSegment
+                    End="11.49871508117,27.0877030234315" />
+                  <mssgle:CubicBezierSegment
+                    Point1="11.49871508117,27.0877030234315"
+                    Point2="15.49871508117,27.0877030234315"
+                    Point3="15.49871508117,31.0877030234315" />
+                  <mssgle:LineSegment
+                    End="15.49871508117,46.6754060468631" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="163.2,41.6"
+          Id="Package\Load_DWH_D_City\Conditional Split 1 1"
+          TopLeft="541.75823329616,261.459888048664" />
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\Load_DWH_D_City\OLE DB Destination"
+          TopLeft="491.043947473917,539.506946637591" />
+        <EdgeLayout
+          Id="Package\Load_DWH_D_City.Paths[Lookup No Match Output]"
+          TopLeft="773.018171062253,213.418179257891">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-149.659937766093,48.0417087907734"
+              Start="0,0"
+              End="-149.659937766093,40.5417087907734">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.5217102387905" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.5217102387905"
+                    Point2="0,19.5217102387905"
+                    Point3="-4,19.5217102387905" />
+                  <mssgle:LineSegment
+                    End="-145.659937766093,19.5217102387905" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-145.659937766093,19.5217102387905"
+                    Point2="-149.659937766093,19.5217102387905"
+                    Point3="-149.659937766093,23.5217102387905" />
+                  <mssgle:LineSegment
+                    End="-149.659937766093,40.5417087907734" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-130.636355601796,24.5217102387905,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="148.8,41.6"
+          Id="Package\Load_DWH_D_City\null_city_name"
+          TopLeft="388.571429398595,357.717646848351" />
+        <NodeLayout
+          Size="125.6,41.6"
+          Id="Package\Load_DWH_D_City\null_taxes"
+          TopLeft="640.714287078198,371.482352718639" />
+        <NodeLayout
+          Size="154.4,41.6"
+          Id="Package\Load_DWH_D_City\null_city_namee"
+          TopLeft="986.685716381,527.482352581899" />
+        <EdgeLayout
+          Id="Package\Load_DWH_D_City.Paths[null_city_name]"
+          TopLeft="597.491566629493,303.059888048664">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-134.520137230898,54.6577587996867"
+              Start="0,0"
+              End="-134.520137230898,47.1577587996867">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.1814982313292" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.1814982313292"
+                    Point2="0,22.1814982313292"
+                    Point3="-4,22.1814982313292" />
+                  <mssgle:LineSegment
+                    End="-130.520137230898,22.1814982313292" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-130.520137230898,22.1814982313292"
+                    Point2="-134.520137230898,22.1814982313292"
+                    Point3="-134.520137230898,26.1814982313292" />
+                  <mssgle:LineSegment
+                    End="-134.520137230898,47.1577587996867" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-100.983037365449,27.1814982313292,67.4459375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_DWH_D_City.Paths[null_taxes]"
+          TopLeft="662.15823329616,303.059888048664">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="41.3560537820381,68.4224646699744"
+              Start="0,0"
+              End="41.3560537820381,60.9224646699744">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.5408479732709" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19.5408479732709"
+                    Point2="0,23.5408479732709"
+                    Point3="4,23.5408479732709" />
+                  <mssgle:LineSegment
+                    End="37.3560537820381,23.5408479732709" />
+                  <mssgle:CubicBezierSegment
+                    Point1="37.3560537820381,23.5408479732709"
+                    Point2="41.3560537820381,23.5408479732709"
+                    Point3="41.3560537820381,27.5408479732709" />
+                  <mssgle:LineSegment
+                    End="41.3560537820381,60.9224646699744" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-2.12617232773096,28.5408479732709,45.6083984375,11.0625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="120,41.6"
+          Id="Package\Load_DWH_D_City\Union All"
+          TopLeft="508.571429654044,449.847058600321" />
+        <EdgeLayout
+          Id="Package\Load_DWH_D_City.Paths[Derived Column Output]"
+          TopLeft="462.971429398595,399.317646848351">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="77.6000002554484,50.5294117519701"
+              Start="0,0"
+              End="77.6000002554484,43.0294117519701">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.9539641860675" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28.9539641860675"
+                    Point2="0,32.9539641860675"
+                    Point3="4,32.9539641860675" />
+                  <mssgle:LineSegment
+                    End="73.6000002554484,32.9539641860675" />
+                  <mssgle:CubicBezierSegment
+                    Point1="73.6000002554484,32.9539641860675"
+                    Point2="77.6000002554484,32.9539641860675"
+                    Point3="77.6000002554484,36.9539641860675" />
+                  <mssgle:LineSegment
+                    End="77.6000002554484,43.0294117519701" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_DWH_D_City.Paths[Derived Column Output1]"
+          TopLeft="703.514287078198,413.082352718639">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-106.942857424154,36.7647058816825"
+              Start="0,0"
+              End="-106.942857424154,29.2647058816825">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.9769820967495" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19.9769820967495"
+                    Point2="0,23.9769820967495"
+                    Point3="-4,23.9769820967495" />
+                  <mssgle:LineSegment
+                    End="-102.942857424154,23.9769820967495" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-102.942857424154,23.9769820967495"
+                    Point2="-106.942857424154,23.9769820967495"
+                    Point3="-106.942857424154,27.9769820967495" />
+                  <mssgle:LineSegment
+                    End="-106.942857424154,29.2647058816825" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_DWH_D_City.Paths[not_null]"
+          TopLeft="623.35823329616,303.059888048664">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-54.7868036421164,146.787170551657"
+              Start="0,0"
+              End="-54.7868036421164,139.287170551657">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,69.3935852758285" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,69.3935852758285"
+                    Point2="0,73.3935852758285"
+                    Point3="-4,73.3935852758285" />
+                  <mssgle:LineSegment
+                    End="-50.7868036421164,73.3935852758285" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-50.7868036421164,73.3935852758285"
+                    Point2="-54.7868036421164,73.3935852758285"
+                    Point3="-54.7868036421164,77.3935852758285" />
+                  <mssgle:LineSegment
+                    End="-54.7868036421164,139.287170551657" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-45.4921518210582,78.3935852758285,36.1975,11.0625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_DWH_D_City.Paths[Union All Output 1]"
+          TopLeft="572.40768856398,491.447058600321">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,48.0598880372694"
+              Start="0,0"
+              End="0,40.5598880372694">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.5598880372694" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="130.4,41.6"
+          Id="Package\Load_DWH_D_City\null_taxess"
+          TopLeft="717.857144385272,535.989299572735" />
+        <EdgeLayout
+          Id="Package\Load_DWH_D_City.Paths[null_taxes1]"
+          TopLeft="866.371430324596,491.011764413634">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-83.3142859393234,44.9775351591005"
+              Start="0,0"
+              End="-83.3142859393234,37.4775351591005">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,11.4745860515233" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11.4745860515233"
+                    Point2="0,15.4745860515233"
+                    Point3="-4,15.4745860515233" />
+                  <mssgle:LineSegment
+                    End="-79.3142859393234,15.4745860515233" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-79.3142859393234,15.4745860515233"
+                    Point2="-83.3142859393234,15.4745860515233"
+                    Point3="-83.3142859393234,19.4745860515233" />
+                  <mssgle:LineSegment
+                    End="-83.3142859393234,37.4775351591005" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-64.4613421884117,20.4745860515233,45.6083984375,11.0625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_DWH_D_City.Paths[null_city_name1]"
+          TopLeft="943.971430324596,491.011764413634">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="119.914286056404,36.4705881682646"
+              Start="0,0"
+              End="119.914286056404,28.9705881682646">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,8.54775863023894" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,8.54775863023894"
+                    Point2="0,12.5477586302389"
+                    Point3="4,12.5477586302389" />
+                  <mssgle:LineSegment
+                    End="115.914286056404,12.5477586302389" />
+                  <mssgle:CubicBezierSegment
+                    Point1="115.914286056404,12.5477586302389"
+                    Point2="119.914286056404,12.5477586302389"
+                    Point3="119.914286056404,16.5477586302389" />
+                  <mssgle:LineSegment
+                    End="119.914286056404,28.9705881682646" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="26.2341742782022,17.5477586302389,67.4459375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="120,41.6"
+          Id="Package\Load_DWH_D_City\Union All 1"
+          TopLeft="880.000001873289,605.577534805856" />
+        <EdgeLayout
+          Id="Package\Load_DWH_D_City.Paths[Derived Column Output2]"
+          TopLeft="783.057144385272,577.589299572735">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="128.942857488017,27.9882352331209"
+              Start="0,0"
+              End="128.942857488017,20.4882352331209">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.2531968911658" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.2531968911658"
+                    Point2="0,18.2531968911658"
+                    Point3="4,18.2531968911658" />
+                  <mssgle:LineSegment
+                    End="124.942857488017,18.2531968911658" />
+                  <mssgle:CubicBezierSegment
+                    Point1="124.942857488017,18.2531968911658"
+                    Point2="128.942857488017,18.2531968911658"
+                    Point3="128.942857488017,22.2531968911658" />
+                  <mssgle:LineSegment
+                    End="128.942857488017,20.4882352331209" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_DWH_D_City.Paths[Derived Column Output3]"
+          TopLeft="1063.885716381,569.082352581899">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-95.8857145077109,36.4951822239568"
+              Start="0,0"
+              End="-95.8857145077109,28.9951822239568">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.8012057982327" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19.8012057982327"
+                    Point2="0,23.8012057982327"
+                    Point3="-4,23.8012057982327" />
+                  <mssgle:LineSegment
+                    End="-91.8857145077109,23.8012057982327" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-91.8857145077109,23.8012057982327"
+                    Point2="-95.8857145077109,23.8012057982327"
+                    Point3="-95.8857145077109,27.8012057982327" />
+                  <mssgle:LineSegment
+                    End="-95.8857145077109,28.9951822239568" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_DWH_D_City.Paths[not_null1]"
+          TopLeft="905.171430324596,491.011764413634">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="34.8285715486935,114.565770392221"
+              Start="0,0"
+              End="34.8285715486935,107.065770392221">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53.2828851961107" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,53.2828851961107"
+                    Point2="0,57.2828851961107"
+                    Point3="4,57.2828851961107" />
+                  <mssgle:LineSegment
+                    End="30.8285715486935,57.2828851961107" />
+                  <mssgle:CubicBezierSegment
+                    Point1="30.8285715486935,57.2828851961107"
+                    Point2="34.8285715486935,57.2828851961107"
+                    Point3="34.8285715486935,61.2828851961107" />
+                  <mssgle:LineSegment
+                    End="34.8285715486935,107.065770392221" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-0.684464225653247,62.2828851961107,36.1975,11.0625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_DWH_D_City.Paths[Union All Output 11]"
+          TopLeft="942.764832209516,647.177534805856">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,45.6823527756138"
+              Start="0,0"
+              End="0,38.1823527756138">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.1823527756138" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load_DWH_D_City\SRC_STG_City">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Load_DWH_D_City\Lookup on Dim">
     <Properties>
@@ -1855,50 +3456,11 @@ where city_key=?</property>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load_DWH_D_City\DEST_DWH_D_City_Change">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load_DWH_D_City\SRC_STG_City">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load_DWH_D_City\DEST_DWH_D_City_NoChange">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
   <TaskHost
     design-time-name="Package\Load_STG_City">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="146.4,41.6"
           Id="Package\Load_STG_City\DEST_DB_City"
@@ -1930,7 +3492,9 @@ where city_key=?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -1952,7 +3516,9 @@ where city_key=?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -1976,6 +3542,32 @@ where city_key=?</property>
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load_DWH_D_City\DEST_DWH_D_City">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load_DWH_D_City\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>

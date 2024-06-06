@@ -7,6 +7,6 @@
     <DTS:ConnectionManager
       DTS:ConnectRetryCount="1"
       DTS:ConnectRetryInterval="5"
-      DTS:ConnectionString="Data Source=WIN-G21BVJ4FL1C;Initial Catalog=DWH_PROJECT;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package-{1F587408-40AB-468D-A0A1-1FBAB67F1E7B}WIN-G21BVJ4FL1C.DWH_PROJECT;Auto Translate=False;TrustServerCertificate=True" />
+      DTS:ConnectionString="Data Source=WIN-G21BVJ4FL1C;Initial Catalog=DWH_PROJECT;Provider=SQLOLEDB.1;Integrated Security=SSPI;TrustServerCertificate=True;Application Name=SSIS-Package-{1F587408-40AB-468D-A0A1-1FBAB67F1E7B}WIN-G21BVJ4FL1C.DWH_PROJECT;Auto Translate=False;" />
   </DTS:ObjectData>
 </DTS:ConnectionManager>

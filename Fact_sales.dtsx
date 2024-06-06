@@ -1,0 +1,2599 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/6/2024 8:56:25 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="WIN-G21BVJ4FL1C"
+  DTS:CreatorName="WIN-G21BVJ4FL1C\Administrator"
+  DTS:DTSID="{8F14097D-0E40-49A5-8325-C4DFBE2EE96E}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5397.1"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Fact_Sales"
+  DTS:PackageType="5"
+  DTS:VersionBuild="14"
+  DTS:VersionGUID="{001CCCF5-6CD3-4813-85AB-CFF03A943506}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Load_DWH_F_Sales"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{b12ca8d0-e513-451c-8164-157d7909c287}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load_DWH_F_Sales"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load_DWH_F_Sales\Check Existing Records"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Check Existing Records"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [DWH].[F_Sales]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [DWH].[F_Sales]) [refTable]
+where [refTable].[city_key] = ? and [refTable].[order_key] = ? and [refTable].[customer_key] = ? and [refTable].[product_key] = ? and [refTable].[store_key] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="sales_key" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="date_key" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="customer_key" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="product_key" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="store_key" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="order_key" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="city_key" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="quantity_sold" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="unit_price" dataType="DT_NUMERIC" length="0" precision="10" scale="2" codePage="0"/&gt;&lt;referenceColumn name="total_sales" dataType="DT_NUMERIC" length="0" precision="10" scale="2" codePage="0"/&gt;&lt;referenceColumn name="taxes" dataType="DT_NUMERIC" length="0" precision="5" scale="2" codePage="0"/&gt;&lt;referenceColumn name="net_sales" dataType="DT_NUMERIC" length="0" precision="10" scale="2" codePage="0"/&gt;&lt;referenceColumn name="create_timestamp" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Load_DWH_F_Sales\Lookup City Dim.Outputs[Lookup Match Output].Columns[dim_city_key]};#{Package\Load_DWH_F_Sales\Lookup_D_Orders.Outputs[Lookup Match Output].Columns[dim_order_key]};#{Package\Load_DWH_F_Sales\Lookup_D_Customer.Outputs[Lookup Match Output].Columns[Dim_customer_key]};#{Package\Load_DWH_F_Sales\Lookup_D_Product.Outputs[Lookup Match Output].Columns[Dim_product_key]};#{Package\Load_DWH_F_Sales\Lookup_D_Store.Outputs[Lookup Match Output].Columns[Dim_store_key]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load_DWH_F_Sales\Check Existing Records.Connections[OleDbConnection]"
+                  connectionManagerID="{1F587408-40AB-468D-A0A1-1FBAB67F1E7B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[WIN-G21BVJ4FL1C.DWH_PROJECT]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load_DWH_F_Sales\Check Existing Records.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load_DWH_F_Sales\Check Existing Records.Inputs[Lookup Input].Columns[Dim_product_key]"
+                      cachedDataType="i4"
+                      cachedName="Dim_product_key"
+                      lineageId="Package\Load_DWH_F_Sales\Lookup_D_Product.Outputs[Lookup Match Output].Columns[Dim_product_key]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">product_key</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_F_Sales\Check Existing Records.Inputs[Lookup Input].Columns[Dim_customer_key]"
+                      cachedDataType="i4"
+                      cachedName="Dim_customer_key"
+                      lineageId="Package\Load_DWH_F_Sales\Lookup_D_Customer.Outputs[Lookup Match Output].Columns[Dim_customer_key]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">customer_key</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_F_Sales\Check Existing Records.Inputs[Lookup Input].Columns[Dim_store_key]"
+                      cachedDataType="i4"
+                      cachedName="Dim_store_key"
+                      lineageId="Package\Load_DWH_F_Sales\Lookup_D_Store.Outputs[Lookup Match Output].Columns[Dim_store_key]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">store_key</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_F_Sales\Check Existing Records.Inputs[Lookup Input].Columns[dim_order_key]"
+                      cachedDataType="i4"
+                      cachedName="dim_order_key"
+                      lineageId="Package\Load_DWH_F_Sales\Lookup_D_Orders.Outputs[Lookup Match Output].Columns[dim_order_key]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">order_key</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_F_Sales\Check Existing Records.Inputs[Lookup Input].Columns[dim_city_key]"
+                      cachedDataType="i4"
+                      cachedName="dim_city_key"
+                      lineageId="Package\Load_DWH_F_Sales\Lookup City Dim.Outputs[Lookup Match Output].Columns[dim_city_key]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">city_key</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load_DWH_F_Sales\Check Existing Records.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Load_DWH_F_Sales\Check Existing Records.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\Check Existing Records.Outputs[Lookup Match Output].Columns[ExistsInFact_customer_key]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Load_DWH_F_Sales\Check Existing Records.Outputs[Lookup Match Output].Columns[ExistsInFact_customer_key]"
+                      name="ExistsInFact_customer_key"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">customer_key</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\Check Existing Records.Outputs[Lookup Match Output].Columns[ExistsInFact_product_key]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Load_DWH_F_Sales\Check Existing Records.Outputs[Lookup Match Output].Columns[ExistsInFact_product_key]"
+                      name="ExistsInFact_product_key"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">product_key</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\Check Existing Records.Outputs[Lookup Match Output].Columns[ExistsInFact_store_key]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Load_DWH_F_Sales\Check Existing Records.Outputs[Lookup Match Output].Columns[ExistsInFact_store_key]"
+                      name="ExistsInFact_store_key"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">store_key</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\Check Existing Records.Outputs[Lookup Match Output].Columns[ExistsInFact_order_key]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Load_DWH_F_Sales\Check Existing Records.Outputs[Lookup Match Output].Columns[ExistsInFact_order_key]"
+                      name="ExistsInFact_order_key"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">order_key</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\Check Existing Records.Outputs[Lookup Match Output].Columns[ExistsInFact_city_key]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Load_DWH_F_Sales\Check Existing Records.Outputs[Lookup Match Output].Columns[ExistsInFact_city_key]"
+                      name="ExistsInFact_city_key"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">city_key</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load_DWH_F_Sales\Check Existing Records.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Load_DWH_F_Sales\Check Existing Records.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load_DWH_F_Sales\Check Existing Records.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Load_DWH_F_Sales\Check Existing Records.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\Check Existing Records.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_F_Sales\Check Existing Records.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\Check Existing Records.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_F_Sales\Check Existing Records.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load_DWH_F_Sales\Conditional Split"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Conditional Split"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load_DWH_F_Sales\Conditional Split.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load_DWH_F_Sales\Conditional Split.Inputs[Conditional Split Input].Columns[dim_city_taxes]"
+                      cachedDataType="numeric"
+                      cachedName="dim_city_taxes"
+                      cachedPrecision="5"
+                      cachedScale="2"
+                      lineageId="Package\Load_DWH_F_Sales\Lookup City Dim.Outputs[Lookup Match Output].Columns[dim_city_taxes]" />
+                    <inputColumn
+                      refId="Package\Load_DWH_F_Sales\Conditional Split.Inputs[Conditional Split Input].Columns[dim_quantity_sold]"
+                      cachedDataType="i4"
+                      cachedName="dim_quantity_sold"
+                      lineageId="Package\Load_DWH_F_Sales\Lookup_D_Orders.Outputs[Lookup Match Output].Columns[dim_quantity_sold]" />
+                    <inputColumn
+                      refId="Package\Load_DWH_F_Sales\Conditional Split.Inputs[Conditional Split Input].Columns[dim_total_amount]"
+                      cachedDataType="numeric"
+                      cachedName="dim_total_amount"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      lineageId="Package\Load_DWH_F_Sales\Lookup_D_Orders.Outputs[Lookup Match Output].Columns[dim_total_amount]" />
+                    <inputColumn
+                      refId="Package\Load_DWH_F_Sales\Conditional Split.Inputs[Conditional Split Input].Columns[dim_unit_price]"
+                      cachedDataType="numeric"
+                      cachedName="dim_unit_price"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      lineageId="Package\Load_DWH_F_Sales\Lookup_D_Orders.Outputs[Lookup Match Output].Columns[dim_unit_price]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load_DWH_F_Sales\Conditional Split.Outputs[NULL]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="NULL"
+                  synchronousInputId="Package\Load_DWH_F_Sales\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[ISNULL](#{Package\Load_DWH_F_Sales\Lookup_D_Orders.Outputs[Lookup Match Output].Columns[dim_quantity_sold]}) || [ISNULL](#{Package\Load_DWH_F_Sales\Lookup_D_Orders.Outputs[Lookup Match Output].Columns[dim_total_amount]}) || [ISNULL](#{Package\Load_DWH_F_Sales\Lookup City Dim.Outputs[Lookup Match Output].Columns[dim_city_taxes]}) || [ISNULL](#{Package\Load_DWH_F_Sales\Lookup_D_Orders.Outputs[Lookup Match Output].Columns[dim_unit_price]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL(dim_quantity_sold) || ISNULL(dim_total_amount) || ISNULL(dim_city_taxes) || ISNULL(dim_unit_price)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load_DWH_F_Sales\Conditional Split.Outputs[NOT_NULL]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="NOT_NULL"
+                  synchronousInputId="Package\Load_DWH_F_Sales\Conditional Split.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load_DWH_F_Sales\Conditional Split.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\Load_DWH_F_Sales\Conditional Split.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_F_Sales\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_F_Sales\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load_DWH_F_Sales\Date_kay"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Date_kay"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load_DWH_F_Sales\Date_kay.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load_DWH_F_Sales\Date_kay.Inputs[Derived Column Input].Columns[order_date]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="order_date"
+                      lineageId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].Columns[order_date]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load_DWH_F_Sales\Date_kay.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Load_DWH_F_Sales\Date_kay.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\Date_kay.Outputs[Derived Column Output].Columns[date_key]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load_DWH_F_Sales\Date_kay.Outputs[Derived Column Output].Columns[date_key]"
+                      name="date_key"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_I4)([REPLACE]([LEFT]((DT_WSTR,50)(DT_DBTIMESTAMP)#{Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].Columns[order_date]},10),"-",""))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_I4)(REPLACE(LEFT((DT_WSTR,50)(DT_DBTIMESTAMP)order_date,10),"-",""))</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load_DWH_F_Sales\Date_kay.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Load_DWH_F_Sales\Date_kay.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\Date_kay.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_F_Sales\Date_kay.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\Date_kay.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_F_Sales\Date_kay.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load_DWH_F_Sales\DEST_DWH_F_Sales"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DEST_DWH_F_Sales"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[DWH].[F_Sales]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load_DWH_F_Sales\DEST_DWH_F_Sales.Connections[OleDbConnection]"
+                  connectionManagerID="{1F587408-40AB-468D-A0A1-1FBAB67F1E7B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[WIN-G21BVJ4FL1C.DWH_PROJECT]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load_DWH_F_Sales\DEST_DWH_F_Sales.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load_DWH_F_Sales\DEST_DWH_F_Sales.Inputs[OLE DB Destination Input].Columns[net_sales]"
+                      cachedDataType="numeric"
+                      cachedName="net_sales"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Load_DWH_F_Sales\DEST_DWH_F_Sales.Inputs[OLE DB Destination Input].ExternalColumns[net_sales]"
+                      lineageId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].Columns[net_sales]" />
+                    <inputColumn
+                      refId="Package\Load_DWH_F_Sales\DEST_DWH_F_Sales.Inputs[OLE DB Destination Input].Columns[create_timestamp]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="create_timestamp"
+                      externalMetadataColumnId="Package\Load_DWH_F_Sales\DEST_DWH_F_Sales.Inputs[OLE DB Destination Input].ExternalColumns[create_timestamp]"
+                      lineageId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].Columns[create_timestamp]" />
+                    <inputColumn
+                      refId="Package\Load_DWH_F_Sales\DEST_DWH_F_Sales.Inputs[OLE DB Destination Input].Columns[dim_quantity_sold]"
+                      cachedDataType="i4"
+                      cachedName="dim_quantity_sold"
+                      externalMetadataColumnId="Package\Load_DWH_F_Sales\DEST_DWH_F_Sales.Inputs[OLE DB Destination Input].ExternalColumns[quantity_sold]"
+                      lineageId="Package\Load_DWH_F_Sales\Lookup_D_Orders.Outputs[Lookup Match Output].Columns[dim_quantity_sold]" />
+                    <inputColumn
+                      refId="Package\Load_DWH_F_Sales\DEST_DWH_F_Sales.Inputs[OLE DB Destination Input].Columns[dim_unit_price]"
+                      cachedDataType="numeric"
+                      cachedName="dim_unit_price"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Load_DWH_F_Sales\DEST_DWH_F_Sales.Inputs[OLE DB Destination Input].ExternalColumns[unit_price]"
+                      lineageId="Package\Load_DWH_F_Sales\Lookup_D_Orders.Outputs[Lookup Match Output].Columns[dim_unit_price]" />
+                    <inputColumn
+                      refId="Package\Load_DWH_F_Sales\DEST_DWH_F_Sales.Inputs[OLE DB Destination Input].Columns[dim_city_taxes]"
+                      cachedDataType="numeric"
+                      cachedName="dim_city_taxes"
+                      cachedPrecision="5"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Load_DWH_F_Sales\DEST_DWH_F_Sales.Inputs[OLE DB Destination Input].ExternalColumns[taxes]"
+                      lineageId="Package\Load_DWH_F_Sales\Lookup City Dim.Outputs[Lookup Match Output].Columns[dim_city_taxes]" />
+                    <inputColumn
+                      refId="Package\Load_DWH_F_Sales\DEST_DWH_F_Sales.Inputs[OLE DB Destination Input].Columns[dim_total_amount]"
+                      cachedDataType="numeric"
+                      cachedName="dim_total_amount"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Load_DWH_F_Sales\DEST_DWH_F_Sales.Inputs[OLE DB Destination Input].ExternalColumns[total_sales]"
+                      lineageId="Package\Load_DWH_F_Sales\Lookup_D_Orders.Outputs[Lookup Match Output].Columns[dim_total_amount]" />
+                    <inputColumn
+                      refId="Package\Load_DWH_F_Sales\DEST_DWH_F_Sales.Inputs[OLE DB Destination Input].Columns[date_key]"
+                      cachedDataType="i4"
+                      cachedName="date_key"
+                      externalMetadataColumnId="Package\Load_DWH_F_Sales\DEST_DWH_F_Sales.Inputs[OLE DB Destination Input].ExternalColumns[date_key]"
+                      lineageId="Package\Load_DWH_F_Sales\Date_kay.Outputs[Derived Column Output].Columns[date_key]" />
+                    <inputColumn
+                      refId="Package\Load_DWH_F_Sales\DEST_DWH_F_Sales.Inputs[OLE DB Destination Input].Columns[Dim_customer_key]"
+                      cachedDataType="i4"
+                      cachedName="Dim_customer_key"
+                      externalMetadataColumnId="Package\Load_DWH_F_Sales\DEST_DWH_F_Sales.Inputs[OLE DB Destination Input].ExternalColumns[customer_key]"
+                      lineageId="Package\Load_DWH_F_Sales\Lookup_D_Customer.Outputs[Lookup Match Output].Columns[Dim_customer_key]" />
+                    <inputColumn
+                      refId="Package\Load_DWH_F_Sales\DEST_DWH_F_Sales.Inputs[OLE DB Destination Input].Columns[Dim_product_key]"
+                      cachedDataType="i4"
+                      cachedName="Dim_product_key"
+                      externalMetadataColumnId="Package\Load_DWH_F_Sales\DEST_DWH_F_Sales.Inputs[OLE DB Destination Input].ExternalColumns[product_key]"
+                      lineageId="Package\Load_DWH_F_Sales\Lookup_D_Product.Outputs[Lookup Match Output].Columns[Dim_product_key]" />
+                    <inputColumn
+                      refId="Package\Load_DWH_F_Sales\DEST_DWH_F_Sales.Inputs[OLE DB Destination Input].Columns[dim_order_key]"
+                      cachedDataType="i4"
+                      cachedName="dim_order_key"
+                      externalMetadataColumnId="Package\Load_DWH_F_Sales\DEST_DWH_F_Sales.Inputs[OLE DB Destination Input].ExternalColumns[order_key]"
+                      lineageId="Package\Load_DWH_F_Sales\Lookup_D_Orders.Outputs[Lookup Match Output].Columns[dim_order_key]" />
+                    <inputColumn
+                      refId="Package\Load_DWH_F_Sales\DEST_DWH_F_Sales.Inputs[OLE DB Destination Input].Columns[dim_city_key]"
+                      cachedDataType="i4"
+                      cachedName="dim_city_key"
+                      externalMetadataColumnId="Package\Load_DWH_F_Sales\DEST_DWH_F_Sales.Inputs[OLE DB Destination Input].ExternalColumns[city_key]"
+                      lineageId="Package\Load_DWH_F_Sales\Lookup City Dim.Outputs[Lookup Match Output].Columns[dim_city_key]" />
+                    <inputColumn
+                      refId="Package\Load_DWH_F_Sales\DEST_DWH_F_Sales.Inputs[OLE DB Destination Input].Columns[Dim_store_key]"
+                      cachedDataType="i4"
+                      cachedName="Dim_store_key"
+                      externalMetadataColumnId="Package\Load_DWH_F_Sales\DEST_DWH_F_Sales.Inputs[OLE DB Destination Input].ExternalColumns[store_key]"
+                      lineageId="Package\Load_DWH_F_Sales\Lookup_D_Store.Outputs[Lookup Match Output].Columns[Dim_store_key]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_F_Sales\DEST_DWH_F_Sales.Inputs[OLE DB Destination Input].ExternalColumns[quantity_sold]"
+                      dataType="i4"
+                      name="quantity_sold" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_F_Sales\DEST_DWH_F_Sales.Inputs[OLE DB Destination Input].ExternalColumns[unit_price]"
+                      dataType="numeric"
+                      name="unit_price"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_F_Sales\DEST_DWH_F_Sales.Inputs[OLE DB Destination Input].ExternalColumns[total_sales]"
+                      dataType="numeric"
+                      name="total_sales"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_F_Sales\DEST_DWH_F_Sales.Inputs[OLE DB Destination Input].ExternalColumns[taxes]"
+                      dataType="numeric"
+                      name="taxes"
+                      precision="5"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_F_Sales\DEST_DWH_F_Sales.Inputs[OLE DB Destination Input].ExternalColumns[net_sales]"
+                      dataType="numeric"
+                      name="net_sales"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_F_Sales\DEST_DWH_F_Sales.Inputs[OLE DB Destination Input].ExternalColumns[create_timestamp]"
+                      dataType="dbTimeStamp"
+                      name="create_timestamp" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_F_Sales\DEST_DWH_F_Sales.Inputs[OLE DB Destination Input].ExternalColumns[sales_key]"
+                      dataType="i4"
+                      name="sales_key" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_F_Sales\DEST_DWH_F_Sales.Inputs[OLE DB Destination Input].ExternalColumns[date_key]"
+                      dataType="i4"
+                      name="date_key" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_F_Sales\DEST_DWH_F_Sales.Inputs[OLE DB Destination Input].ExternalColumns[customer_key]"
+                      dataType="i4"
+                      name="customer_key" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_F_Sales\DEST_DWH_F_Sales.Inputs[OLE DB Destination Input].ExternalColumns[product_key]"
+                      dataType="i4"
+                      name="product_key" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_F_Sales\DEST_DWH_F_Sales.Inputs[OLE DB Destination Input].ExternalColumns[store_key]"
+                      dataType="i4"
+                      name="store_key" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_F_Sales\DEST_DWH_F_Sales.Inputs[OLE DB Destination Input].ExternalColumns[order_key]"
+                      dataType="i4"
+                      name="order_key" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_F_Sales\DEST_DWH_F_Sales.Inputs[OLE DB Destination Input].ExternalColumns[city_key]"
+                      dataType="i4"
+                      name="city_key" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load_DWH_F_Sales\DEST_DWH_F_Sales.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load_DWH_F_Sales\DEST_DWH_F_Sales.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\DEST_DWH_F_Sales.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_F_Sales\DEST_DWH_F_Sales.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\DEST_DWH_F_Sales.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_F_Sales\DEST_DWH_F_Sales.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load_DWH_F_Sales\Lookup City Dim"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup City Dim"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [DWH].[D_City]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [DWH].[D_City]) [refTable]
+where [refTable].[src_id] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="city_key" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="src_id" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="city_name" dataType="DT_STR" length="30" precision="0" scale="0" codePage="1256"/&gt;&lt;referenceColumn name="city_taxes" dataType="DT_NUMERIC" length="0" precision="5" scale="2" codePage="0"/&gt;&lt;referenceColumn name="create_timestamp" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].Columns[city_id]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load_DWH_F_Sales\Lookup City Dim.Connections[OleDbConnection]"
+                  connectionManagerID="{1F587408-40AB-468D-A0A1-1FBAB67F1E7B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[WIN-G21BVJ4FL1C.DWH_PROJECT]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load_DWH_F_Sales\Lookup City Dim.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load_DWH_F_Sales\Lookup City Dim.Inputs[Lookup Input].Columns[city_id]"
+                      cachedDataType="i4"
+                      cachedName="city_id"
+                      lineageId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].Columns[city_id]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">src_id</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load_DWH_F_Sales\Lookup City Dim.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Load_DWH_F_Sales\Lookup City Dim.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\Lookup City Dim.Outputs[Lookup Match Output].Columns[dim_city_key]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Load_DWH_F_Sales\Lookup City Dim.Outputs[Lookup Match Output].Columns[dim_city_key]"
+                      name="dim_city_key"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">city_key</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\Lookup City Dim.Outputs[Lookup Match Output].Columns[dim_city_taxes]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Load_DWH_F_Sales\Lookup City Dim.Outputs[Lookup Match Output].Columns[dim_city_taxes]"
+                      name="dim_city_taxes"
+                      precision="5"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">city_taxes</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load_DWH_F_Sales\Lookup City Dim.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Load_DWH_F_Sales\Lookup City Dim.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load_DWH_F_Sales\Lookup City Dim.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Load_DWH_F_Sales\Lookup City Dim.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\Lookup City Dim.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_F_Sales\Lookup City Dim.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\Lookup City Dim.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_F_Sales\Lookup City Dim.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load_DWH_F_Sales\Lookup_D_Customer"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup_D_Customer"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select *
+from DWH.D_Customer
+where is_last=1;</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select *
+from DWH.D_Customer
+where is_last=1;) [refTable]
+where [refTable].[src_id] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="customer_key" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="src_id" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="first_name" dataType="DT_STR" length="20" precision="0" scale="0" codePage="1256"/&gt;&lt;referenceColumn name="last_name" dataType="DT_STR" length="20" precision="0" scale="0" codePage="1256"/&gt;&lt;referenceColumn name="email" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1256"/&gt;&lt;referenceColumn name="address" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1256"/&gt;&lt;referenceColumn name="city" dataType="DT_STR" length="30" precision="0" scale="0" codePage="1256"/&gt;&lt;referenceColumn name="phone" dataType="DT_STR" length="15" precision="0" scale="0" codePage="1256"/&gt;&lt;referenceColumn name="is_last" dataType="DT_BOOL" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="create_timestamp" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="update_timestamp" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Load_DWH_F_Sales\Lookup_D_Orders.Outputs[Lookup Match Output].Columns[dim_customer_id]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load_DWH_F_Sales\Lookup_D_Customer.Connections[OleDbConnection]"
+                  connectionManagerID="{1F587408-40AB-468D-A0A1-1FBAB67F1E7B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[WIN-G21BVJ4FL1C.DWH_PROJECT]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load_DWH_F_Sales\Lookup_D_Customer.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load_DWH_F_Sales\Lookup_D_Customer.Inputs[Lookup Input].Columns[dim_customer_id]"
+                      cachedDataType="i4"
+                      cachedName="dim_customer_id"
+                      lineageId="Package\Load_DWH_F_Sales\Lookup_D_Orders.Outputs[Lookup Match Output].Columns[dim_customer_id]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">src_id</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load_DWH_F_Sales\Lookup_D_Customer.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Load_DWH_F_Sales\Lookup_D_Customer.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\Lookup_D_Customer.Outputs[Lookup Match Output].Columns[Dim_customer_key]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Load_DWH_F_Sales\Lookup_D_Customer.Outputs[Lookup Match Output].Columns[Dim_customer_key]"
+                      name="Dim_customer_key"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">customer_key</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load_DWH_F_Sales\Lookup_D_Customer.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Load_DWH_F_Sales\Lookup_D_Customer.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load_DWH_F_Sales\Lookup_D_Customer.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Load_DWH_F_Sales\Lookup_D_Customer.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\Lookup_D_Customer.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_F_Sales\Lookup_D_Customer.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\Lookup_D_Customer.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_F_Sales\Lookup_D_Customer.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load_DWH_F_Sales\Lookup_D_Orders"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup_D_Orders"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select *
+from DWH.D_Orders
+where is_last=1;</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select *
+from DWH.D_Orders
+where is_last=1;) [refTable]
+where [refTable].[src_id] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="order_key" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="src_id" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="customer_id" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="store_id" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="product_id" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="customer_first_name" dataType="DT_STR" length="20" precision="0" scale="0" codePage="1256"/&gt;&lt;referenceColumn name="customer_last_name" dataType="DT_STR" length="20" precision="0" scale="0" codePage="1256"/&gt;&lt;referenceColumn name="customer_contact" dataType="DT_STR" length="15" precision="0" scale="0" codePage="1256"/&gt;&lt;referenceColumn name="store_address" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1256"/&gt;&lt;referenceColumn name="shipping_address" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1256"/&gt;&lt;referenceColumn name="quantity_sold" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="unit_price" dataType="DT_NUMERIC" length="0" precision="10" scale="2" codePage="0"/&gt;&lt;referenceColumn name="total_amount" dataType="DT_NUMERIC" length="0" precision="10" scale="2" codePage="0"/&gt;&lt;referenceColumn name="payment_method" dataType="DT_STR" length="20" precision="0" scale="0" codePage="1256"/&gt;&lt;referenceColumn name="order_date" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="is_last" dataType="DT_BOOL" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="update_timestamp" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="create_timestamp" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].Columns[order_id]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load_DWH_F_Sales\Lookup_D_Orders.Connections[OleDbConnection]"
+                  connectionManagerID="{1F587408-40AB-468D-A0A1-1FBAB67F1E7B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[WIN-G21BVJ4FL1C.DWH_PROJECT]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load_DWH_F_Sales\Lookup_D_Orders.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load_DWH_F_Sales\Lookup_D_Orders.Inputs[Lookup Input].Columns[order_id]"
+                      cachedDataType="i4"
+                      cachedName="order_id"
+                      lineageId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].Columns[order_id]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">src_id</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load_DWH_F_Sales\Lookup_D_Orders.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Load_DWH_F_Sales\Lookup_D_Orders.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\Lookup_D_Orders.Outputs[Lookup Match Output].Columns[dim_order_key]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Load_DWH_F_Sales\Lookup_D_Orders.Outputs[Lookup Match Output].Columns[dim_order_key]"
+                      name="dim_order_key"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">order_key</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\Lookup_D_Orders.Outputs[Lookup Match Output].Columns[dim_quantity_sold]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Load_DWH_F_Sales\Lookup_D_Orders.Outputs[Lookup Match Output].Columns[dim_quantity_sold]"
+                      name="dim_quantity_sold"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">quantity_sold</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\Lookup_D_Orders.Outputs[Lookup Match Output].Columns[dim_total_amount]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Load_DWH_F_Sales\Lookup_D_Orders.Outputs[Lookup Match Output].Columns[dim_total_amount]"
+                      name="dim_total_amount"
+                      precision="10"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">total_amount</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\Lookup_D_Orders.Outputs[Lookup Match Output].Columns[dim_store_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Load_DWH_F_Sales\Lookup_D_Orders.Outputs[Lookup Match Output].Columns[dim_store_id]"
+                      name="dim_store_id"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">store_id</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\Lookup_D_Orders.Outputs[Lookup Match Output].Columns[dim_customer_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Load_DWH_F_Sales\Lookup_D_Orders.Outputs[Lookup Match Output].Columns[dim_customer_id]"
+                      name="dim_customer_id"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">customer_id</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\Lookup_D_Orders.Outputs[Lookup Match Output].Columns[dim_unit_price]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Load_DWH_F_Sales\Lookup_D_Orders.Outputs[Lookup Match Output].Columns[dim_unit_price]"
+                      name="dim_unit_price"
+                      precision="10"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">unit_price</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\Lookup_D_Orders.Outputs[Lookup Match Output].Columns[product_id_From_D_Orders]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Load_DWH_F_Sales\Lookup_D_Orders.Outputs[Lookup Match Output].Columns[product_id_From_D_Orders]"
+                      name="product_id_From_D_Orders"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">product_id</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load_DWH_F_Sales\Lookup_D_Orders.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Load_DWH_F_Sales\Lookup_D_Orders.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load_DWH_F_Sales\Lookup_D_Orders.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Load_DWH_F_Sales\Lookup_D_Orders.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\Lookup_D_Orders.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_F_Sales\Lookup_D_Orders.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\Lookup_D_Orders.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_F_Sales\Lookup_D_Orders.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load_DWH_F_Sales\Lookup_D_Product"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup_D_Product"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select *
+from DWH.D_Product
+where is_last=1;</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select *
+from DWH.D_Product
+where is_last=1;) [refTable]
+where [refTable].[src_id] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="product_key" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="src_id" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="product_name" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1256"/&gt;&lt;referenceColumn name="supplier_name" dataType="DT_STR" length="20" precision="0" scale="0" codePage="1256"/&gt;&lt;referenceColumn name="price" dataType="DT_NUMERIC" length="0" precision="10" scale="2" codePage="0"/&gt;&lt;referenceColumn name="is_last" dataType="DT_BOOL" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="update_timestamp" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="create_timestamp" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Load_DWH_F_Sales\Lookup_D_Orders.Outputs[Lookup Match Output].Columns[product_id_From_D_Orders]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load_DWH_F_Sales\Lookup_D_Product.Connections[OleDbConnection]"
+                  connectionManagerID="{1F587408-40AB-468D-A0A1-1FBAB67F1E7B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[WIN-G21BVJ4FL1C.DWH_PROJECT]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load_DWH_F_Sales\Lookup_D_Product.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load_DWH_F_Sales\Lookup_D_Product.Inputs[Lookup Input].Columns[product_id_From_D_Orders]"
+                      cachedDataType="i4"
+                      cachedName="product_id_From_D_Orders"
+                      lineageId="Package\Load_DWH_F_Sales\Lookup_D_Orders.Outputs[Lookup Match Output].Columns[product_id_From_D_Orders]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">src_id</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load_DWH_F_Sales\Lookup_D_Product.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="IgnoreFailure"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Load_DWH_F_Sales\Lookup_D_Product.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\Lookup_D_Product.Outputs[Lookup Match Output].Columns[Dim_product_key]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Load_DWH_F_Sales\Lookup_D_Product.Outputs[Lookup Match Output].Columns[Dim_product_key]"
+                      name="Dim_product_key"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">product_key</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load_DWH_F_Sales\Lookup_D_Product.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Load_DWH_F_Sales\Lookup_D_Product.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load_DWH_F_Sales\Lookup_D_Product.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Load_DWH_F_Sales\Lookup_D_Product.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\Lookup_D_Product.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_F_Sales\Lookup_D_Product.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\Lookup_D_Product.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_F_Sales\Lookup_D_Product.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load_DWH_F_Sales\Lookup_D_Store"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup_D_Store"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select *
+from DWH.D_store
+where is_last=1;</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select *
+from DWH.D_store
+where is_last=1;) [refTable]
+where [refTable].[src_id] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="store_key" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="src_id" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="address" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1256"/&gt;&lt;referenceColumn name="city" dataType="DT_STR" length="30" precision="0" scale="0" codePage="1256"/&gt;&lt;referenceColumn name="phone" dataType="DT_STR" length="15" precision="0" scale="0" codePage="1256"/&gt;&lt;referenceColumn name="manager_first_name" dataType="DT_STR" length="20" precision="0" scale="0" codePage="1256"/&gt;&lt;referenceColumn name="manager_last_name" dataType="DT_STR" length="20" precision="0" scale="0" codePage="1256"/&gt;&lt;referenceColumn name="is_last" dataType="DT_BOOL" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="update_timestamp" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="create_timestamp" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Load_DWH_F_Sales\Lookup_D_Orders.Outputs[Lookup Match Output].Columns[dim_store_id]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load_DWH_F_Sales\Lookup_D_Store.Connections[OleDbConnection]"
+                  connectionManagerID="{1F587408-40AB-468D-A0A1-1FBAB67F1E7B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[WIN-G21BVJ4FL1C.DWH_PROJECT]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load_DWH_F_Sales\Lookup_D_Store.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load_DWH_F_Sales\Lookup_D_Store.Inputs[Lookup Input].Columns[dim_store_id]"
+                      cachedDataType="i4"
+                      cachedName="dim_store_id"
+                      lineageId="Package\Load_DWH_F_Sales\Lookup_D_Orders.Outputs[Lookup Match Output].Columns[dim_store_id]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">src_id</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load_DWH_F_Sales\Lookup_D_Store.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Load_DWH_F_Sales\Lookup_D_Store.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\Lookup_D_Store.Outputs[Lookup Match Output].Columns[Dim_store_key]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Load_DWH_F_Sales\Lookup_D_Store.Outputs[Lookup Match Output].Columns[Dim_store_key]"
+                      name="Dim_store_key"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">store_key</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load_DWH_F_Sales\Lookup_D_Store.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Load_DWH_F_Sales\Lookup_D_Store.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load_DWH_F_Sales\Lookup_D_Store.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Load_DWH_F_Sales\Lookup_D_Store.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\Lookup_D_Store.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_F_Sales\Lookup_D_Store.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\Lookup_D_Store.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_F_Sales\Lookup_D_Store.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load_DWH_F_Sales\net_sales"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="net_sales"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load_DWH_F_Sales\net_sales.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load_DWH_F_Sales\net_sales.Inputs[Derived Column Input].Columns[dim_city_taxes]"
+                      cachedDataType="numeric"
+                      cachedName="dim_city_taxes"
+                      cachedPrecision="5"
+                      cachedScale="2"
+                      lineageId="Package\Load_DWH_F_Sales\Lookup City Dim.Outputs[Lookup Match Output].Columns[dim_city_taxes]" />
+                    <inputColumn
+                      refId="Package\Load_DWH_F_Sales\net_sales.Inputs[Derived Column Input].Columns[dim_total_amount]"
+                      cachedDataType="numeric"
+                      cachedName="dim_total_amount"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      lineageId="Package\Load_DWH_F_Sales\Lookup_D_Orders.Outputs[Lookup Match Output].Columns[dim_total_amount]" />
+                    <inputColumn
+                      refId="Package\Load_DWH_F_Sales\net_sales.Inputs[Derived Column Input].Columns[net_sales]"
+                      cachedDataType="numeric"
+                      cachedName="net_sales"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].Columns[net_sales]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\Load_DWH_F_Sales\Lookup_D_Orders.Outputs[Lookup Match Output].Columns[dim_total_amount]} - (#{Package\Load_DWH_F_Sales\Lookup_D_Orders.Outputs[Lookup Match Output].Columns[dim_total_amount]} * #{Package\Load_DWH_F_Sales\Lookup City Dim.Outputs[Lookup Match Output].Columns[dim_city_taxes]} / 100)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">dim_total_amount - (dim_total_amount * dim_city_taxes / 100)</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load_DWH_F_Sales\net_sales.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Load_DWH_F_Sales\net_sales.Inputs[Derived Column Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load_DWH_F_Sales\net_sales.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Load_DWH_F_Sales\net_sales.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\net_sales.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_F_Sales\net_sales.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\net_sales.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_F_Sales\net_sales.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load_DWH_F_Sales\SRC_STG_Sales"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="SRC_STG_Sales"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[STG].[Sales]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Connections[OleDbConnection]"
+                  connectionManagerID="{1F587408-40AB-468D-A0A1-1FBAB67F1E7B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[WIN-G21BVJ4FL1C.DWH_PROJECT]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].Columns[order_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].ExternalColumns[order_id]"
+                      lineageId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].Columns[order_id]"
+                      name="order_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].Columns[city_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].ExternalColumns[city_id]"
+                      lineageId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].Columns[city_id]"
+                      name="city_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].Columns[quantity_sold]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].ExternalColumns[quantity_sold]"
+                      lineageId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].Columns[quantity_sold]"
+                      name="quantity_sold"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].Columns[unit_price]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].ExternalColumns[unit_price]"
+                      lineageId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].Columns[unit_price]"
+                      name="unit_price"
+                      precision="10"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].Columns[total_sales]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].ExternalColumns[total_sales]"
+                      lineageId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].Columns[total_sales]"
+                      name="total_sales"
+                      precision="10"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].Columns[taxes]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].ExternalColumns[taxes]"
+                      lineageId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].Columns[taxes]"
+                      name="taxes"
+                      precision="5"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].Columns[net_sales]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].ExternalColumns[net_sales]"
+                      lineageId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].Columns[net_sales]"
+                      name="net_sales"
+                      precision="10"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].Columns[src_update_date]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].ExternalColumns[src_update_date]"
+                      lineageId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].Columns[src_update_date]"
+                      name="src_update_date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].Columns[create_timestamp]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].ExternalColumns[create_timestamp]"
+                      lineageId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].Columns[create_timestamp]"
+                      name="create_timestamp"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].Columns[product_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].ExternalColumns[product_id]"
+                      lineageId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].Columns[product_id]"
+                      name="product_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].Columns[customer_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].ExternalColumns[customer_id]"
+                      lineageId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].Columns[customer_id]"
+                      name="customer_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].Columns[store_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].ExternalColumns[store_id]"
+                      lineageId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].Columns[store_id]"
+                      name="store_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].Columns[order_date]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].ExternalColumns[order_date]"
+                      length="10"
+                      lineageId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].Columns[order_date]"
+                      name="order_date"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].ExternalColumns[order_id]"
+                      dataType="i4"
+                      name="order_id" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].ExternalColumns[city_id]"
+                      dataType="i4"
+                      name="city_id" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].ExternalColumns[quantity_sold]"
+                      dataType="i4"
+                      name="quantity_sold" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].ExternalColumns[unit_price]"
+                      dataType="numeric"
+                      name="unit_price"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].ExternalColumns[total_sales]"
+                      dataType="numeric"
+                      name="total_sales"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].ExternalColumns[taxes]"
+                      dataType="numeric"
+                      name="taxes"
+                      precision="5"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].ExternalColumns[net_sales]"
+                      dataType="numeric"
+                      name="net_sales"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].ExternalColumns[src_update_date]"
+                      dataType="dbTimeStamp"
+                      name="src_update_date" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].ExternalColumns[create_timestamp]"
+                      dataType="dbTimeStamp"
+                      name="create_timestamp" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].ExternalColumns[product_id]"
+                      dataType="i4"
+                      name="product_id" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].ExternalColumns[customer_id]"
+                      dataType="i4"
+                      name="customer_id" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].ExternalColumns[store_id]"
+                      dataType="i4"
+                      name="store_id" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output].ExternalColumns[order_date]"
+                      dataType="wstr"
+                      length="10"
+                      name="order_date" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Error Output].Columns[customer_id]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Error Output].Columns[customer_id]"
+                      name="customer_id" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Error Output].Columns[order_id]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Error Output].Columns[order_id]"
+                      name="order_id" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Error Output].Columns[store_id]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Error Output].Columns[store_id]"
+                      name="store_id" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Error Output].Columns[city_id]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Error Output].Columns[city_id]"
+                      name="city_id" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Error Output].Columns[product_id]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Error Output].Columns[product_id]"
+                      name="product_id" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Error Output].Columns[quantity_sold]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Error Output].Columns[quantity_sold]"
+                      name="quantity_sold" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Error Output].Columns[unit_price]"
+                      dataType="numeric"
+                      lineageId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Error Output].Columns[unit_price]"
+                      name="unit_price"
+                      precision="10"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Error Output].Columns[total_sales]"
+                      dataType="numeric"
+                      lineageId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Error Output].Columns[total_sales]"
+                      name="total_sales"
+                      precision="10"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Error Output].Columns[taxes]"
+                      dataType="numeric"
+                      lineageId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Error Output].Columns[taxes]"
+                      name="taxes"
+                      precision="5"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Error Output].Columns[net_sales]"
+                      dataType="numeric"
+                      lineageId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Error Output].Columns[net_sales]"
+                      name="net_sales"
+                      precision="10"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Error Output].Columns[order_date]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Error Output].Columns[order_date]"
+                      name="order_date" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Error Output].Columns[src_update_date]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Error Output].Columns[src_update_date]"
+                      name="src_update_date" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Error Output].Columns[create_timestamp]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Error Output].Columns[create_timestamp]"
+                      name="create_timestamp" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load_DWH_F_Sales.Paths[Derived Column Output]"
+              endId="Package\Load_DWH_F_Sales\DEST_DWH_F_Sales.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\Load_DWH_F_Sales\net_sales.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Load_DWH_F_Sales.Paths[Derived Column Output1]"
+              endId="Package\Load_DWH_F_Sales\Lookup City Dim.Inputs[Lookup Input]"
+              name="Derived Column Output"
+              startId="Package\Load_DWH_F_Sales\Date_kay.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Load_DWH_F_Sales.Paths[Lookup Match Output]"
+              endId="Package\Load_DWH_F_Sales\Lookup_D_Orders.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Load_DWH_F_Sales\Lookup City Dim.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Load_DWH_F_Sales.Paths[Lookup Match Output1]"
+              endId="Package\Load_DWH_F_Sales\Lookup_D_Customer.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Load_DWH_F_Sales\Lookup_D_Orders.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Load_DWH_F_Sales.Paths[Lookup Match Output2]"
+              endId="Package\Load_DWH_F_Sales\Lookup_D_Product.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Load_DWH_F_Sales\Lookup_D_Customer.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Load_DWH_F_Sales.Paths[Lookup Match Output3]"
+              endId="Package\Load_DWH_F_Sales\Lookup_D_Store.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Load_DWH_F_Sales\Lookup_D_Product.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Load_DWH_F_Sales.Paths[Lookup Match Output4]"
+              endId="Package\Load_DWH_F_Sales\Check Existing Records.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Load_DWH_F_Sales\Lookup_D_Store.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Load_DWH_F_Sales.Paths[Lookup No Match Output]"
+              endId="Package\Load_DWH_F_Sales\Conditional Split.Inputs[Conditional Split Input]"
+              name="Lookup No Match Output"
+              startId="Package\Load_DWH_F_Sales\Check Existing Records.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\Load_DWH_F_Sales.Paths[NOT_NULL]"
+              endId="Package\Load_DWH_F_Sales\net_sales.Inputs[Derived Column Input]"
+              name="NOT_NULL"
+              startId="Package\Load_DWH_F_Sales\Conditional Split.Outputs[NOT_NULL]" />
+            <path
+              refId="Package\Load_DWH_F_Sales.Paths[OLE DB Source Output]"
+              endId="Package\Load_DWH_F_Sales\Date_kay.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\Load_DWH_F_Sales\SRC_STG_Sales.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="172.8,41.6"
+          Id="Package\Load_DWH_F_Sales"
+          TopLeft="232.142857637028,32.1176470306712" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load_DWH_F_Sales">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="167.2,41.6"
+          Id="Package\Load_DWH_F_Sales\Lookup_D_Product"
+          TopLeft="694.835158179236,209.955651980246" />
+        <NodeLayout
+          Size="122.4,41.6"
+          Id="Package\Load_DWH_F_Sales\net_sales"
+          TopLeft="471.428572432119,329.023520375883" />
+        <NodeLayout
+          Size="154.4,41.6"
+          Id="Package\Load_DWH_F_Sales\Conditional Split"
+          TopLeft="260.714286269277,330.870587849206" />
+        <NodeLayout
+          Size="155.2,41.6"
+          Id="Package\Load_DWH_F_Sales\Lookup City Dim"
+          TopLeft="703.901092657465,85.0407198833711" />
+        <NodeLayout
+          Size="122.4,41.6"
+          Id="Package\Load_DWH_F_Sales\Date_kay"
+          TopLeft="531.934059674127,85.1221694761145" />
+        <NodeLayout
+          Size="163.2,41.6"
+          Id="Package\Load_DWH_F_Sales\Lookup_D_Orders"
+          TopLeft="914.560433948638,92.5972793552826" />
+        <NodeLayout
+          Size="156,41.6"
+          Id="Package\Load_DWH_F_Sales\Lookup_D_Store"
+          TopLeft="467.307685088816,208.969227089453" />
+        <NodeLayout
+          Size="176,41.6"
+          Id="Package\Load_DWH_F_Sales\Lookup_D_Customer"
+          TopLeft="956.538455374135,204.638911237146" />
+        <NodeLayout
+          Size="175.2,41.6"
+          Id="Package\Load_DWH_F_Sales\DEST_DWH_F_Sales"
+          TopLeft="695.659335171058,332.952932048086" />
+        <NodeLayout
+          Size="187.2,41.6"
+          Id="Package\Load_DWH_F_Sales\Check Existing Records"
+          TopLeft="214.285714741872,209.999999658149" />
+        <NodeLayout
+          Size="152.8,41.6"
+          Id="Package\Load_DWH_F_Sales\SRC_STG_Sales"
+          TopLeft="299.1977954647,81.6515825902262" />
+        <EdgeLayout
+          Id="Package\Load_DWH_F_Sales.Paths[Lookup Match Output2]"
+          TopLeft="956.538455374135,228.097281608696">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-94.503297194894,0"
+              Start="0,0"
+              End="-87.003297194894,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-87.003297194894,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-91.693035316197,5,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_DWH_F_Sales.Paths[Lookup Match Output1]"
+          TopLeft="996.160433948638,134.197279355283">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="48.378021425497,70.4416318818637"
+              Start="0,0"
+              End="48.378021425497,62.9416318818637">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.2208159409319" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.2208159409319"
+                    Point2="0,35.2208159409319"
+                    Point3="4,35.2208159409319" />
+                  <mssgle:LineSegment
+                    End="44.378021425497,35.2208159409319" />
+                  <mssgle:CubicBezierSegment
+                    Point1="44.378021425497,35.2208159409319"
+                    Point2="48.378021425497,35.2208159409319"
+                    Point3="48.378021425497,39.2208159409319" />
+                  <mssgle:LineSegment
+                    End="48.378021425497,62.9416318818637" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-24.0023760060015,40.2208159409319,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_DWH_F_Sales.Paths[Lookup Match Output]"
+          TopLeft="859.101092657465,109.618999619327">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="55.4593412911735,0"
+              Start="0,0"
+              End="47.9593412911735,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="47.9593412911735,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-24.2117160731633,5,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_DWH_F_Sales.Paths[Derived Column Output1]"
+          TopLeft="654.334059674127,105.881444679743">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="49.567032983338,0"
+              Start="0,0"
+              End="42.067032983338,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="42.067032983338,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_DWH_F_Sales.Paths[Derived Column Output]"
+          TopLeft="593.82857243212,351.788226211985">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="101.830762738938,0"
+              Start="0,0"
+              End="94.330762738938,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="94.330762738938,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_DWH_F_Sales.Paths[OLE DB Source Output]"
+          TopLeft="451.9977954647,104.18687603317">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="79.9362642094268,0"
+              Start="0,0"
+              End="72.4362642094268,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="72.4362642094268,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_DWH_F_Sales.Paths[NOT_NULL]"
+          TopLeft="415.114286269277,350.747054112545">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="56.3142861628418,0"
+              Start="0,0"
+              End="48.8142861628418,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="48.8142861628418,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-0.32979051232909,5,49.4738671875,10.88671875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_DWH_F_Sales.Paths[Lookup No Match Output]"
+          TopLeft="307.885714741872,251.599999658149">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="30.0285715274054,79.2705881910562"
+              Start="0,0"
+              End="30.0285715274054,71.7705881910562">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.6352940955281" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,35.6352940955281"
+                    Point2="0,39.6352940955281"
+                    Point3="4,39.6352940955281" />
+                  <mssgle:LineSegment
+                    End="26.0285715274054,39.6352940955281" />
+                  <mssgle:CubicBezierSegment
+                    Point1="26.0285715274054,39.6352940955281"
+                    Point2="30.0285715274054,39.6352940955281"
+                    Point3="30.0285715274054,43.6352940955281" />
+                  <mssgle:LineSegment
+                    End="30.0285715274054,71.7705881910562" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-40.7921009550473,44.6352940955281,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_DWH_F_Sales.Paths[Lookup Match Output4]"
+          TopLeft="467.307685088816,230.284613373801">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-65.8219703469445,0"
+              Start="0,0"
+              End="-58.3219703469445,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-58.3219703469445,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-77.3523718922222,5,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_DWH_F_Sales.Paths[Lookup Match Output3]"
+          TopLeft="694.835158179236,230.262439534849">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-71.5274730904185,0"
+              Start="0,0"
+              End="-64.0274730904185,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-64.0274730904185,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-80.2051232639593,5,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load_DWH_F_Sales\Lookup_D_Product">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load_DWH_F_Sales\Lookup_D_Store">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load_DWH_F_Sales\Lookup_D_Customer">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load_DWH_F_Sales\DEST_DWH_F_Sales">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load_DWH_F_Sales\Check Existing Records">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[DWH].[F_Sales]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load_DWH_F_Sales\SRC_STG_Sales">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

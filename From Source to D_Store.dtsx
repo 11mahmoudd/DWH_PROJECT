@@ -5,21 +5,22 @@
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="WIN-G21BVJ4FL1C"
   DTS:CreatorName="WIN-G21BVJ4FL1C\Administrator"
-  DTS:DTSID="{B284FBC2-C699-4DF4-9FD2-07EB99A57A6A}"
+  DTS:DTSID="{32860E5A-D972-4DE9-97DD-EFE8D5C8FA1E}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="16.0.5397.1"
   DTS:LocaleID="1033"
   DTS:ObjectName="From Source to D_Store"
   DTS:PackageType="5"
-  DTS:VersionBuild="42"
-  DTS:VersionGUID="{6AE2A797-C082-497C-B858-0AC31FFA6DEF}">
+  DTS:VersionBuild="50"
+  DTS:VersionGUID="{7CFF365E-08B7-4F14-B610-4B9F8052CB43}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
     <DTS:Variable
       DTS:CreationName=""
       DTS:DTSID="{9A4B3FC7-BDE5-4145-8A80-2DCFB077134E}"
-      DTS:IncludeInDebugDump="6789"
+      DTS:EvaluateAsExpression="True"
+      DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="Last_Extract_Date">
       <DTS:VariableValue
@@ -341,6 +342,237 @@ WHERE store_key = ?</property>
               </outputs>
             </component>
             <component
+              refId="Package\Load_DWH_D_Store\Conditional Split"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Conditional Split"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load_DWH_D_Store\Conditional Split.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Conditional Split.Inputs[Conditional Split Input].Columns[address]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="address"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[address]" />
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Conditional Split.Inputs[Conditional Split Input].Columns[city]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="city"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[city]" />
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Conditional Split.Inputs[Conditional Split Input].Columns[phone]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="phone"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[phone]" />
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Conditional Split.Inputs[Conditional Split Input].Columns[manager_first_name]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="manager_first_name"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[manager_first_name]" />
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Conditional Split.Inputs[Conditional Split Input].Columns[manager_last_name]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="manager_last_name"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[manager_last_name]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load_DWH_D_Store\Conditional Split.Outputs[null_address]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="null_address"
+                  synchronousInputId="Package\Load_DWH_D_Store\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[ISNULL](#{Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[address]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL(address)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load_DWH_D_Store\Conditional Split.Outputs[null_city]"
+                  description="Output 2 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="null_city"
+                  synchronousInputId="Package\Load_DWH_D_Store\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[ISNULL](#{Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[city]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL(city)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">1</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load_DWH_D_Store\Conditional Split.Outputs[null_phone]"
+                  description="Output 3 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="null_phone"
+                  synchronousInputId="Package\Load_DWH_D_Store\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[ISNULL](#{Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[phone]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL(phone)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">2</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load_DWH_D_Store\Conditional Split.Outputs[null_MgFname]"
+                  description="Output 4 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="null_MgFname"
+                  synchronousInputId="Package\Load_DWH_D_Store\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[ISNULL](#{Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[manager_first_name]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL(manager_first_name)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">3</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load_DWH_D_Store\Conditional Split.Outputs[null_MgLname]"
+                  description="Output 5 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="null_MgLname"
+                  synchronousInputId="Package\Load_DWH_D_Store\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[ISNULL](#{Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[manager_last_name]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL(manager_last_name)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">4</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load_DWH_D_Store\Conditional Split.Outputs[not_null]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="not_null"
+                  synchronousInputId="Package\Load_DWH_D_Store\Conditional Split.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load_DWH_D_Store\Conditional Split.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\Load_DWH_D_Store\Conditional Split.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_DWH_D_Store\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_D_Store\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load_DWH_D_Store\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_D_Store\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
               refId="Package\Load_DWH_D_Store\DEST_DWH_D_Store"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
@@ -417,25 +649,25 @@ WHERE store_key = ?</property>
                       cachedDataType="i4"
                       cachedName="is_last"
                       externalMetadataColumnId="Package\Load_DWH_D_Store\DEST_DWH_D_Store.Inputs[OLE DB Destination Input].ExternalColumns[is_last]"
-                      lineageId="Package\Load_DWH_D_Store\Prepare New Records.Outputs[Derived Column Output].Columns[is_last]" />
+                      lineageId="Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[is_last]" />
                     <inputColumn
                       refId="Package\Load_DWH_D_Store\DEST_DWH_D_Store.Inputs[OLE DB Destination Input].Columns[update_timestamp]"
                       cachedDataType="dbDate"
                       cachedName="update_timestamp"
                       externalMetadataColumnId="Package\Load_DWH_D_Store\DEST_DWH_D_Store.Inputs[OLE DB Destination Input].ExternalColumns[update_timestamp]"
-                      lineageId="Package\Load_DWH_D_Store\Prepare New Records.Outputs[Derived Column Output].Columns[update_timestamp]" />
+                      lineageId="Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[update_timestamp]" />
                     <inputColumn
                       refId="Package\Load_DWH_D_Store\DEST_DWH_D_Store.Inputs[OLE DB Destination Input].Columns[create_timestamp]"
                       cachedDataType="dbTimeStamp"
                       cachedName="create_timestamp"
                       externalMetadataColumnId="Package\Load_DWH_D_Store\DEST_DWH_D_Store.Inputs[OLE DB Destination Input].ExternalColumns[create_timestamp]"
-                      lineageId="Package\Load_DWH_D_Store\Prepare New Records.Outputs[Derived Column Output].Columns[create_timestamp]" />
+                      lineageId="Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[create_timestamp]" />
                     <inputColumn
                       refId="Package\Load_DWH_D_Store\DEST_DWH_D_Store.Inputs[OLE DB Destination Input].Columns[store_id]"
                       cachedDataType="i4"
                       cachedName="store_id"
                       externalMetadataColumnId="Package\Load_DWH_D_Store\DEST_DWH_D_Store.Inputs[OLE DB Destination Input].ExternalColumns[src_id]"
-                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[store_id]" />
+                      lineageId="Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[store_id]" />
                     <inputColumn
                       refId="Package\Load_DWH_D_Store\DEST_DWH_D_Store.Inputs[OLE DB Destination Input].Columns[address]"
                       cachedCodepage="1256"
@@ -443,7 +675,7 @@ WHERE store_key = ?</property>
                       cachedLength="100"
                       cachedName="address"
                       externalMetadataColumnId="Package\Load_DWH_D_Store\DEST_DWH_D_Store.Inputs[OLE DB Destination Input].ExternalColumns[address]"
-                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[address]" />
+                      lineageId="Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[address]" />
                     <inputColumn
                       refId="Package\Load_DWH_D_Store\DEST_DWH_D_Store.Inputs[OLE DB Destination Input].Columns[city]"
                       cachedCodepage="1256"
@@ -451,7 +683,7 @@ WHERE store_key = ?</property>
                       cachedLength="30"
                       cachedName="city"
                       externalMetadataColumnId="Package\Load_DWH_D_Store\DEST_DWH_D_Store.Inputs[OLE DB Destination Input].ExternalColumns[city]"
-                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[city]" />
+                      lineageId="Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[city]" />
                     <inputColumn
                       refId="Package\Load_DWH_D_Store\DEST_DWH_D_Store.Inputs[OLE DB Destination Input].Columns[phone]"
                       cachedCodepage="1256"
@@ -459,7 +691,7 @@ WHERE store_key = ?</property>
                       cachedLength="15"
                       cachedName="phone"
                       externalMetadataColumnId="Package\Load_DWH_D_Store\DEST_DWH_D_Store.Inputs[OLE DB Destination Input].ExternalColumns[phone]"
-                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[phone]" />
+                      lineageId="Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[phone]" />
                     <inputColumn
                       refId="Package\Load_DWH_D_Store\DEST_DWH_D_Store.Inputs[OLE DB Destination Input].Columns[manager_first_name]"
                       cachedCodepage="1256"
@@ -467,7 +699,7 @@ WHERE store_key = ?</property>
                       cachedLength="20"
                       cachedName="manager_first_name"
                       externalMetadataColumnId="Package\Load_DWH_D_Store\DEST_DWH_D_Store.Inputs[OLE DB Destination Input].ExternalColumns[manager_first_name]"
-                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[manager_first_name]" />
+                      lineageId="Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[manager_first_name]" />
                     <inputColumn
                       refId="Package\Load_DWH_D_Store\DEST_DWH_D_Store.Inputs[OLE DB Destination Input].Columns[manager_last_name]"
                       cachedCodepage="1256"
@@ -475,7 +707,7 @@ WHERE store_key = ?</property>
                       cachedLength="20"
                       cachedName="manager_last_name"
                       externalMetadataColumnId="Package\Load_DWH_D_Store\DEST_DWH_D_Store.Inputs[OLE DB Destination Input].ExternalColumns[manager_last_name]"
-                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[manager_last_name]" />
+                      lineageId="Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[manager_last_name]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -799,6 +1031,386 @@ where [refTable].[src_id] = ?</property>
                       refId="Package\Load_DWH_D_Store\Lookup on Dim.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                       dataType="i4"
                       lineageId="Package\Load_DWH_D_Store\Lookup on Dim.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load_DWH_D_Store\null_address"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="null_address"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load_DWH_D_Store\null_address.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\null_address.Inputs[Derived Column Input].Columns[address]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="address"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[address]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">"Unknown"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"Unknown"</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load_DWH_D_Store\null_address.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Load_DWH_D_Store\null_address.Inputs[Derived Column Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load_DWH_D_Store\null_address.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Load_DWH_D_Store\null_address.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_DWH_D_Store\null_address.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_D_Store\null_address.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load_DWH_D_Store\null_address.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_D_Store\null_address.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load_DWH_D_Store\null_city"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="null_city"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load_DWH_D_Store\null_city.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\null_city.Inputs[Derived Column Input].Columns[city]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="city"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[city]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">"Unknown"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"Unknown"</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load_DWH_D_Store\null_city.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Load_DWH_D_Store\null_city.Inputs[Derived Column Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load_DWH_D_Store\null_city.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Load_DWH_D_Store\null_city.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_DWH_D_Store\null_city.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_D_Store\null_city.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load_DWH_D_Store\null_city.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_D_Store\null_city.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load_DWH_D_Store\null_manager_fname"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="null_manager_fname"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load_DWH_D_Store\null_manager_fname.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\null_manager_fname.Inputs[Derived Column Input].Columns[manager_first_name]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="manager_first_name"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[manager_first_name]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">"Unknown"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"Unknown"</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load_DWH_D_Store\null_manager_fname.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Load_DWH_D_Store\null_manager_fname.Inputs[Derived Column Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load_DWH_D_Store\null_manager_fname.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Load_DWH_D_Store\null_manager_fname.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_DWH_D_Store\null_manager_fname.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_D_Store\null_manager_fname.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load_DWH_D_Store\null_manager_fname.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_D_Store\null_manager_fname.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load_DWH_D_Store\null_manager_lanme"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="null_manager_lanme"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load_DWH_D_Store\null_manager_lanme.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\null_manager_lanme.Inputs[Derived Column Input].Columns[manager_last_name]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="manager_last_name"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[manager_last_name]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">"Unknown"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"Unknown"</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load_DWH_D_Store\null_manager_lanme.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Load_DWH_D_Store\null_manager_lanme.Inputs[Derived Column Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load_DWH_D_Store\null_manager_lanme.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Load_DWH_D_Store\null_manager_lanme.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_DWH_D_Store\null_manager_lanme.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_D_Store\null_manager_lanme.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load_DWH_D_Store\null_manager_lanme.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_D_Store\null_manager_lanme.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load_DWH_D_Store\null_phone"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="null_phone"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load_DWH_D_Store\null_phone.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\null_phone.Inputs[Derived Column Input].Columns[phone]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="phone"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[phone]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">"Unknown"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"Unknown"</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load_DWH_D_Store\null_phone.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Load_DWH_D_Store\null_phone.Inputs[Derived Column Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load_DWH_D_Store\null_phone.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Load_DWH_D_Store\null_phone.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_DWH_D_Store\null_phone.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_D_Store\null_phone.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load_DWH_D_Store\null_phone.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_D_Store\null_phone.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -1504,6 +2116,979 @@ where [refTable].[src_id] = ?</property>
                 </output>
               </outputs>
             </component>
+            <component
+              refId="Package\Load_DWH_D_Store\Union All 1"
+              componentClassID="Microsoft.UnionAll"
+              contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
+              name="Union All 1"
+              version="1">
+              <inputs>
+                <input
+                  refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 1]"
+                  name="Union All Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 1].Columns[src_update_date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="src_update_date"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[src_update_date]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[src_update_date]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 1].Columns[store_id]"
+                      cachedDataType="i4"
+                      cachedName="store_id"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[store_id]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[store_id]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 1].Columns[address]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="address"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[address]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[address]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 1].Columns[city]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="city"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[city]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[city]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 1].Columns[phone]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="phone"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[phone]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[phone]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 1].Columns[manager_first_name]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="manager_first_name"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[manager_first_name]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[manager_first_name]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 1].Columns[manager_last_name]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="manager_last_name"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[manager_last_name]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[manager_last_name]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 1].Columns[is_last]"
+                      cachedDataType="i4"
+                      cachedName="is_last"
+                      lineageId="Package\Load_DWH_D_Store\Prepare New Records.Outputs[Derived Column Output].Columns[is_last]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[is_last]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 1].Columns[create_timestamp]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="create_timestamp"
+                      lineageId="Package\Load_DWH_D_Store\Prepare New Records.Outputs[Derived Column Output].Columns[create_timestamp]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[create_timestamp]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 1].Columns[update_timestamp]"
+                      cachedDataType="dbDate"
+                      cachedName="update_timestamp"
+                      lineageId="Package\Load_DWH_D_Store\Prepare New Records.Outputs[Derived Column Output].Columns[update_timestamp]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[update_timestamp]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 2]"
+                  hasSideEffects="true"
+                  name="Union All Input 2">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 2].Columns[src_update_date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="src_update_date"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[src_update_date]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[src_update_date]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 2].Columns[create_timestamp]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="create_timestamp"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[create_timestamp]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[create_timestamp]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 2].Columns[store_id]"
+                      cachedDataType="i4"
+                      cachedName="store_id"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[store_id]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[store_id]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 2].Columns[address]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="address"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[address]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[address]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 2].Columns[city]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="city"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[city]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[city]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 2].Columns[phone]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="phone"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[phone]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[phone]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 2].Columns[manager_first_name]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="manager_first_name"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[manager_first_name]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[manager_first_name]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 2].Columns[manager_last_name]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="manager_last_name"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[manager_last_name]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[manager_last_name]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 2].Columns[is_last]"
+                      cachedDataType="i4"
+                      cachedName="is_last"
+                      lineageId="Package\Load_DWH_D_Store\Prepare New Records.Outputs[Derived Column Output].Columns[is_last]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[is_last]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 2].Columns[update_timestamp]"
+                      cachedDataType="dbDate"
+                      cachedName="update_timestamp"
+                      lineageId="Package\Load_DWH_D_Store\Prepare New Records.Outputs[Derived Column Output].Columns[update_timestamp]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[update_timestamp]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 3]"
+                  hasSideEffects="true"
+                  name="Union All Input 3">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 3].Columns[src_update_date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="src_update_date"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[src_update_date]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[src_update_date]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 3].Columns[create_timestamp]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="create_timestamp"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[create_timestamp]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[create_timestamp]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 3].Columns[store_id]"
+                      cachedDataType="i4"
+                      cachedName="store_id"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[store_id]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[store_id]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 3].Columns[address]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="address"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[address]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[address]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 3].Columns[city]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="city"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[city]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[city]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 3].Columns[phone]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="phone"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[phone]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[phone]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 3].Columns[manager_first_name]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="manager_first_name"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[manager_first_name]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[manager_first_name]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 3].Columns[manager_last_name]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="manager_last_name"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[manager_last_name]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[manager_last_name]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 3].Columns[is_last]"
+                      cachedDataType="i4"
+                      cachedName="is_last"
+                      lineageId="Package\Load_DWH_D_Store\Prepare New Records.Outputs[Derived Column Output].Columns[is_last]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[is_last]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 3].Columns[update_timestamp]"
+                      cachedDataType="dbDate"
+                      cachedName="update_timestamp"
+                      lineageId="Package\Load_DWH_D_Store\Prepare New Records.Outputs[Derived Column Output].Columns[update_timestamp]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[update_timestamp]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 4]"
+                  hasSideEffects="true"
+                  name="Union All Input 4">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 4].Columns[src_update_date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="src_update_date"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[src_update_date]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[src_update_date]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 4].Columns[create_timestamp]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="create_timestamp"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[create_timestamp]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[create_timestamp]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 4].Columns[store_id]"
+                      cachedDataType="i4"
+                      cachedName="store_id"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[store_id]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[store_id]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 4].Columns[address]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="address"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[address]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[address]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 4].Columns[city]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="city"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[city]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[city]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 4].Columns[phone]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="phone"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[phone]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[phone]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 4].Columns[manager_first_name]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="manager_first_name"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[manager_first_name]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[manager_first_name]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 4].Columns[manager_last_name]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="manager_last_name"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[manager_last_name]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[manager_last_name]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 4].Columns[is_last]"
+                      cachedDataType="i4"
+                      cachedName="is_last"
+                      lineageId="Package\Load_DWH_D_Store\Prepare New Records.Outputs[Derived Column Output].Columns[is_last]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[is_last]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 4].Columns[update_timestamp]"
+                      cachedDataType="dbDate"
+                      cachedName="update_timestamp"
+                      lineageId="Package\Load_DWH_D_Store\Prepare New Records.Outputs[Derived Column Output].Columns[update_timestamp]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[update_timestamp]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 5]"
+                  hasSideEffects="true"
+                  name="Union All Input 5">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 5].Columns[src_update_date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="src_update_date"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[src_update_date]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[src_update_date]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 5].Columns[create_timestamp]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="create_timestamp"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[create_timestamp]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[create_timestamp]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 5].Columns[store_id]"
+                      cachedDataType="i4"
+                      cachedName="store_id"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[store_id]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[store_id]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 5].Columns[address]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="address"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[address]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[address]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 5].Columns[city]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="city"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[city]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[city]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 5].Columns[phone]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="phone"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[phone]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[phone]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 5].Columns[manager_first_name]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="manager_first_name"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[manager_first_name]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[manager_first_name]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 5].Columns[manager_last_name]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="manager_last_name"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[manager_last_name]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[manager_last_name]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 5].Columns[is_last]"
+                      cachedDataType="i4"
+                      cachedName="is_last"
+                      lineageId="Package\Load_DWH_D_Store\Prepare New Records.Outputs[Derived Column Output].Columns[is_last]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[is_last]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 5].Columns[update_timestamp]"
+                      cachedDataType="dbDate"
+                      cachedName="update_timestamp"
+                      lineageId="Package\Load_DWH_D_Store\Prepare New Records.Outputs[Derived Column Output].Columns[update_timestamp]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[update_timestamp]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 6]"
+                  hasSideEffects="true"
+                  name="Union All Input 6">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 6].Columns[src_update_date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="src_update_date"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[src_update_date]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[src_update_date]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 6].Columns[create_timestamp]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="create_timestamp"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[create_timestamp]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[create_timestamp]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 6].Columns[store_id]"
+                      cachedDataType="i4"
+                      cachedName="store_id"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[store_id]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[store_id]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 6].Columns[address]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="address"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[address]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[address]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 6].Columns[city]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="city"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[city]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[city]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 6].Columns[phone]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="phone"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[phone]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[phone]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 6].Columns[manager_first_name]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="manager_first_name"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[manager_first_name]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[manager_first_name]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 6].Columns[manager_last_name]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="manager_last_name"
+                      lineageId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1].Columns[manager_last_name]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[manager_last_name]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 6].Columns[is_last]"
+                      cachedDataType="i4"
+                      cachedName="is_last"
+                      lineageId="Package\Load_DWH_D_Store\Prepare New Records.Outputs[Derived Column Output].Columns[is_last]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[is_last]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 6].Columns[update_timestamp]"
+                      cachedDataType="dbDate"
+                      cachedName="update_timestamp"
+                      lineageId="Package\Load_DWH_D_Store\Prepare New Records.Outputs[Derived Column Output].Columns[update_timestamp]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[update_timestamp]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 7]"
+                  dangling="true"
+                  hasSideEffects="true"
+                  name="Union All Input 7">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1]"
+                  name="Union All Output 1">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[src_update_date]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[src_update_date]"
+                      name="src_update_date" />
+                    <outputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[store_id]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[store_id]"
+                      name="store_id" />
+                    <outputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[address]"
+                      codePage="1256"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[address]"
+                      name="address" />
+                    <outputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[city]"
+                      codePage="1256"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[city]"
+                      name="city" />
+                    <outputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[phone]"
+                      codePage="1256"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[phone]"
+                      name="phone" />
+                    <outputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[manager_first_name]"
+                      codePage="1256"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[manager_first_name]"
+                      name="manager_first_name" />
+                    <outputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[manager_last_name]"
+                      codePage="1256"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[manager_last_name]"
+                      name="manager_last_name" />
+                    <outputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[is_last]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[is_last]"
+                      name="is_last" />
+                    <outputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[create_timestamp]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[create_timestamp]"
+                      name="create_timestamp" />
+                    <outputColumn
+                      refId="Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[update_timestamp]"
+                      dataType="dbDate"
+                      lineageId="Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1].Columns[update_timestamp]"
+                      name="update_timestamp" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
           </components>
           <paths>
             <path
@@ -1513,9 +3098,34 @@ where [refTable].[src_id] = ?</property>
               startId="Package\Load_DWH_D_Store\Check Existing Records.Outputs[Changed]" />
             <path
               refId="Package\Load_DWH_D_Store.Paths[Derived Column Output]"
-              endId="Package\Load_DWH_D_Store\DEST_DWH_D_Store.Inputs[OLE DB Destination Input]"
+              endId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 5]"
+              name="Derived Column Output"
+              startId="Package\Load_DWH_D_Store\null_address.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Load_DWH_D_Store.Paths[Derived Column Output1]"
+              endId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 4]"
+              name="Derived Column Output"
+              startId="Package\Load_DWH_D_Store\null_city.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Load_DWH_D_Store.Paths[Derived Column Output2]"
+              endId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 3]"
+              name="Derived Column Output"
+              startId="Package\Load_DWH_D_Store\null_phone.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Load_DWH_D_Store.Paths[Derived Column Output3]"
+              endId="Package\Load_DWH_D_Store\Conditional Split.Inputs[Conditional Split Input]"
               name="Derived Column Output"
               startId="Package\Load_DWH_D_Store\Prepare New Records.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Load_DWH_D_Store.Paths[Derived Column Output4]"
+              endId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 2]"
+              name="Derived Column Output"
+              startId="Package\Load_DWH_D_Store\null_manager_lanme.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Load_DWH_D_Store.Paths[Derived Column Output5]"
+              endId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 1]"
+              name="Derived Column Output"
+              startId="Package\Load_DWH_D_Store\null_manager_fname.Outputs[Derived Column Output]" />
             <path
               refId="Package\Load_DWH_D_Store.Paths[Lookup Match Output]"
               endId="Package\Load_DWH_D_Store\Check Existing Records.Inputs[Conditional Split Input]"
@@ -1526,6 +3136,36 @@ where [refTable].[src_id] = ?</property>
               endId="Package\Load_DWH_D_Store\Union All.Inputs[Union All Input 1]"
               name="Lookup No Match Output"
               startId="Package\Load_DWH_D_Store\Lookup on Dim.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\Load_DWH_D_Store.Paths[not_null]"
+              endId="Package\Load_DWH_D_Store\Union All 1.Inputs[Union All Input 6]"
+              name="not_null"
+              startId="Package\Load_DWH_D_Store\Conditional Split.Outputs[not_null]" />
+            <path
+              refId="Package\Load_DWH_D_Store.Paths[null_address]"
+              endId="Package\Load_DWH_D_Store\null_address.Inputs[Derived Column Input]"
+              name="null_address"
+              startId="Package\Load_DWH_D_Store\Conditional Split.Outputs[null_address]" />
+            <path
+              refId="Package\Load_DWH_D_Store.Paths[null_city]"
+              endId="Package\Load_DWH_D_Store\null_city.Inputs[Derived Column Input]"
+              name="null_city"
+              startId="Package\Load_DWH_D_Store\Conditional Split.Outputs[null_city]" />
+            <path
+              refId="Package\Load_DWH_D_Store.Paths[null_MgFname]"
+              endId="Package\Load_DWH_D_Store\null_manager_fname.Inputs[Derived Column Input]"
+              name="null_MgFname"
+              startId="Package\Load_DWH_D_Store\Conditional Split.Outputs[null_MgFname]" />
+            <path
+              refId="Package\Load_DWH_D_Store.Paths[null_MgLname]"
+              endId="Package\Load_DWH_D_Store\null_manager_lanme.Inputs[Derived Column Input]"
+              name="null_MgLname"
+              startId="Package\Load_DWH_D_Store\Conditional Split.Outputs[null_MgLname]" />
+            <path
+              refId="Package\Load_DWH_D_Store.Paths[null_phone]"
+              endId="Package\Load_DWH_D_Store\null_phone.Inputs[Derived Column Input]"
+              name="null_phone"
+              startId="Package\Load_DWH_D_Store\Conditional Split.Outputs[null_phone]" />
             <path
               refId="Package\Load_DWH_D_Store.Paths[OLE DB Command Output]"
               endId="Package\Load_DWH_D_Store\Union All.Inputs[Union All Input 2]"
@@ -1541,6 +3181,11 @@ where [refTable].[src_id] = ?</property>
               endId="Package\Load_DWH_D_Store\Prepare New Records.Inputs[Derived Column Input]"
               name="Union All Output 1"
               startId="Package\Load_DWH_D_Store\Union All.Outputs[Union All Output 1]" />
+            <path
+              refId="Package\Load_DWH_D_Store.Paths[Union All Output 11]"
+              endId="Package\Load_DWH_D_Store\DEST_DWH_D_Store.Inputs[OLE DB Destination Input]"
+              name="Union All Output 1"
+              startId="Package\Load_DWH_D_Store\Union All 1.Outputs[Union All Output 1]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -2749,230 +4394,634 @@ where [refTable].[StoreID] = ?</property>
     design-time-name="Package\Load_DWH_D_Store">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="120,41.6"
-          Id="Package\Load_DWH_D_Store\Union All"
-          TopLeft="615.38460621467,546.769227674374" />
+          Size="154.4,41.6"
+          Id="Package\Load_DWH_D_Store\Conditional Split"
+          TopLeft="593.571429834986,502.599999669545" />
         <NodeLayout
           Size="177.6,41.6"
           Id="Package\Load_DWH_D_Store\DEST_DWH_D_Store"
-          TopLeft="581.999992221594,746.517646301392" />
-        <NodeLayout
-          Size="207.2,41.6"
-          Id="Package\Load_DWH_D_Store\Close the Changed Records"
-          TopLeft="767.714278331217,438.52941106827" />
-        <NodeLayout
-          Size="179.2,41.6"
-          Id="Package\Load_DWH_D_Store\Prepare New Records"
-          TopLeft="583.428563653207,636.164705141007" />
+          TopLeft="608.956034772414,887.694116790422" />
         <NodeLayout
           Size="149.6,41.6"
           Id="Package\Load_DWH_D_Store\Lookup on Dim"
-          TopLeft="625.571420885775,210.647058326841" />
+          TopLeft="591.999992242882,173.941176006074" />
+        <NodeLayout
+          Size="137.6,41.6"
+          Id="Package\Load_DWH_D_Store\null_address"
+          TopLeft="355.000000755702,515.105882138447" />
+        <NodeLayout
+          Size="130.4,41.6"
+          Id="Package\Load_DWH_D_Store\null_phone"
+          TopLeft="840.00000178814,510.482352593293" />
+        <NodeLayout
+          Size="129.6,41.6"
+          Id="Package\Load_DWH_D_Store\Union All 1"
+          TopLeft="631.428572772717,787.87058797455" />
+        <NodeLayout
+          Size="207.2,41.6"
+          Id="Package\Load_DWH_D_Store\Close the Changed Records"
+          TopLeft="780.571421215729,332.235293514382" />
+        <NodeLayout
+          Size="176.8,41.6"
+          Id="Package\Load_DWH_D_Store\null_manager_lanme"
+          TopLeft="765.71428734429,607.494117303197" />
+        <NodeLayout
+          Size="120,41.6"
+          Id="Package\Load_DWH_D_Store\Union All"
+          TopLeft="578.241748992745,330.357463158185" />
         <NodeLayout
           Size="152.8,41.6"
           Id="Package\Load_DWH_D_Store\SRC_STG_Store"
           TopLeft="595.571420821913,85.9999996125698" />
         <NodeLayout
+          Size="177.6,41.6"
+          Id="Package\Load_DWH_D_Store\null_manager_fname"
+          TopLeft="553.571429749837,648.999999441644" />
+        <NodeLayout
+          Size="179.2,41.6"
+          Id="Package\Load_DWH_D_Store\Prepare New Records"
+          TopLeft="585.571420800626,421.282352388183" />
+        <NodeLayout
           Size="187.2,41.6"
           Id="Package\Load_DWH_D_Store\Check Existing Records"
-          TopLeft="769.857135478635,329.941175869334" />
+          TopLeft="782.714278363147,223.647058315446" />
+        <NodeLayout
+          Size="117.6,41.6"
+          Id="Package\Load_DWH_D_Store\null_city"
+          TopLeft="410.000000872782,616.11764652929" />
         <EdgeLayout
-          Id="Package\Load_DWH_D_Store.Paths[Union All Output 1]"
-          TopLeft="674.206584933938,588.369227674374">
+          Id="Package\Load_DWH_D_Store.Paths[Union All Output 11]"
+          TopLeft="696.992303772566,829.47058797455">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,47.7954774666325"
+              EndConnector="0,58.223528815872"
               Start="0,0"
-              End="0,40.2954774666325">
+              End="0,50.723528815872">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,40.2954774666325" />
+                    End="0,50.723528815872" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_DWH_D_Store.Paths[Union All Output 1]"
+          TopLeft="638.241748992745,371.957463158185">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="36.9296718078803,49.3248892299982"
+              Start="0,0"
+              End="36.9296718078803,41.8248892299982">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.6624446149991" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.6624446149991"
+                    Point2="0,24.6624446149991"
+                    Point3="4,24.6624446149991" />
+                  <mssgle:LineSegment
+                    End="32.9296718078803,24.6624446149991" />
+                  <mssgle:CubicBezierSegment
+                    Point1="32.9296718078803,24.6624446149991"
+                    Point2="36.9296718078803,24.6624446149991"
+                    Point3="36.9296718078803,28.6624446149991" />
+                  <mssgle:LineSegment
+                    End="36.9296718078803,41.8248892299982" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Load_DWH_D_Store.Paths[OLE DB Source Output]"
-          TopLeft="671.971420821913,127.59999961257">
+          TopLeft="669.385706532397,127.59999961257">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="28.400000063862,83.047058714271"
+              EndConnector="0,46.3411763935041"
               Start="0,0"
-              End="28.400000063862,75.547058714271">
+              End="0,38.8411763935041">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,37.5235293571355" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,37.5235293571355"
-                    Point2="0,41.5235293571355"
-                    Point3="4,41.5235293571355" />
-                  <mssgle:LineSegment
-                    End="24.400000063862,41.5235293571355" />
-                  <mssgle:CubicBezierSegment
-                    Point1="24.400000063862,41.5235293571355"
-                    Point2="28.400000063862,41.5235293571355"
-                    Point3="28.400000063862,45.5235293571355" />
-                  <mssgle:LineSegment
-                    End="28.400000063862,75.547058714271" />
+                    End="0,38.8411763935041" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Load_DWH_D_Store.Paths[OLE DB Command Output]"
-          TopLeft="871.314278331217,480.12941106827">
+          TopLeft="780.571421215729,352.096378336283">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-177.26300544988,66.6398166061039"
+              EndConnector="-82.3296722229838,0"
               Start="0,0"
-              End="-177.26300544988,59.1398166061039">
+              End="-74.8296722229838,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,35.457786148351" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,35.457786148351"
-                    Point2="0,39.457786148351"
-                    Point3="-4,39.457786148351" />
+                    End="-74.8296722229838,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_DWH_D_Store.Paths[null_phone]"
+          TopLeft="747.971429834986,527.341176131419">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="92.0285719531532,0"
+              Start="0,0"
+              End="84.5285719531532,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
                   <mssgle:LineSegment
-                    End="-173.26300544988,39.457786148351" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-173.26300544988,39.457786148351"
-                    Point2="-177.26300544988,39.457786148351"
-                    Point3="-177.26300544988,43.457786148351" />
-                  <mssgle:LineSegment
-                    End="-177.26300544988,59.1398166061039" />
+                    End="84.5285719531532,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
+              BoundingBox="17.4363172265766,5,49.6559375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_DWH_D_Store.Paths[null_MgLname]"
+          TopLeft="707.371429834986,544.199999669545">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="146.742857509304,63.2941176336525"
+              Start="0,0"
+              End="146.742857509304,55.7941176336525">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.8144412217851" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.8144412217851"
+                    Point2="0,21.8144412217851"
+                    Point3="4,21.8144412217851" />
+                  <mssgle:LineSegment
+                    End="142.742857509304,21.8144412217851" />
+                  <mssgle:CubicBezierSegment
+                    Point1="142.742857509304,21.8144412217851"
+                    Point2="146.742857509304,21.8144412217851"
+                    Point3="146.742857509304,25.8144412217851" />
+                  <mssgle:LineSegment
+                    End="146.742857509304,55.7941176336525" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="40.878460004652,26.8144412217851,64.9859375,11.6630859375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_DWH_D_Store.Paths[null_MgFname]"
+          TopLeft="670.771429834986,544.199999669545">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-28.4000000851495,104.799999772099"
+              Start="0,0"
+              End="-28.4000000851495,97.2999997720993">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48.3999998860497" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,48.3999998860497"
+                    Point2="0,52.3999998860497"
+                    Point3="-4,52.3999998860497" />
+                  <mssgle:LineSegment
+                    End="-24.4000000851495,52.3999998860497" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-24.4000000851495,52.3999998860497"
+                    Point2="-28.4000000851495,52.3999998860497"
+                    Point3="-28.4000000851495,56.3999998860497" />
+                  <mssgle:LineSegment
+                    End="-28.4000000851495,97.2999997720993" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-46.8079687925747,57.3999998860497,65.2159375,11.6630859375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_DWH_D_Store.Paths[null_city]"
+          TopLeft="634.171429834986,544.199999669545">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-165.371428962204,71.9176468597458"
+              Start="0,0"
+              End="-165.371428962204,64.4176468597458">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.7865574066696" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.7865574066696"
+                    Point2="0,24.7865574066696"
+                    Point3="-4,24.7865574066696" />
+                  <mssgle:LineSegment
+                    End="-161.371428962204,24.7865574066696" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-161.371428962204,24.7865574066696"
+                    Point2="-165.371428962204,24.7865574066696"
+                    Point3="-165.371428962204,28.7865574066696" />
+                  <mssgle:LineSegment
+                    End="-165.371428962204,64.4176468597458" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-101.549269168602,29.7865574066696,37.727109375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_DWH_D_Store.Paths[null_address]"
+          TopLeft="593.571429834986,523.399999669545">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-100.971429079284,12.5058824689022"
+              Start="0,0"
+              End="-93.4714290792843,12.5058824689022">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-46.4857145396422,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-46.4857145396422,0"
+                    Point2="-50.4857145396422,0"
+                    Point3="-50.4857145396422,4" />
+                  <mssgle:LineSegment
+                    End="-50.4857145396422,8.5058824689022" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-50.4857145396422,8.5058824689022"
+                    Point2="-50.4857145396422,12.5058824689022"
+                    Point3="-54.4857145396422,12.5058824689022" />
+                  <mssgle:LineSegment
+                    End="-93.4714290792843,12.5058824689022" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-78.7049137583922,-17.0625,56.4383984375,11.0625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_DWH_D_Store.Paths[not_null]"
+          TopLeft="685.411429834986,544.199999669545">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="19.5028572234452,243.670588305005"
+              Start="0,0"
+              End="19.5028572234452,236.170588305005">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,113.794392369579" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,113.794392369579"
+                    Point2="0,117.794392369579"
+                    Point3="4,117.794392369579" />
+                  <mssgle:LineSegment
+                    End="15.5028572234452,117.794392369579" />
+                  <mssgle:CubicBezierSegment
+                    Point1="15.5028572234452,117.794392369579"
+                    Point2="19.5028572234452,117.794392369579"
+                    Point3="19.5028572234452,121.794392369579" />
+                  <mssgle:LineSegment
+                    End="19.5028572234452,236.170588305005" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8.34732138827741,122.794392369579,36.1975,11.0625"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Load_DWH_D_Store.Paths[Lookup No Match Output]"
-          TopLeft="676.771420885775,252.247058326841">
+          TopLeft="666.799992242882,215.541176006074">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-20.0534813377714,294.522169347534"
+              EndConnector="-28.5582432501363,114.816287152111"
               Start="0,0"
-              End="-20.0534813377714,287.022169347534">
+              End="-28.5582432501363,107.316287152111">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,142.789624940884" />
+                    End="0,53.4081435760555" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,142.789624940884"
-                    Point2="0,146.789624940884"
-                    Point3="-4,146.789624940884" />
+                    Point1="0,53.4081435760555"
+                    Point2="0,57.4081435760555"
+                    Point3="-4,57.4081435760555" />
                   <mssgle:LineSegment
-                    End="-16.0534813377714,146.789624940884" />
+                    End="-24.5582432501363,57.4081435760555" />
                   <mssgle:CubicBezierSegment
-                    Point1="-16.0534813377714,146.789624940884"
-                    Point2="-20.0534813377714,146.789624940884"
-                    Point3="-20.0534813377714,150.789624940884" />
+                    Point1="-24.5582432501363,57.4081435760555"
+                    Point2="-28.5582432501363,57.4081435760555"
+                    Point3="-28.5582432501363,61.4081435760555" />
                   <mssgle:LineSegment
-                    End="-20.0534813377714,287.022169347534" />
+                    End="-28.5582432501363,107.316287152111" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-65.8331273876357,151.789624940884,111.6127734375,11.609375"
+              BoundingBox="-70.0855083438182,62.4081435760555,111.6127734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Load_DWH_D_Store.Paths[Lookup Match Output]"
-          TopLeft="723.971420885775,252.247058326841">
+          TopLeft="741.599992242882,194.741176006074">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="139.48571459286,77.694117542493"
+              EndConnector="41.1142861202654,49.7058823093722"
               Start="0,0"
-              End="139.48571459286,70.194117542493">
+              End="33.6142861202654,49.7058823093722">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,27.570943001394" />
+                    End="16.5571430601327,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,27.570943001394"
-                    Point2="0,31.570943001394"
-                    Point3="4,31.570943001394" />
+                    Point1="16.5571430601327,0"
+                    Point2="20.5571430601327,0"
+                    Point3="20.5571430601327,4" />
                   <mssgle:LineSegment
-                    End="135.48571459286,31.570943001394" />
+                    End="20.5571430601327,45.7058823093722" />
                   <mssgle:CubicBezierSegment
-                    Point1="135.48571459286,31.570943001394"
-                    Point2="139.48571459286,31.570943001394"
-                    Point3="139.48571459286,35.570943001394" />
+                    Point1="20.5571430601327,45.7058823093722"
+                    Point2="20.5571430601327,49.7058823093722"
+                    Point3="24.5571430601327,49.7058823093722" />
                   <mssgle:LineSegment
-                    End="139.48571459286,70.194117542493" />
+                    End="33.6142861202654,49.7058823093722" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="21.55147057768,36.570943001394,96.3827734375,11.609375"
+              BoundingBox="-27.6342436586173,-17.609375,96.3827734375,11.609375"
               RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_DWH_D_Store.Paths[Derived Column Output5]"
+          TopLeft="642.371429749837,690.599999441644">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="45.1714287371661,97.2705885329055"
+              Start="0,0"
+              End="45.1714287371661,89.7705885329055">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48.1289448942887" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,48.1289448942887"
+                    Point2="0,52.1289448942887"
+                    Point3="4,52.1289448942887" />
+                  <mssgle:LineSegment
+                    End="41.1714287371661,52.1289448942887" />
+                  <mssgle:CubicBezierSegment
+                    Point1="41.1714287371661,52.1289448942887"
+                    Point2="45.1714287371661,52.1289448942887"
+                    Point3="45.1714287371661,56.1289448942887" />
+                  <mssgle:LineSegment
+                    End="45.1714287371661,89.7705885329055" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_DWH_D_Store.Paths[Derived Column Output4]"
+          TopLeft="854.11428734429,649.094117303197">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-131.82857171443,138.776470671352"
+              Start="0,0"
+              End="-131.82857171443,131.276470671352">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,82.8501753539259" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,82.8501753539259"
+                    Point2="0,86.8501753539259"
+                    Point3="-4,86.8501753539259" />
+                  <mssgle:LineSegment
+                    End="-127.82857171443,86.8501753539259" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-127.82857171443,86.8501753539259"
+                    Point2="-131.82857171443,86.8501753539259"
+                    Point3="-131.82857171443,90.8501753539259" />
+                  <mssgle:LineSegment
+                    End="-131.82857171443,131.276470671352" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_DWH_D_Store.Paths[Derived Column Output3]"
+          TopLeft="672.971425317806,462.882352388183">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,39.7176472813617"
+              Start="0,0"
+              End="0,32.2176472813617">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.2176472813617" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_DWH_D_Store.Paths[Derived Column Output2]"
+          TopLeft="905.20000178814,552.082352593293">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-165.542857586851,235.788235381257"
+              Start="0,0"
+              End="-165.542857586851,228.288235381257">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,173.310251274765" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,173.310251274765"
+                    Point2="0,177.310251274765"
+                    Point3="-4,177.310251274765" />
+                  <mssgle:LineSegment
+                    End="-161.542857586851,177.310251274765" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-161.542857586851,177.310251274765"
+                    Point2="-165.542857586851,177.310251274765"
+                    Point3="-165.542857586851,181.310251274765" />
+                  <mssgle:LineSegment
+                    End="-165.542857586851,228.288235381257" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_DWH_D_Store.Paths[Derived Column Output1]"
+          TopLeft="468.800000872783,657.717646529291">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="201.371429042792,130.152941445259"
+              Start="0,0"
+              End="201.371429042792,122.652941445259">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,77.4533309044833" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,77.4533309044833"
+                    Point2="0,81.4533309044833"
+                    Point3="4,81.4533309044833" />
+                  <mssgle:LineSegment
+                    End="197.371429042792,81.4533309044833" />
+                  <mssgle:CubicBezierSegment
+                    Point1="197.371429042792,81.4533309044833"
+                    Point2="201.371429042792,81.4533309044833"
+                    Point3="201.371429042792,85.4533309044833" />
+                  <mssgle:LineSegment
+                    End="201.371429042792,122.652941445259" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Load_DWH_D_Store.Paths[Derived Column Output]"
-          TopLeft="671.9142779374,677.764705141007">
+          TopLeft="423.800000755702,556.705882138447">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,68.7529411603849"
+              EndConnector="229.000000588444,231.164705836103"
               Start="0,0"
-              End="0,61.2529411603849">
+              End="229.000000588444,223.664705836103">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,61.2529411603849" />
+                    End="0,169.833406112825" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,169.833406112825"
+                    Point2="0,173.833406112825"
+                    Point3="4,173.833406112825" />
+                  <mssgle:LineSegment
+                    End="225.000000588444,173.833406112825" />
+                  <mssgle:CubicBezierSegment
+                    Point1="225.000000588444,173.833406112825"
+                    Point2="229.000000588444,173.833406112825"
+                    Point3="229.000000588444,177.833406112825" />
+                  <mssgle:LineSegment
+                    End="229.000000588444,223.664705836103" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Load_DWH_D_Store.Paths[Changed]"
-          TopLeft="867.385706904926,371.541175869334">
+          TopLeft="880.242849789438,265.247058315446">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2997,19 +5046,6 @@ where [refTable].[StoreID] = ?</property>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load_DWH_D_Store\DEST_DWH_D_Store">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Load_DWH_D_Store\Lookup on Dim">
     <Properties>

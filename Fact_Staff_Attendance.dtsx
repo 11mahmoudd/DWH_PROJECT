@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="From Dimension to F_Staff"
   DTS:PackageType="5"
-  DTS:VersionBuild="12"
-  DTS:VersionGUID="{C4894B18-F439-481F-A45B-B652AE9ECB65}">
+  DTS:VersionBuild="15"
+  DTS:VersionGUID="{44689603-0A27-4998-9A85-72E20F72C75C}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -44,13 +44,13 @@
                   description="Specifies the SQL statement that generates the lookup table."
                   expressionType="Notify"
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [DWH].[F_Staff]</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [DWH].[F_Staff_Attendance]</property>
                 <property
                   dataType="System.String"
                   description="Specifies a SQL statement that uses parameters to generate the lookup table."
                   expressionType="Notify"
                   name="SqlCommandParam"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [DWH].[F_Staff]) [refTable]
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [DWH].[F_Staff_Attendance]) [refTable]
 where [refTable].[staff_key] = ? and [refTable].[store_key] = ? and [refTable].[date_key] = ?</property>
                 <property
                   dataType="System.Int32"
@@ -171,6 +171,20 @@ where [refTable].[staff_key] = ? and [refTable].[store_key] = ? and [refTable].[
                   synchronousInputId="Package\Load_DWH_F_Staff\Check Existing Records.Inputs[Lookup Input]">
                   <outputColumns>
                     <outputColumn
+                      refId="Package\Load_DWH_F_Staff\Check Existing Records.Outputs[Lookup Match Output].Columns[ExistsInFact_staff_key]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Load_DWH_F_Staff\Check Existing Records.Outputs[Lookup Match Output].Columns[ExistsInFact_staff_key]"
+                      name="ExistsInFact_staff_key"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">staff_key</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
                       refId="Package\Load_DWH_F_Staff\Check Existing Records.Outputs[Lookup Match Output].Columns[ExistsInFact_staff_fact_key]"
                       dataType="i4"
                       errorOrTruncationOperation="Copy Column"
@@ -196,20 +210,6 @@ where [refTable].[staff_key] = ? and [refTable].[store_key] = ? and [refTable].[
                           dataType="System.String"
                           description="Specifies the column in the reference table from which a column is copied."
                           name="CopyFromReferenceColumn">date_key</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Load_DWH_F_Staff\Check Existing Records.Outputs[Lookup Match Output].Columns[ExistsInFact_staff_key]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Copy Column"
-                      lineageId="Package\Load_DWH_F_Staff\Check Existing Records.Outputs[Lookup Match Output].Columns[ExistsInFact_staff_key]"
-                      name="ExistsInFact_staff_key"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn">staff_key</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
@@ -294,12 +294,12 @@ where [refTable].[staff_key] = ? and [refTable].[store_key] = ? and [refTable].[
                       cachedName="active"
                       lineageId="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].Columns[active]" />
                     <inputColumn
-                      refId="Package\Load_DWH_F_Staff\Check_NULL.Inputs[Conditional Split Input].Columns[address]"
+                      refId="Package\Load_DWH_F_Staff\Check_NULL.Inputs[Conditional Split Input].Columns[LU_address]"
                       cachedCodepage="1256"
                       cachedDataType="str"
                       cachedLength="100"
-                      cachedName="address"
-                      lineageId="Package\Load_DWH_F_Staff\Lookup_D_Store.Outputs[Lookup Match Output].Columns[address]" />
+                      cachedName="LU_address"
+                      lineageId="Package\Load_DWH_F_Staff\Lookup_D_Store.Outputs[Lookup Match Output].Columns[LU_address]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -319,13 +319,13 @@ where [refTable].[staff_key] = ? and [refTable].[store_key] = ? and [refTable].[
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
-                      name="Expression">[ISNULL](#{Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].Columns[active]}) || [ISNULL](#{Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].Columns[last_name]}) || [ISNULL](#{Package\Load_DWH_F_Staff\Lookup_D_Store.Outputs[Lookup Match Output].Columns[address]}) || [ISNULL](#{Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].Columns[first_name]})</property>
+                      name="Expression">[ISNULL](#{Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].Columns[active]}) || [ISNULL](#{Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].Columns[last_name]}) || [ISNULL](#{Package\Load_DWH_F_Staff\Lookup_D_Store.Outputs[Lookup Match Output].Columns[LU_address]}) || [ISNULL](#{Package\Load_DWH_F_Staff\SRC_DWH_D_Staff.Outputs[OLE DB Source Output].Columns[first_name]})</property>
                     <property
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the friendly version of the expression. This expression version uses column names."
                       expressionType="Notify"
-                      name="FriendlyExpression">ISNULL(active) || ISNULL(last_name) || ISNULL(Lookup.address) || ISNULL(first_name)</property>
+                      name="FriendlyExpression">ISNULL(active) || ISNULL(last_name) || ISNULL(LU_address) || ISNULL(first_name)</property>
                     <property
                       dataType="System.Int32"
                       description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
@@ -467,7 +467,7 @@ where [refTable].[staff_key] = ? and [refTable].[store_key] = ? and [refTable].[
                 <property
                   dataType="System.String"
                   description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[DWH].[F_Staff]</property>
+                  name="OpenRowset">[DWH].[F_Staff_Attendance]</property>
                 <property
                   dataType="System.String"
                   description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -570,13 +570,13 @@ where [refTable].[staff_key] = ? and [refTable].[store_key] = ? and [refTable].[
                       externalMetadataColumnId="Package\Load_DWH_F_Staff\DEST_DWH_F_Staff.Inputs[OLE DB Destination Input].ExternalColumns[date_key]"
                       lineageId="Package\Load_DWH_F_Staff\Date_key.Outputs[Derived Column Output].Columns[date_key]" />
                     <inputColumn
-                      refId="Package\Load_DWH_F_Staff\DEST_DWH_F_Staff.Inputs[OLE DB Destination Input].Columns[address]"
+                      refId="Package\Load_DWH_F_Staff\DEST_DWH_F_Staff.Inputs[OLE DB Destination Input].Columns[LU_address]"
                       cachedCodepage="1256"
                       cachedDataType="str"
                       cachedLength="100"
-                      cachedName="address"
+                      cachedName="LU_address"
                       externalMetadataColumnId="Package\Load_DWH_F_Staff\DEST_DWH_F_Staff.Inputs[OLE DB Destination Input].ExternalColumns[store_address]"
-                      lineageId="Package\Load_DWH_F_Staff\Lookup_D_Store.Outputs[Lookup Match Output].Columns[address]" />
+                      lineageId="Package\Load_DWH_F_Staff\Lookup_D_Store.Outputs[Lookup Match Output].Columns[LU_address]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -778,13 +778,13 @@ where [refTable].[src_id] = ?</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Load_DWH_F_Staff\Lookup_D_Store.Outputs[Lookup Match Output].Columns[address]"
+                      refId="Package\Load_DWH_F_Staff\Lookup_D_Store.Outputs[Lookup Match Output].Columns[LU_address]"
                       codePage="1256"
                       dataType="str"
                       errorOrTruncationOperation="Copy Column"
                       length="100"
-                      lineageId="Package\Load_DWH_F_Staff\Lookup_D_Store.Outputs[Lookup Match Output].Columns[address]"
-                      name="address"
+                      lineageId="Package\Load_DWH_F_Staff\Lookup_D_Store.Outputs[Lookup Match Output].Columns[LU_address]"
+                      name="LU_address"
                       truncationRowDisposition="FailComponent">
                       <properties>
                         <property
@@ -1245,17 +1245,17 @@ where is_last=1;</property>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="156,41.6"
-          Id="Package\Load_DWH_F_Staff\Lookup_D_Store"
-          TopLeft="414.736257556212,195.230765963976" />
-        <NodeLayout
-          Size="168,41.6"
-          Id="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff"
-          TopLeft="412.307686163829,72.230767796819" />
-        <NodeLayout
           Size="172.8,41.6"
           Id="Package\Load_DWH_F_Staff\DEST_DWH_F_Staff"
           TopLeft="385.52846578365,601.243746977988" />
+        <NodeLayout
+          Size="156,41.6"
+          Id="Package\Load_DWH_F_Staff\Lookup_D_Store"
+          TopLeft="396.16482894525,195.230765963976" />
+        <NodeLayout
+          Size="168,41.6"
+          Id="Package\Load_DWH_F_Staff\SRC_DWH_D_Staff"
+          TopLeft="393.02197183706,109.701355999269" />
         <NodeLayout
           Size="136.8,41.6"
           Id="Package\Load_DWH_F_Staff\Check_NULL"
@@ -1270,18 +1270,18 @@ where is_last=1;</property>
           TopLeft="378.021972389012,398.555438649017" />
         <EdgeLayout
           Id="Package\Load_DWH_F_Staff.Paths[OLE DB Source Output]"
-          TopLeft="494.52197186002,113.830767796819">
+          TopLeft="475.593400391155,151.301355999269">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,81.399998167157"
+              EndConnector="0,43.9294099647073"
               Start="0,0"
-              End="0,73.899998167157">
+              End="0,36.4294099647073">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,73.899998167157" />
+                    End="0,36.4294099647073" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1340,37 +1340,25 @@ where is_last=1;</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Load_DWH_F_Staff.Paths[Lookup Match Output]"
-          TopLeft="492.736257556212,236.830765963976">
+          TopLeft="472.336257576891,236.830765963976">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-22.2285713476796,72.3999983012672"
+              EndConnector="0,72.399998301267"
               Start="0,0"
-              End="-22.2285713476796,64.8999983012672">
+              End="0,64.899998301267">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,32.1999991506336" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,32.1999991506336"
-                    Point2="0,36.1999991506336"
-                    Point3="-4,36.1999991506336" />
-                  <mssgle:LineSegment
-                    End="-18.2285713476796,36.1999991506336" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-18.2285713476796,36.1999991506336"
-                    Point2="-22.2285713476796,36.1999991506336"
-                    Point3="-22.2285713476796,40.1999991506336" />
-                  <mssgle:LineSegment
-                    End="-22.2285713476796,64.8999983012672" />
+                    End="0,64.899998301267" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-59.3056723925898,41.1999991506336,96.3827734375,11.609375"
+              BoundingBox="-48.19138671875,26.6453116506335,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -1400,12 +1388,25 @@ where is_last=1;</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
+    design-time-name="Package\Load_DWH_F_Staff\DEST_DWH_F_Staff">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
     design-time-name="Package\Load_DWH_F_Staff\Lookup_D_Store">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:string">false</Value>
+          type="q2:boolean">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -1415,7 +1416,7 @@ where is_last=1;</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:string">0</Value>
+          type="q4:int">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1431,35 +1432,22 @@ where is_last=1;</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Load_DWH_F_Staff\DEST_DWH_F_Staff">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
     design-time-name="Package\Load_DWH_F_Staff\Check Existing Records">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:string">false</Value>
+          type="q2:boolean">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
         <Value
-          type="q3:string">[DWH].[F_Staff]</Value>
+          type="q3:string">[DWH].[F_Staff_Attendance]</Value>
       </Property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:string">0</Value>
+          type="q4:int">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>

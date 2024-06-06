@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="9"
-  DTS:VersionGUID="{D9FE959D-E198-4018-9106-08FE2C4E4AEC}">
+  DTS:VersionBuild="13"
+  DTS:VersionGUID="{A5828C81-F66B-4E78-AC38-5E3D228CC97B}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -30,7 +30,7 @@
       <DTS:ObjectData>
         <ExecutePackageTask>
           <UseProjectReference>True</UseProjectReference>
-          <PackageName>From Source to F_Sales.dtsx</PackageName>
+          <PackageName>Batch_F_Sales.dtsx</PackageName>
         </ExecutePackageTask>
       </DTS:ObjectData>
     </DTS:Executable>
@@ -157,60 +157,48 @@
         <NodeLayout
           Size="142.4,45.6"
           Id="Package\Load_F_Sales"
-          TopLeft="828.888890653375,252.772549241922" />
+          TopLeft="766.031747662426,204.596078695915" />
         <NodeLayout
           Size="137.6,41.6"
           Id="Package\Sequence Container\Load_D_City"
-          TopLeft="85.6857145396426,18.7176468825361" />
+          TopLeft="39.9714287280431,18.7176468825361" />
         <NodeLayout
           Size="164.8,41.6"
           Id="Package\Sequence Container\Load_D_Customer"
-          TopLeft="75.6857145183553,87.1999999544199" />
+          TopLeft="96.4000002767362,76.4941176108629" />
         <NodeLayout
           Size="151.2,41.6"
           Id="Package\Sequence Container\Load_D_Orders"
-          TopLeft="76.3904775979773,273.260784264235" />
+          TopLeft="34.9619060812152,247.260784287025" />
         <NodeLayout
           Size="156,41.6"
           Id="Package\Sequence Container\Load_D_Product"
-          TopLeft="67.1714294518135,210.658823184881" />
+          TopLeft="104.314286673738,186.952940852719" />
         <NodeLayout
           Size="144.8,41.6"
           Id="Package\Sequence Container\Load_D_Store"
-          TopLeft="79.9714288131927,153.623529397018" />
+          TopLeft="22.8285715486934,132.976470591587" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="298.4,369.6"
-          Size="298.4,412.8"
+          PanelSize="298.4,323.2"
+          Size="298.4,366.4"
           Id="Package\Sequence Container"
-          TopLeft="435.317461244137,83.7254901402211" />
+          TopLeft="375.317461116413,42.4313725293582" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="733.717461244137,290.125490140221">
+          TopLeft="673.717461116413,226.513725612637">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="95.1714294092382,-14.552940898299"
+              EndConnector="92.3142865460129,0"
               Start="0,0"
-              End="87.6714294092382,-14.552940898299">
+              End="84.8142865460129,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="43.5857147046191,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="43.5857147046191,0"
-                    Point2="47.5857147046191,0"
-                    Point3="47.5857147046191,-4" />
-                  <mssgle:LineSegment
-                    End="47.5857147046191,-10.552940898299" />
-                  <mssgle:CubicBezierSegment
-                    Point1="47.5857147046191,-10.552940898299"
-                    Point2="47.5857147046191,-14.552940898299"
-                    Point3="51.5857147046191,-14.552940898299" />
-                  <mssgle:LineSegment
-                    End="87.6714294092382,-14.552940898299" />
+                    End="84.8142865460129,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
