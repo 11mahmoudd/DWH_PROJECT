@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Batch_F_Staff"
   DTS:PackageType="5"
-  DTS:VersionBuild="8"
-  DTS:VersionGUID="{9BF29A87-71D1-4B10-8C96-96A7767ACA23}">
+  DTS:VersionBuild="9"
+  DTS:VersionGUID="{02984BB7-C534-4EFA-BCFE-ABF4E95F7B7A}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -30,7 +30,7 @@
       <DTS:ObjectData>
         <ExecutePackageTask>
           <UseProjectReference>True</UseProjectReference>
-          <PackageName>Batch_F_Staff_Attendance.dtsx</PackageName>
+          <PackageName>Fact_Staff_Attendance.dtsx</PackageName>
         </ExecutePackageTask>
       </DTS:ObjectData>
     </DTS:Executable>
@@ -78,6 +78,23 @@
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\STG_Staff_Attendance"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{21BD929A-6E6D-46B7-8451-C29B79496F7B}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="STG_Staff_Attendance"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>From Source to STG_Staff_Attendance.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
       </DTS:Executables>
     </DTS:Executable>
   </DTS:Executables>
@@ -110,32 +127,42 @@
         <NodeLayout
           Size="141.6,41.6"
           Id="Package\Sequence Container\Load_D_Staff"
-          TopLeft="34.4285721660268,108.882353231414" />
+          TopLeft="20.142857849902,166.235294357613" />
         <NodeLayout
           Size="144.8,41.6"
           Id="Package\Sequence Container\Load_D_Store"
-          TopLeft="31.4285713677504,30.9411764960594" />
+          TopLeft="26.4285713571067,96.705882320767" />
+        <NodeLayout
+          Size="184,41.6"
+          Id="Package\Sequence Container\STG_Staff_Attendance"
+          TopLeft="47.1142862267033,26.6705880884996" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="204.8,191.2"
-          Size="204.8,234.4"
+          PanelSize="272,263.2"
+          Size="272,306.4"
           Id="Package\Sequence Container"
           TopLeft="193.571428983491,97.8823528553788" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="398.371428983491,215.758823429873">
+          TopLeft="465.571428983491,266.135294004368">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="82.3428576263847,0"
+              EndConnector="85.142857626385,-22.5"
               Start="0,0"
-              End="74.8428576263847,0">
+              End="85.142857626385,-15">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="74.8428576263847,0" />
+                    End="81.142857626385,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="81.142857626385,0"
+                    Point2="85.142857626385,0"
+                    Point3="85.142857626385,-4" />
+                  <mssgle:LineSegment
+                    End="85.142857626385,-15" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>

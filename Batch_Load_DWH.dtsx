@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="16"
-  DTS:VersionGUID="{EB57DF37-9F3D-4134-8F60-22C8E1CCB270}">
+  DTS:VersionBuild="18"
+  DTS:VersionGUID="{88E4AB85-6216-4BC5-851F-07015B8566EA}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -214,6 +214,23 @@
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\STG_Staff_Attendance"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{4A8584FE-6B99-4839-9FF6-4064BBB91D70}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="STG_Staff_Attendance"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>From Source to STG_Staff_Attendance.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
       </DTS:Executables>
     </DTS:Executable>
   </DTS:Executables>
@@ -288,24 +305,28 @@
           Id="Package\Sequence Container\Dim_Staff"
           TopLeft="30.0285721447401,227.447058600321" />
         <NodeLayout
+          Size="128,41.6"
+          Id="Package\Sequence Container\Dim_Store"
+          TopLeft="186.914286769532,277.47058797455" />
+        <NodeLayout
           Size="148.8,41.6"
           Id="Package\Sequence Container\STG_Inventory"
           TopLeft="14.3142863970024,329.58823486848" />
         <NodeLayout
           Size="128,41.6"
-          Id="Package\Sequence Container\Dim_Store"
-          TopLeft="186.914286769532,277.47058797455" />
-        <NodeLayout
-          Size="128,41.6"
           Id="Package\Sequence Container\STG_Sales"
           TopLeft="186.200001053725,386.341176165604" />
+        <NodeLayout
+          Size="184,41.6"
+          Id="Package\Sequence Container\STG_Staff_Attendance"
+          TopLeft="24.2857149760334,447.19999958978" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="357.6,483.2"
-          Size="357.6,526.4"
+          PanelSize="357.6,494.4"
+          Size="357.6,537.6"
           Id="Package\Sequence Container"
-          TopLeft="300.000000638622,68.0588234697555" />
+          TopLeft="300.000000638622,117.758823879975" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="861.114287184635,279.270588008735">
@@ -364,13 +385,13 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="657.600000638622,331.258823469755">
+          TopLeft="657.600000638622,386.558823879975">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="33.114286546013,-52.7529413427031"
+              EndConnector="33.114286546013,-108.052941752923"
               Start="0,0"
-              End="25.614286546013,-52.7529413427031">
+              End="25.614286546013,-108.052941752923">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -381,13 +402,13 @@
                     Point2="16.5571432730065,0"
                     Point3="16.5571432730065,-4" />
                   <mssgle:LineSegment
-                    End="16.5571432730065,-48.7529413427031" />
+                    End="16.5571432730065,-104.052941752923" />
                   <mssgle:CubicBezierSegment
-                    Point1="16.5571432730065,-48.7529413427031"
-                    Point2="16.5571432730065,-52.7529413427031"
-                    Point3="20.5571432730065,-52.7529413427031" />
+                    Point1="16.5571432730065,-104.052941752923"
+                    Point2="16.5571432730065,-108.052941752923"
+                    Point3="20.5571432730065,-108.052941752923" />
                   <mssgle:LineSegment
-                    End="25.614286546013,-52.7529413427031" />
+                    End="25.614286546013,-108.052941752923" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>

@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="3"
-  DTS:VersionGUID="{C82C26C4-6643-4D77-B8E7-62118E2FCF5C}">
+  DTS:VersionBuild="4"
+  DTS:VersionGUID="{63FC70E6-2D62-4E45-8ECD-900A5CE93956}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -78,6 +78,23 @@
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\STG_Inventory"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{F292E263-EF4F-46AA-859D-FBF999BB7B92}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="STG_Inventory"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>From Source to STG_Inventory.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
       </DTS:Executables>
     </DTS:Executable>
   </DTS:Executables>
@@ -106,36 +123,52 @@
         <NodeLayout
           Size="163.2,41.6"
           Id="Package\Load_F_Inventory"
-          TopLeft="483.571429473101,202.576470272527" />
+          TopLeft="511.428572389544,187.282352638874" />
         <NodeLayout
           Size="156,41.6"
           Id="Package\Sequence Container\Load_D_Product"
-          TopLeft="20.5000000319311,84.7117643566598" />
+          TopLeft="40.5000000745058,178.005881921943" />
         <NodeLayout
           Size="144.8,41.6"
           Id="Package\Sequence Container\Load_D_Store"
-          TopLeft="27.5857136668602,5.5" />
+          TopLeft="41.871427982985,103.382352855379" />
+        <NodeLayout
+          Size="148.8,41.6"
+          Id="Package\Sequence Container\STG_Inventory"
+          TopLeft="58.4285719531532,26.2941175538879" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="204.8,182.4"
-          Size="204.8,225.6"
+          PanelSize="225.6,274.4"
+          Size="225.6,317.6"
           Id="Package\Sequence Container"
-          TopLeft="187.857143257041,107.058823435571" />
+          TopLeft="187.857143257041,36.7058823207675" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="392.657143257041,221.617646854049">
+          TopLeft="413.457143257041,195.505882320767">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="90.9142862160597,0"
+              EndConnector="97.9714291325035,12.5764703181066"
               Start="0,0"
-              End="83.4142862160597,0">
+              End="90.4714291325035,12.5764703181066">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="83.4142862160597,0" />
+                    End="44.9857145662518,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="44.9857145662518,0"
+                    Point2="48.9857145662518,0"
+                    Point3="48.9857145662518,4" />
+                  <mssgle:LineSegment
+                    End="48.9857145662518,8.5764703181066" />
+                  <mssgle:CubicBezierSegment
+                    Point1="48.9857145662518,8.5764703181066"
+                    Point2="48.9857145662518,12.5764703181066"
+                    Point3="52.9857145662518,12.5764703181066" />
+                  <mssgle:LineSegment
+                    End="90.4714291325035,12.5764703181066" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>

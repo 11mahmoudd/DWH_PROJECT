@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">WIN-G21BVJ4FL1C</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAGKqztWB/JE+t9gy+M8VbCwAAAAACAAAAAAAQZgAAAAEAACAAAABFg8sTAfEIZzGv0I+jW9bk1T8wa+m1TQkIYCXvudXv7gAAAAAOgAAAAAIAACAAAAA6ZtY/lX14nqypyokk6PVZqFoyrYXK7iSQmnoyU7pik5AAAABz0wcmjiHLmrzx+PQOsNbtgQCa0l4Fi0C+64G9J3glqN+bYAyjdAE6Rg8JVRdoHw4ZpPVomz2yqUuIwglstVXtk5PNaiG9BPd3ML/U67oZ+Jrp0jdEAuSXBro5vOmaqi/DjHWiS81cShbNQ4O6xy/Z8Jkw1FeMhkO4S0L9y+QH1Jflig+6Et1CWgyXBc2ijdxAAAAAsU6GyiBVQTkYLqWvJBPDeqWgFFpCeK1dNhFGS/i7uCA4cAqXQCLbpRAnf5b/I5Qq4Vj8QcMEXl75B3C3rSdjRw==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAGKqztWB/JE+t9gy+M8VbCwAAAAACAAAAAAAQZgAAAAEAACAAAABEfINU1KQydtKZpL0y9ScN7lEGZGUIiQWRibD6Z49kgwAAAAAOgAAAAAIAACAAAAD6PIW/yCQBnydHHjZuceIL/8ju4Gil90T4WOXFG8AMsJAAAABlE+rsgyzBzGdRFQ/iRwn6NTtWOZWHV0q8m9X/zYBtZZDRCo5mtfQwj82P77NZGj8JlO940waib2Lf+lspZjVQs+Lo+DtyNoc7j20IslEdD+KHvOHTlUZayiAh0AYBLV2SFIUzGL6RlVz8q47vx8MEJEEm23pKqURa1Y5CzOWQE+ErzcObzDo+l5TGBmUwywtAAAAAKEQAmetdSM4+jnikkzWKe0iBbQRLr/07b8TD+dwOnbSA7/QAERpdREgJvmAjeRoHy04qqhSWmyOQp6G6mwqfsQ==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -45,6 +45,7 @@
           <SSIS:Package SSIS:Name="Batch_Load_DWH.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="Batch_F_Staff_Attendance.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="Fact_Staff_Attendance.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="From Source to STG_Staff_Attendance.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
           <SSIS:ConnectionManager SSIS:Name="WIN-G21BVJ4FL1C.DWH_PROJECT.conmgr" />
@@ -343,10 +344,10 @@
                 <SSIS:Property SSIS:Name="Name">From Source to STG_Sales</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">80</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">82</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{06A18B5C-F5A4-4C63-94D1-75A20EDCA93C}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{B465A452-4E84-44EB-B12D-6BE4D431C9A9}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -449,6 +450,23 @@
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionGUID">{C4894B18-F439-481F-A45B-B652AE9ECB65}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="From Source to STG_Staff_Attendance.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{514B509D-1FB8-478A-B9A8-4972A7C3E246}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">From Source to STG_Staff_Attendance</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{E17B1EE8-779A-4338-BB4A-7980615905DD}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>

@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="81"
-  DTS:VersionGUID="{D179B21E-9127-4AA6-99DF-B722F3CC99A0}">
+  DTS:VersionBuild="82"
+  DTS:VersionGUID="{D56866D9-F4D1-4B71-B04F-4A65904B1921}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -6116,60 +6116,60 @@ where [refTable].[src_id] = ?</property>
               name="contact_null"
               startId="Package\Load_DWH_D_Orders\Conditional Split.Outputs[contact_null]" />
             <path
-              refId="Package\Load_DWH_D_Orders.Paths[Derived Column Output3]"
-              endId="Package\Load_DWH_D_Orders\Union All 1.Inputs[Union All Input 3]"
-              name="Derived Column Output"
-              startId="Package\Load_DWH_D_Orders\null_Fname.Outputs[Derived Column Output]" />
-            <path
-              refId="Package\Load_DWH_D_Orders.Paths[Derived Column Output2]"
-              endId="Package\Load_DWH_D_Orders\Union All 1.Inputs[Union All Input 2]"
-              name="Derived Column Output"
-              startId="Package\Load_DWH_D_Orders\null_contact.Outputs[Derived Column Output]" />
-            <path
-              refId="Package\Load_DWH_D_Orders.Paths[Derived Column Output1]"
-              endId="Package\Load_DWH_D_Orders\Union All 1.Inputs[Union All Input 1]"
-              name="Derived Column Output"
-              startId="Package\Load_DWH_D_Orders\Derived Column.Outputs[Derived Column Output]" />
-            <path
-              refId="Package\Load_DWH_D_Orders.Paths[Derived Column Output6]"
-              endId="Package\Load_DWH_D_Orders\Union All 1.Inputs[Union All Input 6]"
-              name="Derived Column Output"
-              startId="Package\Load_DWH_D_Orders\null_shipping.Outputs[Derived Column Output]" />
-            <path
-              refId="Package\Load_DWH_D_Orders.Paths[Derived Column Output]"
-              endId="Package\Load_DWH_D_Orders\Conditional Split.Inputs[Conditional Split Input]"
-              name="Derived Column Output"
-              startId="Package\Load_DWH_D_Orders\Prepare New Records.Outputs[Derived Column Output]" />
-            <path
-              refId="Package\Load_DWH_D_Orders.Paths[Derived Column Output7]"
-              endId="Package\Load_DWH_D_Orders\Union All 1.Inputs[Union All Input 7]"
-              name="Derived Column Output"
-              startId="Package\Load_DWH_D_Orders\null_store.Outputs[Derived Column Output]" />
-            <path
-              refId="Package\Load_DWH_D_Orders.Paths[Derived Column Output5]"
-              endId="Package\Load_DWH_D_Orders\Union All 1.Inputs[Union All Input 5]"
-              name="Derived Column Output"
-              startId="Package\Load_DWH_D_Orders\null_quantity.Outputs[Derived Column Output]" />
-            <path
-              refId="Package\Load_DWH_D_Orders.Paths[Derived Column Output8]"
-              endId="Package\Load_DWH_D_Orders\Union All 1.Inputs[Union All Input 8]"
-              name="Derived Column Output"
-              startId="Package\Load_DWH_D_Orders\null_ammount.Outputs[Derived Column Output]" />
-            <path
               refId="Package\Load_DWH_D_Orders.Paths[Derived Column Output9]"
-              endId="Package\Load_DWH_D_Orders\Union All 1.Inputs[Union All Input 9]"
-              name="Derived Column Output"
-              startId="Package\Load_DWH_D_Orders\Null_orderDate.Outputs[Derived Column Output]" />
-            <path
-              refId="Package\Load_DWH_D_Orders.Paths[Derived Column Output10]"
               endId="Package\Load_DWH_D_Orders\Union All 1.Inputs[Union All Input 10]"
               name="Derived Column Output"
               startId="Package\Load_DWH_D_Orders\Null_payment.Outputs[Derived Column Output]" />
             <path
-              refId="Package\Load_DWH_D_Orders.Paths[Derived Column Output4]"
+              refId="Package\Load_DWH_D_Orders.Paths[Derived Column Output8]"
+              endId="Package\Load_DWH_D_Orders\Union All 1.Inputs[Union All Input 9]"
+              name="Derived Column Output"
+              startId="Package\Load_DWH_D_Orders\Null_orderDate.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Load_DWH_D_Orders.Paths[Derived Column Output7]"
+              endId="Package\Load_DWH_D_Orders\Union All 1.Inputs[Union All Input 8]"
+              name="Derived Column Output"
+              startId="Package\Load_DWH_D_Orders\null_ammount.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Load_DWH_D_Orders.Paths[Derived Column Output6]"
+              endId="Package\Load_DWH_D_Orders\Union All 1.Inputs[Union All Input 5]"
+              name="Derived Column Output"
+              startId="Package\Load_DWH_D_Orders\null_quantity.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Load_DWH_D_Orders.Paths[Derived Column Output5]"
+              endId="Package\Load_DWH_D_Orders\Union All 1.Inputs[Union All Input 7]"
+              name="Derived Column Output"
+              startId="Package\Load_DWH_D_Orders\null_store.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Load_DWH_D_Orders.Paths[Derived Column Output10]"
               endId="Package\Load_DWH_D_Orders\Union All 1.Inputs[Union All Input 4]"
               name="Derived Column Output"
               startId="Package\Load_DWH_D_Orders\Derived Column 2.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Load_DWH_D_Orders.Paths[Derived Column Output3]"
+              endId="Package\Load_DWH_D_Orders\Union All 1.Inputs[Union All Input 6]"
+              name="Derived Column Output"
+              startId="Package\Load_DWH_D_Orders\null_shipping.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Load_DWH_D_Orders.Paths[Derived Column Output2]"
+              endId="Package\Load_DWH_D_Orders\Union All 1.Inputs[Union All Input 1]"
+              name="Derived Column Output"
+              startId="Package\Load_DWH_D_Orders\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Load_DWH_D_Orders.Paths[Derived Column Output1]"
+              endId="Package\Load_DWH_D_Orders\Union All 1.Inputs[Union All Input 2]"
+              name="Derived Column Output"
+              startId="Package\Load_DWH_D_Orders\null_contact.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Load_DWH_D_Orders.Paths[Derived Column Output]"
+              endId="Package\Load_DWH_D_Orders\Union All 1.Inputs[Union All Input 3]"
+              name="Derived Column Output"
+              startId="Package\Load_DWH_D_Orders\null_Fname.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Load_DWH_D_Orders.Paths[Derived Column Output4]"
+              endId="Package\Load_DWH_D_Orders\Conditional Split.Inputs[Conditional Split Input]"
+              name="Derived Column Output"
+              startId="Package\Load_DWH_D_Orders\Prepare New Records.Outputs[Derived Column Output]" />
             <path
               refId="Package\Load_DWH_D_Orders.Paths[email_null]"
               endId="Package\Load_DWH_D_Orders\null_ammount.Inputs[Derived Column Input]"
@@ -8657,7 +8657,7 @@ where [refTable].[OrderID] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load_DWH_D_Orders.Paths[Derived Column Output]"
+          Id="Package\Load_DWH_D_Orders.Paths[Derived Column Output4]"
           TopLeft="539.066660837677,462.537535064507">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -8843,7 +8843,7 @@ where [refTable].[OrderID] = ?</property>
           Id="Package\Load_DWH_D_Orders\Union All 1"
           TopLeft="529.285715412424,963.717646825561" />
         <EdgeLayout
-          Id="Package\Load_DWH_D_Orders.Paths[Derived Column Output1]"
+          Id="Package\Load_DWH_D_Orders.Paths[Derived Column Output2]"
           TopLeft="967.828573326189,660.494117702023">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -8877,7 +8877,7 @@ where [refTable].[OrderID] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load_DWH_D_Orders.Paths[Derived Column Output2]"
+          Id="Package\Load_DWH_D_Orders.Paths[Derived Column Output1]"
           TopLeft="777.600001511404,824.811764630139">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -8911,7 +8911,7 @@ where [refTable].[OrderID] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load_DWH_D_Orders.Paths[Derived Column Output3]"
+          Id="Package\Load_DWH_D_Orders.Paths[Derived Column Output]"
           TopLeft="580.685715380494,829.399999920235">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -8945,7 +8945,7 @@ where [refTable].[OrderID] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load_DWH_D_Orders.Paths[Derived Column Output4]"
+          Id="Package\Load_DWH_D_Orders.Paths[Derived Column Output10]"
           TopLeft="301.200000468322,820.258823458361">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -8979,7 +8979,7 @@ where [refTable].[OrderID] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load_DWH_D_Orders.Paths[Derived Column Output5]"
+          Id="Package\Load_DWH_D_Orders.Paths[Derived Column Output6]"
           TopLeft="617.766661034585,698.161064712216">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -9013,7 +9013,7 @@ where [refTable].[OrderID] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load_DWH_D_Orders.Paths[Derived Column Output6]"
+          Id="Package\Load_DWH_D_Orders.Paths[Derived Column Output3]"
           TopLeft="779.595232806795,698.266946976008">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -9047,7 +9047,7 @@ where [refTable].[OrderID] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load_DWH_D_Orders.Paths[Derived Column Output7]"
+          Id="Package\Load_DWH_D_Orders.Paths[Derived Column Output5]"
           TopLeft="420.566660630125,689.855182231918">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -9081,7 +9081,7 @@ where [refTable].[OrderID] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load_DWH_D_Orders.Paths[Derived Column Output8]"
+          Id="Package\Load_DWH_D_Orders.Paths[Derived Column Output7]"
           TopLeft="214.538088740834,665.149299865571">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -9115,7 +9115,7 @@ where [refTable].[OrderID] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load_DWH_D_Orders.Paths[Derived Column Output9]"
+          Id="Package\Load_DWH_D_Orders.Paths[Derived Column Output8]"
           TopLeft="356.138089038857,576.749300025102">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -9149,7 +9149,7 @@ where [refTable].[OrderID] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load_DWH_D_Orders.Paths[Derived Column Output10]"
+          Id="Package\Load_DWH_D_Orders.Paths[Derived Column Output9]"
           TopLeft="826.909518618395,585.925770605293">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -9248,6 +9248,32 @@ where [refTable].[OrderID] = ?</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
+    design-time-name="Package\Load_DWH_D_Orders\DEST_DWH_D_Orders">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load_DWH_D_Orders\SRC_STG_Orders">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
     design-time-name="Package\Load_DWH_D_Orders\Lookup on Dim">
     <Properties>
       <Property>
@@ -9267,19 +9293,6 @@ where [refTable].[OrderID] = ?</property>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load_DWH_D_Orders\SRC_STG_Orders">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
@@ -9699,19 +9712,6 @@ where [refTable].[OrderID] = ?</property>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load_DWH_D_Orders\DEST_DWH_D_Orders">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>

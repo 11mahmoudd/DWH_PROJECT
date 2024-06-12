@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="13"
-  DTS:VersionGUID="{A5828C81-F66B-4E78-AC38-5E3D228CC97B}">
+  DTS:VersionBuild="15"
+  DTS:VersionGUID="{95D43E6E-CAC0-45B1-AE75-DBB939639402}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -30,7 +30,7 @@
       <DTS:ObjectData>
         <ExecutePackageTask>
           <UseProjectReference>True</UseProjectReference>
-          <PackageName>Batch_F_Sales.dtsx</PackageName>
+          <PackageName>Fact_Sales.dtsx</PackageName>
         </ExecutePackageTask>
       </DTS:ObjectData>
     </DTS:Executable>
@@ -129,6 +129,23 @@
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\STG_Sales"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{5CE0DA05-F8C1-448E-A993-8EB875EB588A}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="STG_Sales"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>From Source to STG_Sales.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
       </DTS:Executables>
     </DTS:Executable>
   </DTS:Executables>
@@ -153,7 +170,7 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="142.4,45.6"
           Id="Package\Load_F_Sales"
@@ -161,44 +178,48 @@
         <NodeLayout
           Size="137.6,41.6"
           Id="Package\Sequence Container\Load_D_City"
-          TopLeft="39.9714287280431,18.7176468825361" />
+          TopLeft="46.4000001702993,66.8941174285428" />
         <NodeLayout
           Size="164.8,41.6"
           Id="Package\Sequence Container\Load_D_Customer"
-          TopLeft="96.4000002767362,76.4941176108629" />
+          TopLeft="102.828571718992,124.67058815687" />
         <NodeLayout
           Size="151.2,41.6"
           Id="Package\Sequence Container\Load_D_Orders"
-          TopLeft="34.9619060812152,247.260784287025" />
+          TopLeft="41.3904775234714,295.437254833032" />
         <NodeLayout
           Size="156,41.6"
           Id="Package\Sequence Container\Load_D_Product"
-          TopLeft="104.314286673738,186.952940852719" />
+          TopLeft="110.742858115994,235.129411398726" />
         <NodeLayout
           Size="144.8,41.6"
           Id="Package\Sequence Container\Load_D_Store"
-          TopLeft="22.8285715486934,132.976470591587" />
+          TopLeft="29.2571429909495,181.152941137594" />
+        <NodeLayout
+          Size="128,41.6"
+          Id="Package\Sequence Container\STG_Sales"
+          TopLeft="137.657143948881,17.105882297977" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="298.4,323.2"
-          Size="298.4,366.4"
+          PanelSize="338.4,392"
+          Size="338.4,435.2"
           Id="Package\Sequence Container"
-          TopLeft="375.317461116413,42.4313725293582" />
+          TopLeft="375.317461116413,2.66666668186056" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="673.717461116413,226.513725612637">
+          TopLeft="713.717461116413,223.831372688888">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="92.3142865460129,0"
+              EndConnector="52.314286546013,0"
               Start="0,0"
-              End="84.8142865460129,0">
+              End="44.814286546013,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="84.8142865460129,0" />
+                    End="44.814286546013,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
