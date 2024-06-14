@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="From Source to D_Store"
   DTS:PackageType="5"
-  DTS:VersionBuild="50"
-  DTS:VersionGUID="{7CFF365E-08B7-4F14-B610-4B9F8052CB43}">
+  DTS:VersionBuild="55"
+  DTS:VersionGUID="{3F288E6F-D4FB-4F9B-ADA7-2DA5FF268976}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -4211,7 +4211,7 @@ where [refTable].[StoreID] = ?</property>
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{1F587408-40AB-468D-A0A1-1FBAB67F1E7B}"
-          SQLTask:SqlStatementSource="  truncate table STG.Store" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="truncate table STG.Store" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -4286,7 +4286,7 @@ where [refTable].[StoreID] = ?</property>
         <NodeLayout
           Size="174.4,41.6"
           Id="Package\Load_DWH_D_Store"
-          TopLeft="372.857143650858,367.388234993826" />
+          TopLeft="372.857143650858,350.564705596808" />
         <NodeLayout
           Size="156.8,41.6"
           Id="Package\Load_STG_Store"
@@ -4298,7 +4298,7 @@ where [refTable].[StoreID] = ?</property>
         <NodeLayout
           Size="165.6,41.6"
           Id="Package\Update Conf Table"
-          TopLeft="375.714286386358,451.423529157723" />
+          TopLeft="373.571429238939,439.188235050801" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="459.314286375715,110.776470580192">
@@ -4349,14 +4349,14 @@ where [refTable].[StoreID] = ?</property>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,73.847058691482"
+              EndConnector="0,57.0235292944638"
               Start="0,0"
-              End="0,66.347058691482">
+              End="0,49.5235292944638">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,66.347058691482" />
+                    End="0,49.5235292944638" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4367,18 +4367,18 @@ where [refTable].[StoreID] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="459.285715018608,408.988234993826">
+          TopLeft="458.214286444899,392.164705596808">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,42.435294163897"
+              EndConnector="0,47.0235294539929"
               Start="0,0"
-              End="0,34.935294163897">
+              End="0,39.5235294539929">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,34.935294163897" />
+                    End="0,39.5235294539929" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4470,7 +4470,9 @@ where [refTable].[StoreID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -4504,7 +4506,9 @@ where [refTable].[StoreID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -4526,7 +4530,9 @@ where [refTable].[StoreID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -4548,7 +4554,9 @@ where [refTable].[StoreID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -4858,7 +4866,9 @@ where [refTable].[StoreID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -4892,7 +4902,9 @@ where [refTable].[StoreID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -4914,7 +4926,9 @@ where [refTable].[StoreID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -4948,7 +4962,9 @@ where [refTable].[StoreID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -4982,7 +4998,9 @@ where [refTable].[StoreID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -5016,7 +5034,9 @@ where [refTable].[StoreID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout

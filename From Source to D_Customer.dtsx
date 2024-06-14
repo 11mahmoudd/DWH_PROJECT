@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="From Source to D_Customer"
   DTS:PackageType="5"
-  DTS:VersionBuild="68"
-  DTS:VersionGUID="{602D356A-951E-4D3F-98BE-D228594BF10D}">
+  DTS:VersionBuild="72"
+  DTS:VersionGUID="{C2CBF9A4-CE82-45F1-B4F5-C41CEB7A4A4F}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -3518,17 +3518,17 @@ where [refTable].[src_id] = ?</property>
               name="city_null"
               startId="Package\Load_DWH_D_Customer\Conditional Split.Outputs[city_null]" />
             <path
-              refId="Package\Load_DWH_D_Customer.Paths[Derived Column Output6]"
+              refId="Package\Load_DWH_D_Customer.Paths[Derived Column Output]"
               endId="Package\Load_DWH_D_Customer\Union All 1.Inputs[Union All Input 6]"
               name="Derived Column Output"
               startId="Package\Load_DWH_D_Customer\Null_address.Outputs[Derived Column Output]" />
             <path
-              refId="Package\Load_DWH_D_Customer.Paths[Derived Column Output5]"
+              refId="Package\Load_DWH_D_Customer.Paths[Derived Column Output1]"
               endId="Package\Load_DWH_D_Customer\Union All 1.Inputs[Union All Input 5]"
               name="Derived Column Output"
               startId="Package\Load_DWH_D_Customer\null_f_name.Outputs[Derived Column Output]" />
             <path
-              refId="Package\Load_DWH_D_Customer.Paths[Derived Column Output4]"
+              refId="Package\Load_DWH_D_Customer.Paths[Derived Column Output2]"
               endId="Package\Load_DWH_D_Customer\Union All 1.Inputs[Union All Input 4]"
               name="Derived Column Output"
               startId="Package\Load_DWH_D_Customer\null_L_name.Outputs[Derived Column Output]" />
@@ -3538,17 +3538,17 @@ where [refTable].[src_id] = ?</property>
               name="Derived Column Output"
               startId="Package\Load_DWH_D_Customer\null_phone.Outputs[Derived Column Output]" />
             <path
-              refId="Package\Load_DWH_D_Customer.Paths[Derived Column Output2]"
+              refId="Package\Load_DWH_D_Customer.Paths[Derived Column Output4]"
               endId="Package\Load_DWH_D_Customer\Union All 1.Inputs[Union All Input 2]"
               name="Derived Column Output"
               startId="Package\Load_DWH_D_Customer\null_mail.Outputs[Derived Column Output]" />
             <path
-              refId="Package\Load_DWH_D_Customer.Paths[Derived Column Output]"
+              refId="Package\Load_DWH_D_Customer.Paths[Derived Column Output5]"
               endId="Package\Load_DWH_D_Customer\Conditional Split.Inputs[Conditional Split Input]"
               name="Derived Column Output"
               startId="Package\Load_DWH_D_Customer\Prepare New Records.Outputs[Derived Column Output]" />
             <path
-              refId="Package\Load_DWH_D_Customer.Paths[Derived Column Output1]"
+              refId="Package\Load_DWH_D_Customer.Paths[Derived Column Output6]"
               endId="Package\Load_DWH_D_Customer\Union All 1.Inputs[Union All Input 1]"
               name="Derived Column Output"
               startId="Package\Load_DWH_D_Customer\Null_city.Outputs[Derived Column Output]" />
@@ -3598,12 +3598,12 @@ where [refTable].[src_id] = ?</property>
               name="Phone_null"
               startId="Package\Load_DWH_D_Customer\Conditional Split.Outputs[Phone_null]" />
             <path
-              refId="Package\Load_DWH_D_Customer.Paths[Union All Output 11]"
+              refId="Package\Load_DWH_D_Customer.Paths[Union All Output 1]"
               endId="Package\Load_DWH_D_Customer\DEST_DWH_D_Customer.Inputs[OLE DB Destination Input]"
               name="Union All Output 1"
               startId="Package\Load_DWH_D_Customer\Union All 1.Outputs[Union All Output 1]" />
             <path
-              refId="Package\Load_DWH_D_Customer.Paths[Union All Output 1]"
+              refId="Package\Load_DWH_D_Customer.Paths[Union All Output 11]"
               endId="Package\Load_DWH_D_Customer\Prepare New Records.Inputs[Derived Column Input]"
               name="Union All Output 1"
               startId="Package\Load_DWH_D_Customer\Union All.Outputs[Union All Output 1]" />
@@ -4309,7 +4309,7 @@ WHERE LastUpdate &gt; '1/1/2023';</property>
                   dataType="System.Int32"
                   description="Specifies the mode used to access the database."
                   name="AccessMode"
-                  typeConverter="AccessMode">2</property>
+                  typeConverter="AccessMode">3</property>
                 <property
                   dataType="System.String"
                   description="The mappings between the parameters in the SQL command and variables."
@@ -4521,7 +4521,7 @@ WHERE LastUpdate &gt; '1/1/2023';</property>
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{1F587408-40AB-468D-A0A1-1FBAB67F1E7B}"
-          SQLTask:SqlStatementSource="  truncate table STG.Customer" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="truncate table STG.Customer" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -4710,6 +4710,30 @@ WHERE LastUpdate &gt; '1/1/2023';</property>
           Id="Package\Load_DWH_D_Customer\Lookup on Dim"
           TopLeft="536.428572570487,179.705882195422" />
         <NodeLayout
+          Size="154.4,41.6"
+          Id="Package\Load_DWH_D_Customer\Conditional Split"
+          TopLeft="527.857143980812,694.082352616084" />
+        <NodeLayout
+          Size="138.4,41.6"
+          Id="Package\Load_DWH_D_Customer\Null_address"
+          TopLeft="872.857144715227,700.658823435571" />
+        <NodeLayout
+          Size="120.8,41.6"
+          Id="Package\Load_DWH_D_Customer\null_mail"
+          TopLeft="320.000000681196,789.05882327604" />
+        <NodeLayout
+          Size="138.4,41.6"
+          Id="Package\Load_DWH_D_Customer\null_L_name"
+          TopLeft="643.571429941423,816.717646950906" />
+        <NodeLayout
+          Size="130.4,41.6"
+          Id="Package\Load_DWH_D_Customer\null_phone"
+          TopLeft="458.571429547607,813.764705642388" />
+        <NodeLayout
+          Size="173.6,41.6"
+          Id="Package\Load_DWH_D_Customer\SRC_STG_Customer"
+          TopLeft="517.261905678529,55.0588234811506" />
+        <NodeLayout
           Size="120,41.6"
           Id="Package\Load_DWH_D_Customer\Union All"
           TopLeft="530.000001128231,510.435293708097" />
@@ -4718,23 +4742,127 @@ WHERE LastUpdate &gt; '1/1/2023';</property>
           Id="Package\Load_DWH_D_Customer\Close the Changed Records"
           TopLeft="680.714287163348,409.882352581899" />
         <NodeLayout
+          Size="136,41.6"
+          Id="Package\Load_DWH_D_Customer\null_f_name"
+          TopLeft="790.714287397509,807.647058634506" />
+        <NodeLayout
           Size="179.2,41.6"
           Id="Package\Load_DWH_D_Customer\Prepare New Records"
           TopLeft="510.714286801462,596.047058429396" />
         <NodeLayout
-          Size="187.2,41.6"
-          Id="Package\Load_DWH_D_Customer\Check Existing Records"
-          TopLeft="680.714287163348,298.999999737915" />
-        <NodeLayout
-          Size="173.6,41.6"
-          Id="Package\Load_DWH_D_Customer\SRC_STG_Customer"
-          TopLeft="506.428572506625,55.0588234811506" />
+          Size="129.6,41.6"
+          Id="Package\Load_DWH_D_Customer\Union All 1"
+          TopLeft="547.142858307581,940.741176256764" />
         <NodeLayout
           Size="197.6,41.6"
           Id="Package\Load_DWH_D_Customer\DEST_DWH_D_Customer"
-          TopLeft="522.857143970169,1042.72941110246" />
+          TopLeft="502.023810947276,1041.06274446063" />
+        <NodeLayout
+          Size="118.4,41.6"
+          Id="Package\Load_DWH_D_Customer\Null_city"
+          TopLeft="220.714286184129,702.952941080619" />
+        <NodeLayout
+          Size="187.2,41.6"
+          Id="Package\Load_DWH_D_Customer\Check Existing Records"
+          TopLeft="680.714287163348,298.999999737915" />
         <EdgeLayout
-          Id="Package\Load_DWH_D_Customer.Paths[Union All Output 1]"
+          Id="Package\Load_DWH_D_Customer.Paths[city_null]"
+          TopLeft="527.857143980812,714.882352616083">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-188.742857796684,8.8705884645351"
+              Start="0,0"
+              End="-181.242857796684,8.8705884645351">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-90.3714288983418,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-90.3714288983418,0"
+                    Point2="-94.3714288983418,0"
+                    Point3="-94.3714288983418,4" />
+                  <mssgle:LineSegment
+                    End="-94.3714288983418,4.8705884645351" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-94.3714288983418,4.8705884645351"
+                    Point2="-94.3714288983418,8.8705884645351"
+                    Point3="-98.3714288983418,8.8705884645351" />
+                  <mssgle:LineSegment
+                    End="-181.242857796684,8.8705884645351" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-113.093167179592,-17.609375,37.4434765625,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_DWH_D_Customer.Paths[Changed]"
+          TopLeft="774.314287163348,340.599999737915">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="9.99999999999966,69.2823528439839"
+              Start="0,0"
+              End="9.99999999999966,61.7823528439839">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.641176421992" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,30.641176421992"
+                    Point2="0,34.641176421992"
+                    Point3="4,34.641176421992" />
+                  <mssgle:LineSegment
+                    End="5.99999999999966,34.641176421992" />
+                  <mssgle:CubicBezierSegment
+                    Point1="5.99999999999966,34.641176421992"
+                    Point2="9.99999999999966,34.641176421992"
+                    Point3="9.99999999999966,38.641176421992" />
+                  <mssgle:LineSegment
+                    End="9.99999999999966,61.7823528439839" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-14.8755078125002,39.641176421992,39.751015625,11.6630859375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_DWH_D_Customer.Paths[address_null]"
+          TopLeft="682.257143980812,718.170588025827">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="190.600000734414,0"
+              Start="0,0"
+              End="183.100000734414,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="183.100000734414,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="63.3908206797072,5,56.318359375,11.0625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_DWH_D_Customer.Paths[Union All Output 11]"
           TopLeft="590.000001128231,552.035293708097">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -4764,41 +4892,105 @@ WHERE LastUpdate &gt; '1/1/2023';</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load_DWH_D_Customer.Paths[OLE DB Source Output]"
-          TopLeft="593.228572506625,96.6588234811506">
+          Id="Package\Load_DWH_D_Customer.Paths[Union All Output 1]"
+          TopLeft="611.942858307581,982.341176256764">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="18.0000000638619,83.0470587142714"
+              EndConnector="-11.1190473603048,58.7215682038646"
               Start="0,0"
-              End="18.0000000638619,75.5470587142714">
+              End="-11.1190473603048,51.2215682038646">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,37.5235293571357" />
+                    End="0,25.3607841019323" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,37.5235293571357"
-                    Point2="0,41.5235293571357"
-                    Point3="4,41.5235293571357" />
+                    Point1="0,25.3607841019323"
+                    Point2="0,29.3607841019323"
+                    Point3="-4,29.3607841019323" />
                   <mssgle:LineSegment
-                    End="14.0000000638619,41.5235293571357" />
+                    End="-7.11904736030476,29.3607841019323" />
                   <mssgle:CubicBezierSegment
-                    Point1="14.0000000638619,41.5235293571357"
-                    Point2="18.0000000638619,41.5235293571357"
-                    Point3="18.0000000638619,45.5235293571357" />
+                    Point1="-7.11904736030476,29.3607841019323"
+                    Point2="-11.1190473603048,29.3607841019323"
+                    Point3="-11.1190473603048,33.3607841019323" />
                   <mssgle:LineSegment
-                    End="18.0000000638619,75.5470587142714" />
+                    End="-11.1190473603048,51.2215682038646" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_DWH_D_Customer.Paths[Phone_null]"
+          TopLeft="580.657143980812,735.682352616084">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-56.8857144332055,78.082353026304"
+              Start="0,0"
+              End="-56.8857144332055,70.582353026304">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.7134479983757" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,27.7134479983757"
+                    Point2="0,31.7134479983757"
+                    Point3="-4,31.7134479983757" />
+                  <mssgle:LineSegment
+                    End="-52.8857144332055,31.7134479983757" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-52.8857144332055,31.7134479983757"
+                    Point2="-56.8857144332055,31.7134479983757"
+                    Point3="-56.8857144332055,35.7134479983757" />
+                  <mssgle:LineSegment
+                    End="-56.8857144332055,70.582353026304" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-53.0099861228528,36.7134479983757,49.1342578125,11.0625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_DWH_D_Customer.Paths[OLE DB Source Output]"
+          TopLeft="607.645239124508,96.6588234811506">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,83.0470587142714"
+              Start="0,0"
+              End="0,75.5470587142714">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,75.5470587142714" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -4832,7 +5024,33 @@ WHERE LastUpdate &gt; '1/1/2023';</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_DWH_D_Customer.Paths[Not NULL]"
+          TopLeft="608.500001144197,735.682352616084">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,205.058823640681"
+              Start="0,0"
+              End="0,197.558823640681">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,197.558823640681" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-21.49693359375,94.0684743203403,42.9938671875,9.421875"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -4908,180 +5126,38 @@ WHERE LastUpdate &gt; '1/1/2023';</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load_DWH_D_Customer.Paths[Changed]"
-          TopLeft="774.314287163348,340.599999737915">
+          Id="Package\Load_DWH_D_Customer.Paths[last_name_null]"
+          TopLeft="619.697143980812,735.682352616084">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="9.99999999999966,69.2823528439839"
+              EndConnector="93.074285960611,81.0352943348225"
               Start="0,0"
-              End="9.99999999999966,61.7823528439839">
+              End="93.074285960611,73.5352943348225">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,30.641176421992" />
+                    End="0,32.2733830393997" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,30.641176421992"
-                    Point2="0,34.641176421992"
-                    Point3="4,34.641176421992" />
+                    Point1="0,32.2733830393997"
+                    Point2="0,36.2733830393997"
+                    Point3="4,36.2733830393997" />
                   <mssgle:LineSegment
-                    End="5.99999999999966,34.641176421992" />
+                    End="89.074285960611,36.2733830393997" />
                   <mssgle:CubicBezierSegment
-                    Point1="5.99999999999966,34.641176421992"
-                    Point2="9.99999999999966,34.641176421992"
-                    Point3="9.99999999999966,38.641176421992" />
+                    Point1="89.074285960611,36.2733830393997"
+                    Point2="93.074285960611,36.2733830393997"
+                    Point3="93.074285960611,40.2733830393997" />
                   <mssgle:LineSegment
-                    End="9.99999999999966,61.7823528439839" />
+                    End="93.074285960611,73.5352943348225" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-14.8755078125002,39.641176421992,39.751015625,11.6630859375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="154.4,41.6"
-          Id="Package\Load_DWH_D_Customer\Conditional Split"
-          TopLeft="527.857143980812,694.082352616084" />
-        <EdgeLayout
-          Id="Package\Load_DWH_D_Customer.Paths[Derived Column Output]"
-          TopLeft="602.685715391137,637.647058429396">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,56.4352941866874"
-              Start="0,0"
-              End="0,48.9352941866874">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,48.9352941866874" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="138.4,41.6"
-          Id="Package\Load_DWH_D_Customer\Null_address"
-          TopLeft="872.857144715227,700.658823435571" />
-        <EdgeLayout
-          Id="Package\Load_DWH_D_Customer.Paths[address_null]"
-          TopLeft="682.257143980812,718.170588025827">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="190.600000734414,0"
-              Start="0,0"
-              End="183.100000734414,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="183.100000734414,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="63.3908206797072,5,56.318359375,11.0625"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="118.4,41.6"
-          Id="Package\Load_DWH_D_Customer\Null_city"
-          TopLeft="220.714286184129,702.952941080619" />
-        <NodeLayout
-          Size="136,41.6"
-          Id="Package\Load_DWH_D_Customer\null_f_name"
-          TopLeft="790.714287397509,807.647058634506" />
-        <NodeLayout
-          Size="138.4,41.6"
-          Id="Package\Load_DWH_D_Customer\null_L_name"
-          TopLeft="643.571429941423,816.717646950906" />
-        <EdgeLayout
-          Id="Package\Load_DWH_D_Customer.Paths[city_null]"
-          TopLeft="527.857143980812,714.882352616083">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-188.742857796684,8.8705884645351"
-              Start="0,0"
-              End="-181.242857796684,8.8705884645351">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="-90.3714288983418,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-90.3714288983418,0"
-                    Point2="-94.3714288983418,0"
-                    Point3="-94.3714288983418,4" />
-                  <mssgle:LineSegment
-                    End="-94.3714288983418,4.8705884645351" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-94.3714288983418,4.8705884645351"
-                    Point2="-94.3714288983418,8.8705884645351"
-                    Point3="-98.3714288983418,8.8705884645351" />
-                  <mssgle:LineSegment
-                    End="-181.242857796684,8.8705884645351" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-113.093167179592,-17.609375,37.4434765625,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="120.8,41.6"
-          Id="Package\Load_DWH_D_Customer\null_mail"
-          TopLeft="320.000000681196,789.05882327604" />
-        <EdgeLayout
-          Id="Package\Load_DWH_D_Customer.Paths[email_null]"
-          TopLeft="556.257143980812,735.682352616084">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-175.857143299616,53.3764706599569"
-              Start="0,0"
-              End="-175.857143299616,45.8764706599569">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,10.3550356699126" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,10.3550356699126"
-                    Point2="0,14.3550356699126"
-                    Point3="-4,14.3550356699126" />
-                  <mssgle:LineSegment
-                    End="-171.857143299616,14.3550356699126" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-171.857143299616,14.3550356699126"
-                    Point2="-175.857143299616,14.3550356699126"
-                    Point3="-175.857143299616,18.3550356699126" />
-                  <mssgle:LineSegment
-                    End="-175.857143299616,45.8764706599569" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-110.785309931058,19.3550356699126,45.7134765625,11.0625"
+              BoundingBox="12.9781586053055,41.2733830393997,67.11796875,11.0625"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -5122,87 +5198,43 @@ WHERE LastUpdate &gt; '1/1/2023';</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load_DWH_D_Customer.Paths[last_name_null]"
-          TopLeft="619.697143980812,735.682352616084">
+          Id="Package\Load_DWH_D_Customer.Paths[email_null]"
+          TopLeft="556.257143980812,735.682352616084">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="93.074285960611,81.0352943348225"
+              EndConnector="-175.857143299616,53.3764706599569"
               Start="0,0"
-              End="93.074285960611,73.5352943348225">
+              End="-175.857143299616,45.8764706599569">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,32.2733830393997" />
+                    End="0,10.3550356699126" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,32.2733830393997"
-                    Point2="0,36.2733830393997"
-                    Point3="4,36.2733830393997" />
+                    Point1="0,10.3550356699126"
+                    Point2="0,14.3550356699126"
+                    Point3="-4,14.3550356699126" />
                   <mssgle:LineSegment
-                    End="89.074285960611,36.2733830393997" />
+                    End="-171.857143299616,14.3550356699126" />
                   <mssgle:CubicBezierSegment
-                    Point1="89.074285960611,36.2733830393997"
-                    Point2="93.074285960611,36.2733830393997"
-                    Point3="93.074285960611,40.2733830393997" />
+                    Point1="-171.857143299616,14.3550356699126"
+                    Point2="-175.857143299616,14.3550356699126"
+                    Point3="-175.857143299616,18.3550356699126" />
                   <mssgle:LineSegment
-                    End="93.074285960611,73.5352943348225" />
+                    End="-175.857143299616,45.8764706599569" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="12.9781586053055,41.2733830393997,67.11796875,11.0625"
+              BoundingBox="-110.785309931058,19.3550356699126,45.7134765625,11.0625"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="130.4,41.6"
-          Id="Package\Load_DWH_D_Customer\null_phone"
-          TopLeft="458.571429547607,813.764705642388" />
         <EdgeLayout
-          Id="Package\Load_DWH_D_Customer.Paths[Phone_null]"
-          TopLeft="580.657143980812,735.682352616084">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-56.8857144332055,78.082353026304"
-              Start="0,0"
-              End="-56.8857144332055,70.582353026304">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,27.7134479983757" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,27.7134479983757"
-                    Point2="0,31.7134479983757"
-                    Point3="-4,31.7134479983757" />
-                  <mssgle:LineSegment
-                    End="-52.8857144332055,31.7134479983757" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-52.8857144332055,31.7134479983757"
-                    Point2="-56.8857144332055,31.7134479983757"
-                    Point3="-56.8857144332055,35.7134479983757" />
-                  <mssgle:LineSegment
-                    End="-56.8857144332055,70.582353026304" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-53.0099861228528,36.7134479983757,49.1342578125,11.0625"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="129.6,41.6"
-          Id="Package\Load_DWH_D_Customer\Union All 1"
-          TopLeft="547.142858307581,940.741176256764" />
-        <EdgeLayout
-          Id="Package\Load_DWH_D_Customer.Paths[Derived Column Output1]"
+          Id="Package\Load_DWH_D_Customer.Paths[Derived Column Output6]"
           TopLeft="279.914286184129,744.552941080619">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -5232,11 +5264,37 @@ WHERE LastUpdate &gt; '1/1/2023';</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load_DWH_D_Customer.Paths[Derived Column Output2]"
+          Id="Package\Load_DWH_D_Customer.Paths[Derived Column Output5]"
+          TopLeft="602.685715391137,637.647058429396">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,56.4352941866874"
+              Start="0,0"
+              End="0,48.9352941866874">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48.9352941866874" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_DWH_D_Customer.Paths[Derived Column Output4]"
           TopLeft="380.400000681196,830.65882327604">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -5266,7 +5324,9 @@ WHERE LastUpdate &gt; '1/1/2023';</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -5300,11 +5360,13 @@ WHERE LastUpdate &gt; '1/1/2023';</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load_DWH_D_Customer.Paths[Derived Column Output4]"
+          Id="Package\Load_DWH_D_Customer.Paths[Derived Column Output2]"
           TopLeft="712.771429941423,858.317646950906">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -5334,11 +5396,13 @@ WHERE LastUpdate &gt; '1/1/2023';</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load_DWH_D_Customer.Paths[Derived Column Output5]"
+          Id="Package\Load_DWH_D_Customer.Paths[Derived Column Output1]"
           TopLeft="858.714287397509,849.247058634506">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -5368,11 +5432,13 @@ WHERE LastUpdate &gt; '1/1/2023';</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load_DWH_D_Customer.Paths[Derived Column Output6]"
+          Id="Package\Load_DWH_D_Customer.Paths[Derived Column Output]"
           TopLeft="942.057144715227,742.258823435571">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -5402,64 +5468,8 @@ WHERE LastUpdate &gt; '1/1/2023';</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load_DWH_D_Customer.Paths[Union All Output 11]"
-          TopLeft="611.942858307581,982.341176256764">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="9.71428566258783,60.3882348456917"
-              Start="0,0"
-              End="9.71428566258783,52.8882348456917">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,26.1941174228459" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,26.1941174228459"
-                    Point2="0,30.1941174228459"
-                    Point3="4,30.1941174228459" />
-                  <mssgle:LineSegment
-                    End="5.71428566258783,30.1941174228459" />
-                  <mssgle:CubicBezierSegment
-                    Point1="5.71428566258783,30.1941174228459"
-                    Point2="9.71428566258783,30.1941174228459"
-                    Point3="9.71428566258783,34.1941174228459" />
-                  <mssgle:LineSegment
-                    End="9.71428566258783,52.8882348456917" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load_DWH_D_Customer.Paths[Not NULL]"
-          TopLeft="608.500001144197,735.682352616084">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,205.058823640681"
-              Start="0,0"
-              End="0,197.558823640681">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,197.558823640681" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-21.49693359375,94.0684743203403,42.9938671875,9.421875"
+              BoundingBox="0,0,0,0"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>

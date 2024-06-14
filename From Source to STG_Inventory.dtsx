@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="From Source to D_Inventory"
   DTS:PackageType="5"
-  DTS:VersionBuild="58"
-  DTS:VersionGUID="{D1938770-B533-4E25-8F53-2C663AB4383F}">
+  DTS:VersionBuild="60"
+  DTS:VersionGUID="{94ADC50D-D7A1-457D-B7A2-CDA1C8BF55CA}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -1067,7 +1067,7 @@ where [refTable].[SupplierID] = ?</property>
                   dataType="System.Int32"
                   description="Specifies the mode used to access the database."
                   name="AccessMode"
-                  typeConverter="AccessMode">2</property>
+                  typeConverter="AccessMode">3</property>
                 <property
                   dataType="System.String"
                   description="The mappings between the parameters in the SQL command and variables."
@@ -1235,7 +1235,7 @@ where [refTable].[SupplierID] = ?</property>
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{1F587408-40AB-468D-A0A1-1FBAB67F1E7B}"
-          SQLTask:SqlStatementSource="  truncate table STG.Inventory" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="truncate table STG.Inventory" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -1339,14 +1339,14 @@ where [refTable].[SupplierID] = ?</property>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,55.9294116266246"
+              EndConnector="0,55.929411626624"
               Start="0,0"
-              End="0,48.4294116266246">
+              End="0,48.429411626624">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,48.4294116266246" />
+                    End="0,48.429411626624" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1361,14 +1361,14 @@ where [refTable].[SupplierID] = ?</property>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,40.8823529579338"
+              EndConnector="0,40.882352957934"
               Start="0,0"
-              End="0,33.3823529579338">
+              End="0,33.382352957934">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,33.3823529579338" />
+                    End="0,33.382352957934" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1598,7 +1598,7 @@ where [refTable].[SupplierID] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -1608,7 +1608,7 @@ where [refTable].[SupplierID] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1642,7 +1642,7 @@ where [refTable].[SupplierID] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -1652,7 +1652,7 @@ where [refTable].[SupplierID] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1665,7 +1665,7 @@ where [refTable].[SupplierID] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -1675,7 +1675,7 @@ where [refTable].[SupplierID] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1688,7 +1688,7 @@ where [refTable].[SupplierID] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -1698,7 +1698,7 @@ where [refTable].[SupplierID] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>

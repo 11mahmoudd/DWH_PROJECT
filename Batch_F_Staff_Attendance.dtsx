@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Batch_F_Staff"
   DTS:PackageType="5"
-  DTS:VersionBuild="9"
-  DTS:VersionGUID="{02984BB7-C534-4EFA-BCFE-ABF4E95F7B7A}">
+  DTS:VersionBuild="10"
+  DTS:VersionGUID="{A18F6C07-05B9-4F18-81CE-EA76CA190659}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -135,7 +135,7 @@
         <NodeLayout
           Size="184,41.6"
           Id="Package\Sequence Container\STG_Staff_Attendance"
-          TopLeft="47.1142862267033,26.6705880884996" />
+          TopLeft="19.2571433102599,25.1411763251343" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"

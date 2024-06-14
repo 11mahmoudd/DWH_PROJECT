@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="From Source to D_City"
   DTS:PackageType="5"
-  DTS:VersionBuild="56"
-  DTS:VersionGUID="{716E4FC7-91A4-4C47-BFC0-F46F2197019B}">
+  DTS:VersionBuild="61"
+  DTS:VersionGUID="{E982EBE2-A36E-4152-BFCB-6E8AA89FDC67}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -595,6 +595,161 @@ WHERE table_name = 'City';</DTS:VariableValue>
               </outputs>
             </component>
             <component
+              refId="Package\Load_DWH_D_City\DEST_DWH_D_Cityy"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DEST_DWH_D_Cityy"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[DWH].[D_City]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load_DWH_D_City\DEST_DWH_D_Cityy.Connections[OleDbConnection]"
+                  connectionManagerID="{1F587408-40AB-468D-A0A1-1FBAB67F1E7B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[WIN-G21BVJ4FL1C.DWH_PROJECT]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load_DWH_D_City\DEST_DWH_D_Cityy.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_City\DEST_DWH_D_Cityy.Inputs[OLE DB Destination Input].Columns[city_name]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="city_name"
+                      externalMetadataColumnId="Package\Load_DWH_D_City\DEST_DWH_D_Cityy.Inputs[OLE DB Destination Input].ExternalColumns[city_name]"
+                      lineageId="Package\Load_DWH_D_City\Union All.Outputs[Union All Output 1].Columns[city_name]" />
+                    <inputColumn
+                      refId="Package\Load_DWH_D_City\DEST_DWH_D_Cityy.Inputs[OLE DB Destination Input].Columns[city_taxes]"
+                      cachedDataType="numeric"
+                      cachedName="city_taxes"
+                      cachedPrecision="5"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Load_DWH_D_City\DEST_DWH_D_Cityy.Inputs[OLE DB Destination Input].ExternalColumns[city_taxes]"
+                      lineageId="Package\Load_DWH_D_City\Union All.Outputs[Union All Output 1].Columns[city_taxes]" />
+                    <inputColumn
+                      refId="Package\Load_DWH_D_City\DEST_DWH_D_Cityy.Inputs[OLE DB Destination Input].Columns[create_timestamp]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="create_timestamp"
+                      externalMetadataColumnId="Package\Load_DWH_D_City\DEST_DWH_D_Cityy.Inputs[OLE DB Destination Input].ExternalColumns[create_timestamp]"
+                      lineageId="Package\Load_DWH_D_City\Union All.Outputs[Union All Output 1].Columns[create_timestamp]" />
+                    <inputColumn
+                      refId="Package\Load_DWH_D_City\DEST_DWH_D_Cityy.Inputs[OLE DB Destination Input].Columns[city_id]"
+                      cachedDataType="i4"
+                      cachedName="city_id"
+                      externalMetadataColumnId="Package\Load_DWH_D_City\DEST_DWH_D_Cityy.Inputs[OLE DB Destination Input].ExternalColumns[src_id]"
+                      lineageId="Package\Load_DWH_D_City\Union All.Outputs[Union All Output 1].Columns[city_id]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_D_City\DEST_DWH_D_Cityy.Inputs[OLE DB Destination Input].ExternalColumns[city_key]"
+                      dataType="i4"
+                      name="city_key" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_D_City\DEST_DWH_D_Cityy.Inputs[OLE DB Destination Input].ExternalColumns[src_id]"
+                      dataType="i4"
+                      name="src_id" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_D_City\DEST_DWH_D_Cityy.Inputs[OLE DB Destination Input].ExternalColumns[city_name]"
+                      codePage="1256"
+                      dataType="str"
+                      length="30"
+                      name="city_name" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_D_City\DEST_DWH_D_Cityy.Inputs[OLE DB Destination Input].ExternalColumns[city_taxes]"
+                      dataType="numeric"
+                      name="city_taxes"
+                      precision="5"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Load_DWH_D_City\DEST_DWH_D_Cityy.Inputs[OLE DB Destination Input].ExternalColumns[create_timestamp]"
+                      dataType="dbTimeStamp"
+                      name="create_timestamp" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load_DWH_D_City\DEST_DWH_D_Cityy.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load_DWH_D_City\DEST_DWH_D_Cityy.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load_DWH_D_City\DEST_DWH_D_Cityy.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_D_City\DEST_DWH_D_Cityy.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load_DWH_D_City\DEST_DWH_D_Cityy.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load_DWH_D_City\DEST_DWH_D_Cityy.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
               refId="Package\Load_DWH_D_City\Lookup on Dim"
               componentClassID="Microsoft.Lookup"
               contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
@@ -869,6 +1024,33 @@ where [refTable].[src_id] = ?</property>
                   refId="Package\Load_DWH_D_City\null_city_namee.Inputs[Derived Column Input]"
                   description="Input to the Derived Column Transformation"
                   name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_City\null_city_namee.Inputs[Derived Column Input].Columns[city_name]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="city_name"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[city_name]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">"Unknown"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"Unknown"</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
                   <externalMetadataColumns />
                 </input>
               </inputs>
@@ -994,6 +1176,33 @@ where [refTable].[src_id] = ?</property>
                   refId="Package\Load_DWH_D_City\null_taxess.Inputs[Derived Column Input]"
                   description="Input to the Derived Column Transformation"
                   name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load_DWH_D_City\null_taxess.Inputs[Derived Column Input].Columns[city_taxes]"
+                      cachedDataType="numeric"
+                      cachedName="city_taxes"
+                      cachedPrecision="5"
+                      cachedScale="2"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output].Columns[city_taxes]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">0</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
                   <externalMetadataColumns />
                 </input>
               </inputs>
@@ -1142,161 +1351,6 @@ where city_key=?</property>
                       refId="Package\Load_DWH_D_City\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
                       dataType="i4"
                       lineageId="Package\Load_DWH_D_City\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\Load_DWH_D_City\OLE DB Destination"
-              componentClassID="Microsoft.OLEDBDestination"
-              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
-              description="OLE DB Destination"
-              name="OLE DB Destination"
-              usesDispositions="true"
-              version="4">
-              <properties>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">0</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[DWH].[D_City]</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the variable that contains the name of the database object used to open a rowset."
-                  name="OpenRowsetVariable"></property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Forces the use of the DefaultCodePage property value when describing character data."
-                  name="AlwaysUseDefaultCodePage">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the mode used to access the database."
-                  name="AccessMode"
-                  typeConverter="AccessMode">3</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepIdentity">false</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepNulls">false</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
-                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
-                  name="FastLoadMaxInsertCommitSize">2147483647</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\Load_DWH_D_City\OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="{1F587408-40AB-468D-A0A1-1FBAB67F1E7B}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[WIN-G21BVJ4FL1C.DWH_PROJECT]"
-                  description="The OLE DB runtime connection used to access the database."
-                  name="OleDbConnection" />
-              </connections>
-              <inputs>
-                <input
-                  refId="Package\Load_DWH_D_City\OLE DB Destination.Inputs[OLE DB Destination Input]"
-                  errorOrTruncationOperation="Insert"
-                  errorRowDisposition="FailComponent"
-                  hasSideEffects="true"
-                  name="OLE DB Destination Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\Load_DWH_D_City\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[city_name]"
-                      cachedCodepage="1256"
-                      cachedDataType="str"
-                      cachedLength="30"
-                      cachedName="city_name"
-                      externalMetadataColumnId="Package\Load_DWH_D_City\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[city_name]"
-                      lineageId="Package\Load_DWH_D_City\Union All.Outputs[Union All Output 1].Columns[city_name]" />
-                    <inputColumn
-                      refId="Package\Load_DWH_D_City\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[city_taxes]"
-                      cachedDataType="numeric"
-                      cachedName="city_taxes"
-                      cachedPrecision="5"
-                      cachedScale="2"
-                      externalMetadataColumnId="Package\Load_DWH_D_City\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[city_taxes]"
-                      lineageId="Package\Load_DWH_D_City\Union All.Outputs[Union All Output 1].Columns[city_taxes]" />
-                    <inputColumn
-                      refId="Package\Load_DWH_D_City\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[create_timestamp]"
-                      cachedDataType="dbTimeStamp"
-                      cachedName="create_timestamp"
-                      externalMetadataColumnId="Package\Load_DWH_D_City\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[create_timestamp]"
-                      lineageId="Package\Load_DWH_D_City\Union All.Outputs[Union All Output 1].Columns[create_timestamp]" />
-                    <inputColumn
-                      refId="Package\Load_DWH_D_City\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[city_id]"
-                      cachedDataType="i4"
-                      cachedName="city_id"
-                      externalMetadataColumnId="Package\Load_DWH_D_City\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[src_id]"
-                      lineageId="Package\Load_DWH_D_City\Union All.Outputs[Union All Output 1].Columns[city_id]" />
-                  </inputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Load_DWH_D_City\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[city_key]"
-                      dataType="i4"
-                      name="city_key" />
-                    <externalMetadataColumn
-                      refId="Package\Load_DWH_D_City\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[src_id]"
-                      dataType="i4"
-                      name="src_id" />
-                    <externalMetadataColumn
-                      refId="Package\Load_DWH_D_City\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[city_name]"
-                      codePage="1256"
-                      dataType="str"
-                      length="30"
-                      name="city_name" />
-                    <externalMetadataColumn
-                      refId="Package\Load_DWH_D_City\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[city_taxes]"
-                      dataType="numeric"
-                      name="city_taxes"
-                      precision="5"
-                      scale="2" />
-                    <externalMetadataColumn
-                      refId="Package\Load_DWH_D_City\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[create_timestamp]"
-                      dataType="dbTimeStamp"
-                      name="create_timestamp" />
-                  </externalMetadataColumns>
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\Load_DWH_D_City\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\Load_DWH_D_City\OLE DB Destination.Inputs[OLE DB Destination Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Load_DWH_D_City\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Load_DWH_D_City\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Load_DWH_D_City\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Load_DWH_D_City\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -2072,22 +2126,22 @@ where city_key=?</property>
               name="Changed"
               startId="Package\Load_DWH_D_City\Conditional Split.Outputs[Changed]" />
             <path
-              refId="Package\Load_DWH_D_City.Paths[Derived Column Output3]"
+              refId="Package\Load_DWH_D_City.Paths[Derived Column Output]"
               endId="Package\Load_DWH_D_City\Union All 1.Inputs[Union All Input 2]"
               name="Derived Column Output"
               startId="Package\Load_DWH_D_City\null_city_namee.Outputs[Derived Column Output]" />
             <path
-              refId="Package\Load_DWH_D_City.Paths[Derived Column Output2]"
+              refId="Package\Load_DWH_D_City.Paths[Derived Column Output1]"
               endId="Package\Load_DWH_D_City\Union All 1.Inputs[Union All Input 1]"
               name="Derived Column Output"
               startId="Package\Load_DWH_D_City\null_taxess.Outputs[Derived Column Output]" />
             <path
-              refId="Package\Load_DWH_D_City.Paths[Derived Column Output]"
+              refId="Package\Load_DWH_D_City.Paths[Derived Column Output2]"
               endId="Package\Load_DWH_D_City\Union All.Inputs[Union All Input 1]"
               name="Derived Column Output"
               startId="Package\Load_DWH_D_City\null_city_name.Outputs[Derived Column Output]" />
             <path
-              refId="Package\Load_DWH_D_City.Paths[Derived Column Output1]"
+              refId="Package\Load_DWH_D_City.Paths[Derived Column Output3]"
               endId="Package\Load_DWH_D_City\Union All.Inputs[Union All Input 2]"
               name="Derived Column Output"
               startId="Package\Load_DWH_D_City\null_taxes.Outputs[Derived Column Output]" />
@@ -2103,14 +2157,14 @@ where city_key=?</property>
               startId="Package\Load_DWH_D_City\Lookup on Dim.Outputs[Lookup No Match Output]" />
             <path
               refId="Package\Load_DWH_D_City.Paths[not_null1]"
-              endId="Package\Load_DWH_D_City\Union All 1.Inputs[Union All Input 3]"
-              name="not_null"
-              startId="Package\Load_DWH_D_City\Conditional Split 1.Outputs[not_null]" />
-            <path
-              refId="Package\Load_DWH_D_City.Paths[not_null]"
               endId="Package\Load_DWH_D_City\Union All.Inputs[Union All Input 3]"
               name="not_null"
               startId="Package\Load_DWH_D_City\Conditional Split 1 1.Outputs[not_null]" />
+            <path
+              refId="Package\Load_DWH_D_City.Paths[not_null]"
+              endId="Package\Load_DWH_D_City\Union All 1.Inputs[Union All Input 3]"
+              name="not_null"
+              startId="Package\Load_DWH_D_City\Conditional Split 1.Outputs[not_null]" />
             <path
               refId="Package\Load_DWH_D_City.Paths[null_city_name]"
               endId="Package\Load_DWH_D_City\null_city_name.Inputs[Derived Column Input]"
@@ -2143,7 +2197,7 @@ where city_key=?</property>
               startId="Package\Load_DWH_D_City\SRC_STG_City.Outputs[OLE DB Source Output]" />
             <path
               refId="Package\Load_DWH_D_City.Paths[Union All Output 1]"
-              endId="Package\Load_DWH_D_City\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              endId="Package\Load_DWH_D_City\DEST_DWH_D_Cityy.Inputs[OLE DB Destination Input]"
               name="Union All Output 1"
               startId="Package\Load_DWH_D_City\Union All.Outputs[Union All Output 1]" />
             <path
@@ -2688,21 +2742,25 @@ where city_key=?</property>
         <NodeLayout
           Size="168.8,41.6"
           Id="Package\Truncate_STG_City"
-          TopLeft="463.571429558251,90.999999920235" />
+          TopLeft="471.42857243212,97.1176469736962" />
+        <NodeLayout
+          Size="165.6,41.6"
+          Id="Package\Update Conf Table"
+          TopLeft="475.000001011151,415.129411489885" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="551.44285813196,132.599999920235">
+          TopLeft="555.371429568894,138.717646973696">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,37.1647058133126"
+              EndConnector="0,31.0470587598518"
               Start="0,0"
-              End="0,29.6647058133126">
+              End="0,23.5470587598518">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,29.6647058133126" />
+                    End="0,23.5470587598518" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2755,10 +2813,6 @@ where city_key=?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="165.6,41.6"
-          Id="Package\Update Conf Table"
-          TopLeft="475.000001011151,415.129411489885" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
           TopLeft="556.057143863732,374.247058531951">
@@ -2790,89 +2844,93 @@ where city_key=?</property>
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="154.4,41.6"
-          Id="Package\Load_DWH_D_City\Conditional Split"
-          TopLeft="799.090897183527,267.272723290053" />
-        <NodeLayout
           Size="146.4,41.6"
           Id="Package\Load_DWH_D_City\SRC_STG_City"
           TopLeft="704.999989494682,82.9999987632036" />
         <NodeLayout
-          Size="149.6,41.6"
-          Id="Package\Load_DWH_D_City\Lookup on Dim"
-          TopLeft="721.818171062253,171.818179257891" />
+          Size="163.2,41.6"
+          Id="Package\Load_DWH_D_City\Conditional Split 1 1"
+          TopLeft="541.75823329616,261.459888048664" />
+        <NodeLayout
+          Size="120,41.6"
+          Id="Package\Load_DWH_D_City\Union All 1"
+          TopLeft="880.000001873289,605.577534805856" />
+        <NodeLayout
+          Size="148.8,41.6"
+          Id="Package\Load_DWH_D_City\null_city_name"
+          TopLeft="388.571429398595,357.717646848351" />
         <NodeLayout
           Size="164.8,41.6"
           Id="Package\Load_DWH_D_City\OLE DB Command"
           TopLeft="807.272715243426,353.636358366771" />
+        <NodeLayout
+          Size="120,41.6"
+          Id="Package\Load_DWH_D_City\Union All"
+          TopLeft="508.571429654044,449.847058600321" />
+        <NodeLayout
+          Size="154.4,41.6"
+          Id="Package\Load_DWH_D_City\Conditional Split"
+          TopLeft="799.090897183527,267.272723290053" />
+        <NodeLayout
+          Size="130.4,41.6"
+          Id="Package\Load_DWH_D_City\null_taxess"
+          TopLeft="717.857144385272,535.989299572735" />
+        <NodeLayout
+          Size="163.2,41.6"
+          Id="Package\Load_DWH_D_City\Conditional Split 1"
+          TopLeft="823.571430324596,449.411764413634" />
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\Load_DWH_D_City\DEST_DWH_D_City"
+          TopLeft="860.329662545743,692.859887581469" />
+        <NodeLayout
+          Size="125.6,41.6"
+          Id="Package\Load_DWH_D_City\null_taxes"
+          TopLeft="640.714287078198,371.482352718639" />
+        <NodeLayout
+          Size="175.2,41.6"
+          Id="Package\Load_DWH_D_City\DEST_DWH_D_Cityy"
+          TopLeft="491.043947473917,539.506946637591" />
+        <NodeLayout
+          Size="154.4,41.6"
+          Id="Package\Load_DWH_D_City\null_city_namee"
+          TopLeft="986.685716381,527.482352581899" />
+        <NodeLayout
+          Size="149.6,41.6"
+          Id="Package\Load_DWH_D_City\Lookup on Dim"
+          TopLeft="703.818171330474,171.818179257891" />
         <EdgeLayout
-          Id="Package\Load_DWH_D_City.Paths[OLE DB Source Output]"
-          TopLeft="778.199989494682,124.599998763204">
+          Id="Package\Load_DWH_D_City.Paths[Derived Column Output]"
+          TopLeft="1063.885716381,569.082352581899">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="18.4181815675709,47.2181804946874"
+              EndConnector="-95.8857145077109,36.4951822239568"
               Start="0,0"
-              End="18.4181815675709,39.7181804946874">
+              End="-95.8857145077109,28.9951822239568">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,19.6090902473437" />
+                    End="0,19.8012057982327" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,19.6090902473437"
-                    Point2="0,23.6090902473437"
-                    Point3="4,23.6090902473437" />
+                    Point1="0,19.8012057982327"
+                    Point2="0,23.8012057982327"
+                    Point3="-4,23.8012057982327" />
                   <mssgle:LineSegment
-                    End="14.4181815675709,23.6090902473437" />
+                    End="-91.8857145077109,23.8012057982327" />
                   <mssgle:CubicBezierSegment
-                    Point1="14.4181815675709,23.6090902473437"
-                    Point2="18.4181815675709,23.6090902473437"
-                    Point3="18.4181815675709,27.6090902473437" />
+                    Point1="-91.8857145077109,23.8012057982327"
+                    Point2="-95.8857145077109,23.8012057982327"
+                    Point3="-95.8857145077109,27.8012057982327" />
                   <mssgle:LineSegment
-                    End="18.4181815675709,39.7181804946874" />
+                    End="-95.8857145077109,28.9951822239568" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load_DWH_D_City.Paths[Lookup Match Output]"
-          TopLeft="820.218171062253,213.418179257891">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="56.0727261212741,53.854544032162"
-              Start="0,0"
-              End="56.0727261212741,46.354544032162">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,17.8837512257674" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,17.8837512257674"
-                    Point2="0,21.8837512257674"
-                    Point3="4,21.8837512257674" />
-                  <mssgle:LineSegment
-                    End="52.0727261212741,21.8837512257674" />
-                  <mssgle:CubicBezierSegment
-                    Point1="52.0727261212741,21.8837512257674"
-                    Point2="56.0727261212741,21.8837512257674"
-                    Point3="56.0727261212741,25.8837512257674" />
-                  <mssgle:LineSegment
-                    End="56.0727261212741,46.354544032162" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-20.155023658113,26.8837512257674,96.3827734375,11.609375"
-              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -2911,14 +2969,84 @@ where city_key=?</property>
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="170.4,41.6"
-          Id="Package\Load_DWH_D_City\DEST_DWH_D_City"
-          TopLeft="860.329662545743,692.859887581469" />
-        <NodeLayout
-          Size="163.2,41.6"
-          Id="Package\Load_DWH_D_City\Conditional Split 1"
-          TopLeft="823.571430324596,449.411764413634" />
+        <EdgeLayout
+          Id="Package\Load_DWH_D_City.Paths[Union All Output 11]"
+          TopLeft="942.764832209516,647.177534805856">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,45.6823527756138"
+              Start="0,0"
+              End="0,38.1823527756138">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.1823527756138" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_DWH_D_City.Paths[Union All Output 1]"
+          TopLeft="568.571429654044,491.447058600321">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="10.072517819873,48.05988803727"
+              Start="0,0"
+              End="10.072517819873,40.55988803727">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.029944018635" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.029944018635"
+                    Point2="0,24.029944018635"
+                    Point3="4,24.029944018635" />
+                  <mssgle:LineSegment
+                    End="6.07251781987304,24.029944018635" />
+                  <mssgle:CubicBezierSegment
+                    Point1="6.07251781987304,24.029944018635"
+                    Point2="10.072517819873,24.029944018635"
+                    Point3="10.072517819873,28.029944018635" />
+                  <mssgle:LineSegment
+                    End="10.072517819873,40.55988803727" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_DWH_D_City.Paths[OLE DB Source Output]"
+          TopLeft="778.409080412578,124.599998763204">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,47.2181804946874"
+              Start="0,0"
+              End="0,39.7181804946874">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.7181804946874" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\Load_DWH_D_City.Paths[OLE DB Command Output]"
           TopLeft="889.672715243426,395.236358366771">
@@ -2953,95 +3081,39 @@ where city_key=?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="163.2,41.6"
-          Id="Package\Load_DWH_D_City\Conditional Split 1 1"
-          TopLeft="541.75823329616,261.459888048664" />
-        <NodeLayout
-          Size="170.4,41.6"
-          Id="Package\Load_DWH_D_City\OLE DB Destination"
-          TopLeft="491.043947473917,539.506946637591" />
         <EdgeLayout
-          Id="Package\Load_DWH_D_City.Paths[Lookup No Match Output]"
-          TopLeft="773.018171062253,213.418179257891">
+          Id="Package\Load_DWH_D_City.Paths[null_taxes1]"
+          TopLeft="866.371430324596,491.011764413634">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-149.659937766093,48.0417087907734"
+              EndConnector="-83.3142859393234,44.9775351591005"
               Start="0,0"
-              End="-149.659937766093,40.5417087907734">
+              End="-83.3142859393234,37.4775351591005">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,15.5217102387905" />
+                    End="0,11.4745860515233" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,15.5217102387905"
-                    Point2="0,19.5217102387905"
-                    Point3="-4,19.5217102387905" />
+                    Point1="0,11.4745860515233"
+                    Point2="0,15.4745860515233"
+                    Point3="-4,15.4745860515233" />
                   <mssgle:LineSegment
-                    End="-145.659937766093,19.5217102387905" />
+                    End="-79.3142859393234,15.4745860515233" />
                   <mssgle:CubicBezierSegment
-                    Point1="-145.659937766093,19.5217102387905"
-                    Point2="-149.659937766093,19.5217102387905"
-                    Point3="-149.659937766093,23.5217102387905" />
+                    Point1="-79.3142859393234,15.4745860515233"
+                    Point2="-83.3142859393234,15.4745860515233"
+                    Point3="-83.3142859393234,19.4745860515233" />
                   <mssgle:LineSegment
-                    End="-149.659937766093,40.5417087907734" />
+                    End="-83.3142859393234,37.4775351591005" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-130.636355601796,24.5217102387905,111.6127734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="148.8,41.6"
-          Id="Package\Load_DWH_D_City\null_city_name"
-          TopLeft="388.571429398595,357.717646848351" />
-        <NodeLayout
-          Size="125.6,41.6"
-          Id="Package\Load_DWH_D_City\null_taxes"
-          TopLeft="640.714287078198,371.482352718639" />
-        <NodeLayout
-          Size="154.4,41.6"
-          Id="Package\Load_DWH_D_City\null_city_namee"
-          TopLeft="986.685716381,527.482352581899" />
-        <EdgeLayout
-          Id="Package\Load_DWH_D_City.Paths[null_city_name]"
-          TopLeft="597.491566629493,303.059888048664">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-134.520137230898,54.6577587996867"
-              Start="0,0"
-              End="-134.520137230898,47.1577587996867">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,18.1814982313292" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,18.1814982313292"
-                    Point2="0,22.1814982313292"
-                    Point3="-4,22.1814982313292" />
-                  <mssgle:LineSegment
-                    End="-130.520137230898,22.1814982313292" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-130.520137230898,22.1814982313292"
-                    Point2="-134.520137230898,22.1814982313292"
-                    Point3="-134.520137230898,26.1814982313292" />
-                  <mssgle:LineSegment
-                    End="-134.520137230898,47.1577587996867" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-100.983037365449,27.1814982313292,67.4459375,11.609375"
+              BoundingBox="-64.4613421884117,20.4745860515233,45.6083984375,11.0625"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -3081,176 +3153,6 @@ where city_key=?</property>
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="120,41.6"
-          Id="Package\Load_DWH_D_City\Union All"
-          TopLeft="508.571429654044,449.847058600321" />
-        <EdgeLayout
-          Id="Package\Load_DWH_D_City.Paths[Derived Column Output]"
-          TopLeft="462.971429398595,399.317646848351">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="77.6000002554484,50.5294117519701"
-              Start="0,0"
-              End="77.6000002554484,43.0294117519701">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,28.9539641860675" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,28.9539641860675"
-                    Point2="0,32.9539641860675"
-                    Point3="4,32.9539641860675" />
-                  <mssgle:LineSegment
-                    End="73.6000002554484,32.9539641860675" />
-                  <mssgle:CubicBezierSegment
-                    Point1="73.6000002554484,32.9539641860675"
-                    Point2="77.6000002554484,32.9539641860675"
-                    Point3="77.6000002554484,36.9539641860675" />
-                  <mssgle:LineSegment
-                    End="77.6000002554484,43.0294117519701" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load_DWH_D_City.Paths[Derived Column Output1]"
-          TopLeft="703.514287078198,413.082352718639">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-106.942857424154,36.7647058816825"
-              Start="0,0"
-              End="-106.942857424154,29.2647058816825">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,19.9769820967495" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,19.9769820967495"
-                    Point2="0,23.9769820967495"
-                    Point3="-4,23.9769820967495" />
-                  <mssgle:LineSegment
-                    End="-102.942857424154,23.9769820967495" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-102.942857424154,23.9769820967495"
-                    Point2="-106.942857424154,23.9769820967495"
-                    Point3="-106.942857424154,27.9769820967495" />
-                  <mssgle:LineSegment
-                    End="-106.942857424154,29.2647058816825" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load_DWH_D_City.Paths[not_null]"
-          TopLeft="623.35823329616,303.059888048664">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-54.7868036421164,146.787170551657"
-              Start="0,0"
-              End="-54.7868036421164,139.287170551657">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,69.3935852758285" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,69.3935852758285"
-                    Point2="0,73.3935852758285"
-                    Point3="-4,73.3935852758285" />
-                  <mssgle:LineSegment
-                    End="-50.7868036421164,73.3935852758285" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-50.7868036421164,73.3935852758285"
-                    Point2="-54.7868036421164,73.3935852758285"
-                    Point3="-54.7868036421164,77.3935852758285" />
-                  <mssgle:LineSegment
-                    End="-54.7868036421164,139.287170551657" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-45.4921518210582,78.3935852758285,36.1975,11.0625"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load_DWH_D_City.Paths[Union All Output 1]"
-          TopLeft="572.40768856398,491.447058600321">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,48.0598880372694"
-              Start="0,0"
-              End="0,40.5598880372694">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,40.5598880372694" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="130.4,41.6"
-          Id="Package\Load_DWH_D_City\null_taxess"
-          TopLeft="717.857144385272,535.989299572735" />
-        <EdgeLayout
-          Id="Package\Load_DWH_D_City.Paths[null_taxes1]"
-          TopLeft="866.371430324596,491.011764413634">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-83.3142859393234,44.9775351591005"
-              Start="0,0"
-              End="-83.3142859393234,37.4775351591005">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,11.4745860515233" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,11.4745860515233"
-                    Point2="0,15.4745860515233"
-                    Point3="-4,15.4745860515233" />
-                  <mssgle:LineSegment
-                    End="-79.3142859393234,15.4745860515233" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-79.3142859393234,15.4745860515233"
-                    Point2="-83.3142859393234,15.4745860515233"
-                    Point3="-83.3142859393234,19.4745860515233" />
-                  <mssgle:LineSegment
-                    End="-83.3142859393234,37.4775351591005" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-64.4613421884117,20.4745860515233,45.6083984375,11.0625"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
         <EdgeLayout
           Id="Package\Load_DWH_D_City.Paths[null_city_name1]"
           TopLeft="943.971430324596,491.011764413634">
@@ -3287,80 +3189,80 @@ where city_key=?</property>
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="120,41.6"
-          Id="Package\Load_DWH_D_City\Union All 1"
-          TopLeft="880.000001873289,605.577534805856" />
         <EdgeLayout
-          Id="Package\Load_DWH_D_City.Paths[Derived Column Output2]"
-          TopLeft="783.057144385272,577.589299572735">
+          Id="Package\Load_DWH_D_City.Paths[null_city_name]"
+          TopLeft="597.491566629493,303.059888048664">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="128.942857488017,27.9882352331209"
+              EndConnector="-134.520137230898,54.6577587996867"
               Start="0,0"
-              End="128.942857488017,20.4882352331209">
+              End="-134.520137230898,47.1577587996867">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,14.2531968911658" />
+                    End="0,18.1814982313292" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,14.2531968911658"
-                    Point2="0,18.2531968911658"
-                    Point3="4,18.2531968911658" />
+                    Point1="0,18.1814982313292"
+                    Point2="0,22.1814982313292"
+                    Point3="-4,22.1814982313292" />
                   <mssgle:LineSegment
-                    End="124.942857488017,18.2531968911658" />
+                    End="-130.520137230898,22.1814982313292" />
                   <mssgle:CubicBezierSegment
-                    Point1="124.942857488017,18.2531968911658"
-                    Point2="128.942857488017,18.2531968911658"
-                    Point3="128.942857488017,22.2531968911658" />
+                    Point1="-130.520137230898,22.1814982313292"
+                    Point2="-134.520137230898,22.1814982313292"
+                    Point3="-134.520137230898,26.1814982313292" />
                   <mssgle:LineSegment
-                    End="128.942857488017,20.4882352331209" />
+                    End="-134.520137230898,47.1577587996867" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load_DWH_D_City.Paths[Derived Column Output3]"
-          TopLeft="1063.885716381,569.082352581899">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-95.8857145077109,36.4951822239568"
-              Start="0,0"
-              End="-95.8857145077109,28.9951822239568">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,19.8012057982327" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,19.8012057982327"
-                    Point2="0,23.8012057982327"
-                    Point3="-4,23.8012057982327" />
-                  <mssgle:LineSegment
-                    End="-91.8857145077109,23.8012057982327" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-91.8857145077109,23.8012057982327"
-                    Point2="-95.8857145077109,23.8012057982327"
-                    Point3="-95.8857145077109,27.8012057982327" />
-                  <mssgle:LineSegment
-                    End="-95.8857145077109,28.9951822239568" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-100.983037365449,27.1814982313292,67.4459375,11.609375"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Load_DWH_D_City.Paths[not_null1]"
+          TopLeft="623.35823329616,303.059888048664">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-54.7868036421164,146.787170551657"
+              Start="0,0"
+              End="-54.7868036421164,139.287170551657">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,69.3935852758285" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,69.3935852758285"
+                    Point2="0,73.3935852758285"
+                    Point3="-4,73.3935852758285" />
+                  <mssgle:LineSegment
+                    End="-50.7868036421164,73.3935852758285" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-50.7868036421164,73.3935852758285"
+                    Point2="-54.7868036421164,73.3935852758285"
+                    Point3="-54.7868036421164,77.3935852758285" />
+                  <mssgle:LineSegment
+                    End="-54.7868036421164,139.287170551657" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-45.4921518210582,78.3935852758285,36.1975,11.0625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_DWH_D_City.Paths[not_null]"
           TopLeft="905.171430324596,491.011764413634">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -3396,19 +3298,171 @@ where city_key=?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load_DWH_D_City.Paths[Union All Output 11]"
-          TopLeft="942.764832209516,647.177534805856">
+          Id="Package\Load_DWH_D_City.Paths[Lookup No Match Output]"
+          TopLeft="755.018171330474,213.418179257891">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,45.6823527756138"
+              EndConnector="-131.659938034314,48.041708790773"
               Start="0,0"
-              End="0,38.1823527756138">
+              End="-131.659938034314,40.541708790773">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,38.1823527756138" />
+                    End="0,15.5217102387903" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.5217102387903"
+                    Point2="0,19.5217102387903"
+                    Point3="-4,19.5217102387903" />
+                  <mssgle:LineSegment
+                    End="-127.659938034314,19.5217102387903" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-127.659938034314,19.5217102387903"
+                    Point2="-131.659938034314,19.5217102387903"
+                    Point3="-131.659938034314,23.5217102387903" />
+                  <mssgle:LineSegment
+                    End="-131.659938034314,40.541708790773" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-121.636355735907,24.5217102387903,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_DWH_D_City.Paths[Lookup Match Output]"
+          TopLeft="802.218171330474,213.418179257891">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="74.072725853053,53.854544032162"
+              Start="0,0"
+              End="74.072725853053,46.354544032162">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.8837512257674" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.8837512257674"
+                    Point2="0,21.8837512257674"
+                    Point3="4,21.8837512257674" />
+                  <mssgle:LineSegment
+                    End="70.072725853053,21.8837512257674" />
+                  <mssgle:CubicBezierSegment
+                    Point1="70.072725853053,21.8837512257674"
+                    Point2="74.072725853053,21.8837512257674"
+                    Point3="74.072725853053,25.8837512257674" />
+                  <mssgle:LineSegment
+                    End="74.072725853053,46.354544032162" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-11.1550237922235,26.8837512257674,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_DWH_D_City.Paths[Derived Column Output3]"
+          TopLeft="703.514287078198,413.082352718639">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-106.942857424154,36.7647058816825"
+              Start="0,0"
+              End="-106.942857424154,29.2647058816825">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.9769820967495" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19.9769820967495"
+                    Point2="0,23.9769820967495"
+                    Point3="-4,23.9769820967495" />
+                  <mssgle:LineSegment
+                    End="-102.942857424154,23.9769820967495" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-102.942857424154,23.9769820967495"
+                    Point2="-106.942857424154,23.9769820967495"
+                    Point3="-106.942857424154,27.9769820967495" />
+                  <mssgle:LineSegment
+                    End="-106.942857424154,29.2647058816825" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_DWH_D_City.Paths[Derived Column Output2]"
+          TopLeft="462.971429398595,399.317646848351">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="77.6000002554484,50.5294117519701"
+              Start="0,0"
+              End="77.6000002554484,43.0294117519701">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.9539641860675" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28.9539641860675"
+                    Point2="0,32.9539641860675"
+                    Point3="4,32.9539641860675" />
+                  <mssgle:LineSegment
+                    End="73.6000002554484,32.9539641860675" />
+                  <mssgle:CubicBezierSegment
+                    Point1="73.6000002554484,32.9539641860675"
+                    Point2="77.6000002554484,32.9539641860675"
+                    Point3="77.6000002554484,36.9539641860675" />
+                  <mssgle:LineSegment
+                    End="77.6000002554484,43.0294117519701" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_DWH_D_City.Paths[Derived Column Output1]"
+          TopLeft="783.057144385272,577.589299572735">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="128.942857488017,27.9882352331209"
+              Start="0,0"
+              End="128.942857488017,20.4882352331209">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.2531968911658" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.2531968911658"
+                    Point2="0,18.2531968911658"
+                    Point3="4,18.2531968911658" />
+                  <mssgle:LineSegment
+                    End="124.942857488017,18.2531968911658" />
+                  <mssgle:CubicBezierSegment
+                    Point1="124.942857488017,18.2531968911658"
+                    Point2="128.942857488017,18.2531968911658"
+                    Point3="128.942857488017,22.2531968911658" />
+                  <mssgle:LineSegment
+                    End="128.942857488017,20.4882352331209" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3434,12 +3488,38 @@ where city_key=?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
+    design-time-name="Package\Load_DWH_D_City\DEST_DWH_D_City">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load_DWH_D_City\DEST_DWH_D_Cityy">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
     design-time-name="Package\Load_DWH_D_City\Lookup on Dim">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:string">false</Value>
+          type="q2:boolean">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -3449,7 +3529,7 @@ where city_key=?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:string">0</Value>
+          type="q4:int">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -3460,7 +3540,7 @@ where city_key=?</property>
     design-time-name="Package\Load_STG_City">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="146.4,41.6"
           Id="Package\Load_STG_City\DEST_DB_City"
@@ -3492,9 +3572,7 @@ where city_key=?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -3516,9 +3594,7 @@ where city_key=?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -3542,32 +3618,6 @@ where city_key=?</property>
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load_DWH_D_City\DEST_DWH_D_City">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load_DWH_D_City\OLE DB Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
